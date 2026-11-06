@@ -49,6 +49,8 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
 | Ricerca di ispirazione | **Da pianificare** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
+| Ricerca di ispirazione | **Da pianificare** | Siti/temi pre-assemblati da Astro |
+| Struttura Codice | **Da pianificare** | Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli. |
 | Definire la struttura del sito | **Da pianificare** | Stabilire pagine, sezioni e navigazione della prima versione. |
 | Preparare contenuti e risorse | **Da pianificare** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | Definire la grafica definitiva | **Da pianificare** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
@@ -108,6 +110,9 @@ Spunti iniziali da discutere, non requisiti approvati né attività già pianifi
 Vedi [Inspiration](docs/inspiration.md) per siti web si riferimento. 
 
 | Idea | Possibile sviluppo |
+| --- | --- |
+| Menu Hero | Menu reportage/articoli con pagina coming soon |
+| Hero | Blog nella hero main?? |
 | --- | --- |
 | Archivio dei luoghi | Schede dedicate ai luoghi del Polesine, con fotografie, descrizioni e memoria storica. |
 | Racconti e testimonianze | Storie legate al territorio, ricordi e contributi delle persone. |
