@@ -17,14 +17,20 @@
           <li><a href="{{ .Site.Home.RelPermalink }}" aria-current="page">Home</a></li>
           <li><span aria-disabled="true" title="Sezione in preparazione">Esplora</span></li>
           <li><span aria-disabled="true" title="Sezione in preparazione">Galleria</span></li>
-          <li><span aria-disabled="true" title="Sezione in preparazione">About</span></li>
-          <li><a href="#contatti">Contatti</a></li>
+          <li><span aria-disabled="true" title="Sezione in preparazione">Chi sono</span></li>
+          <li><span aria-disabled="true" title="Sezione in preparazione">Contatti</span></li>
         </ul>
       </nav>
     </details>
     <div class="header-actions">
       <div class="search" id="search" hidden>
-        <button class="icon-button search-toggle" type="button" aria-label="Apri ricerca" aria-expanded="false" aria-controls="search-panel">{{ partial "icon.html" (dict "name" "search") }}</button>
+        <div class="search-controls">
+          <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Attiva modalità scura" aria-pressed="false" hidden>
+            <span class="theme-light">{{ partial "icon.html" (dict "name" "sun") }}</span>
+            <span class="theme-dark">{{ partial "icon.html" (dict "name" "moon") }}</span>
+          </button>
+          <button class="icon-button search-toggle" type="button" aria-label="Apri ricerca" aria-expanded="false" aria-controls="search-panel">{{ partial "icon.html" (dict "name" "search") }}</button>
+        </div>
         <div class="search-panel" id="search-panel" inert>
           <label class="sr-only" for="search-input">Cerca negli articoli e nella galleria</label>
           <input id="search-input" type="text" inputmode="search" aria-describedby="search-hint" autocomplete="off">
@@ -35,5 +41,8 @@
       <a class="icon-button" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
     </div>
   </div>
-  <div class="hero-title"><h1>Polesine Fantasma</h1></div>
+  <div class="hero-title">
+    <h1>Polesine Fantasma</h1>
+    <p class="hero-subtitle">Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resistono allo scorrere del tempo.</p>
+  </div>
 </header>

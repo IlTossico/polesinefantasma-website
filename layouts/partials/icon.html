@@ -1,1 +1,2 @@
-<svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="{{ "icons.svg" | relURL }}#{{ .name }}"></use></svg>
+{{- $version := readFile "static/icons.svg" | sha256 -}}
+<svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="{{ "icons.svg" | relURL }}?v={{ $version }}#{{ .name }}"></use></svg>

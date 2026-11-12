@@ -1,10 +1,10 @@
 ## Documentazione
 
-Per ogni modifica al sito aggiornare sempre entrambi i documenti `README.md` e `docs/risorse.md`.
+Aggiornare `docs/risorse.md` soltanto quando una modifica introduce o cambia informazioni tecniche rilevanti per la manutenzione del sito. Non modificare il documento per piccoli interventi estetici, correzioni marginali o modifiche che non richiedono nuova documentazione.
 
-Mantenere nel README principale la panoramica del progetto, lo stato e le attività aperte.
+Il file README.md contiene la panoramica del progetto, lo stato e le attività aperte. Non modificarlo salvo richiesta esplicita dell'utente riferita al README stesso. Quando viene richiesta una modifica, intervenire esclusivamente sulle righe o sulle attività indicate, senza riscrivere, riorganizzare, aggiungere o eliminare altre parti del documento. Preservare integralmente la struttura e la formattazione esistenti.
 
-Documenta le decisioni tecniche e le istruzioni necessarie alla manutenzione futura. Evita resoconti cronologici, dettagli dei test conclusi e ripetizioni tra documenti. Privilegia sempre la sintesi.
+Evita resoconti cronologici, dettagli dei test conclusi e ripetizioni tra documenti. Privilegia sempre la sintesi.
 
 ## Regole di modifica del progetto
 

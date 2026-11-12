@@ -3,12 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    try {
+      if (localStorage.getItem('polesine-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch {}
+  </script>
   <title>{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
   {{/* Prima versione dimostrativa: rimuovere noindex quando i contenuti saranno definitivi. */}}
   <meta name="robots" content="noindex, nofollow">
   <link rel="preload" href="{{ "fonts/special-elite-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ "fonts/roboto-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "fonts/source-sans-3-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="Polesine Fantasma" href="{{ .RelPermalink }}">{{ end }}

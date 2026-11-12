@@ -9,7 +9,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
 | Ultimo aggiornamento di questa panoramica | **12 novembre 2026**. |
 | Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
-| Ultimi interventi completati | Base Hugo, homepage responsive, menu mobile, interfaccia di ricerca, copia email e avvio automatico del server in VS Code. |
+| Ultimi interventi completati | Homepage con feed a tutta larghezza, selettore chiaro/scuro. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -18,9 +18,9 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Ambito | Implementazione attuale |
 | --- | --- |
 | Pagina | HTML statico generato da template originale Hugo. |
-| Presentazione | CSS responsive, hero fotografica, logo PNG originale e layout a due colonne su desktop e a colonna singola su smartphone. |
-| Interazioni | JavaScript vanilla per menu mobile; voci del menu a 15,9 px con peso normale. |
-| Risorse | Sfondo convertito WebP responsive, logo PNG non rielaborato, sprite SVG locale, Special Elite locale per i due titoli, Inter locale nel footer e Roboto locale per gli altri testi; nessuna libreria o font remoto. |
+| Presentazione | CSS responsive, hero fotografica, logo PNG originale e layout singola colonna. |
+| Interazioni | JavaScript vanilla per menu mobile, ricerca e selettore sole/luna con preferenza salvata nel browser. |
+| Risorse | Sfondo WebP responsive, logo PNG originale, sprite SVG locale; Oswald per il menu, Inter nel footer, Source Sans 3 per gli altri testi e Special Elite per i titoli del progetto. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
 ```text
@@ -32,7 +32,7 @@ polesinefantasma-website/
 ├── .vscode/tasks.json      # Avvio automatico del server Hugo
 ├── layouts/
 │   ├── baseof.html         # Struttura HTML condivisa
-│   ├── home.html           # Homepage e sidebar
+│   ├── home.html           # Homepage
 │   └── partials/           # Header, footer, feed e icone
 ├── data/demo.toml          # Articoli dimostrativi
 ├── assets/
@@ -43,7 +43,7 @@ polesinefantasma-website/
 │       └── logo.png       # Logo PNG originale
 ├── static/
 │   ├── icons.svg          # Sprite SVG locale
-│   └── fonts/             # Special Elite, Roboto e Inter WOFF2 con licenze
+│   └── fonts/             # Special Elite e Source Sans 3 WOFF2 con licenze
 ├── public/                # Sito generato, ignorato da Git
 ├── resources/             # Cache delle risorse Hugo, ignorata da Git
 └── docs/
@@ -88,6 +88,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Definire la grafica definitiva | **Work in Progress** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
 | Sviluppare il sito definitivo | **Work in Progress** | Realizzare le pagine concordate mantenendo l'architettura statica. |
 | CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
+| Email | **Da pianificare** | Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare. |
 
 ### 2. SEO e indicizzazione
 
@@ -169,5 +170,3 @@ Le fotografie, le immagini, i testi originali, i loghi e gli elementi dell'ident
 - [Risorse e manutenzione tecnica](docs/risorse.md): responsabilità dei file, modifica delle risorse e workflow di manutenzione.
 - [Inspiration](docs/inspiration.md): raccolta di riferimenti per grafica, contenuti e navigazione del futuro sito.
 - [AGENTS.md](AGENTS.md): regole per gli interventi sul repository.
-
-Mantenere aggiornati `README.md` e `docs/risorse.md` a ogni modifica al sito. Commit e deploy richiedono autorizzazione esplicita.

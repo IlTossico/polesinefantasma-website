@@ -2,14 +2,13 @@
   <div class="social-links">
     <a class="social-circle" href="{{ "index.xml" | relURL }}" aria-label="Feed RSS">{{ partial "icon.html" (dict "name" "rss") }}</a>
     <div class="email-control">
-      <a class="social-circle" href="mailto:{{ .Site.Params.email }}" data-copy-email="{{ .Site.Params.email }}" aria-label="Email: {{ .Site.Params.email }}">{{ partial "icon.html" (dict "name" "email") }}</a>
+      <button class="social-circle" id="email-feedback" type="button" aria-label="Mostra conferma email">{{ partial "icon.html" (dict "name" "email") }}</button>
       <span class="copy-status" role="status" aria-live="polite" aria-atomic="true"></span>
     </div>
     <a class="social-circle" href="https://www.facebook.com/polesinefantasma/" aria-label="Polesine Fantasma su Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
     <a class="social-circle" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
     <a class="social-circle" href="https://www.youtube.com/@polesinefantasma" aria-label="Polesine Fantasma su YouTube">{{ partial "icon.html" (dict "name" "youtube") }}</a>
   </div>
-  <noscript><p class="email-fallback">{{ .Site.Params.email }}</p></noscript>
 </section>
 <footer class="site-footer">
   <div class="footer-inner">

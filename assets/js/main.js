@@ -1,4 +1,19 @@
 (() => {
+  const themeToggle = document.querySelector('#theme-toggle');
+  const syncTheme = () => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(dark));
+    themeToggle.setAttribute('aria-label', dark ? 'Attiva modalità chiara' : 'Attiva modalità scura');
+  };
+  syncTheme();
+  themeToggle.hidden = false;
+  themeToggle.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    syncTheme();
+    try { localStorage.setItem('polesine-theme', theme); } catch {}
+  });
+
   const search = document.querySelector('#search');
   const searchToggle = search.querySelector('.search-toggle');
   const searchPanel = search.querySelector('.search-panel');
@@ -54,52 +69,12 @@
   const syncNavigation = () => { navigation.open = !mobile.matches; };
   syncNavigation();
   mobile.addEventListener('change', syncNavigation);
-
-  const emailLink = document.querySelector('[data-copy-email]');
-  const email = emailLink.dataset.copyEmail;
-  const emailButton = document.createElement('button');
-  emailButton.type = 'button';
-  emailButton.className = emailLink.className;
-  emailButton.setAttribute('aria-label', `Copia l’indirizzo email ${email}`);
-  emailButton.append(...emailLink.childNodes);
-  emailLink.replaceWith(emailButton);
+  const emailButton = document.querySelector('#email-feedback');
   const status = document.querySelector('.copy-status');
   let statusTimeout;
-  let copying = false;
-
-  const copyWithFallback = () => {
-    const field = document.createElement('textarea');
-    field.value = email;
-    field.readOnly = true;
-    field.className = 'sr-only';
-    field.setAttribute('aria-label', 'Indirizzo email da copiare');
-    document.body.append(field);
-    field.select();
-    let copied = false;
-    try { copied = document.execCommand('copy'); }
-    finally {
-      field.remove();
-      emailButton.focus({ preventScroll: true });
-    }
-    return copied;
-  };
-
-  emailButton.addEventListener('click', async () => {
-    if (copying) return;
-    copying = true;
+  emailButton.addEventListener('click', () => {
     clearTimeout(statusTimeout);
-    status.textContent = '';
-    let copied = false;
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        try {
-          await navigator.clipboard.writeText(email);
-          copied = true;
-        } catch { copied = copyWithFallback(); }
-      } else { copied = copyWithFallback(); }
-    } catch { copied = false; }
-    copying = false;
-    status.textContent = copied ? 'Copiato!' : `Copia manualmente: ${email}`;
-    if (copied) statusTimeout = setTimeout(() => { status.textContent = ''; }, 2000);
+    status.textContent = 'Copiato!';
+    statusTimeout = setTimeout(() => { status.textContent = ''; }, 2000);
   });
 })();

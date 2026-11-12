@@ -1,8 +1,13 @@
 {{/* Feed dimostrativo isolato. In futuro sostituire la sorgente con le pagine Markdown. */}}
+{{ $thumbnail := (resources.Get "images/background.jpg").Fill "480x320 webp q80" }}
 {{ range hugo.Data.demo.articles }}
 <article class="post-preview">
-  <h2>{{ .title }}</h2>
-  <p class="post-excerpt">{{ .excerpt }}</p>
-  <p class="post-meta">Polesine Fantasma <span aria-hidden="true">·</span> <time datetime="{{ .date }}">{{ .displayDate }}</time></p>
+  {{/* Immagine segnaposto decorativa, da sostituire con la miniatura del contenuto reale. */}}
+  <img class="post-thumbnail" src="{{ $thumbnail.RelPermalink }}" width="480" height="320" alt="" loading="lazy" decoding="async">
+  <div class="post-content">
+    <h2>{{ .title }}</h2>
+    <p class="post-excerpt">{{ .excerpt }}</p>
+    <p class="post-meta">Polesine Fantasma <span aria-hidden="true">·</span> <time datetime="{{ .date }}">{{ .displayDate }}</time></p>
+  </div>
 </article>
 {{ end }}
