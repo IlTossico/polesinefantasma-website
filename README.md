@@ -6,12 +6,12 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 
 | Voce | Stato attuale |
 | --- | --- |
-| Versione | **v0.1.0** | Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
+| Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
 | Ultimo aggiornamento di questa panoramica | **12 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo** Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
+| Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
 | Ultimi interventi completati | Base Hugo, homepage responsive, menu mobile, interfaccia di ricerca, copia email e avvio automatico del server in VS Code. |
 | Lingue | IT, **EN da valutare** |
-| Pubblicazione definitiva | **Incompletata.** Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
+| Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
 ## Tecnologie e struttura
 
@@ -81,7 +81,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Ricerca di ispirazione | **Work in Progress** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
 | Ricerca di ispirazione | **Work in Progress** | Siti/temi pre-assemblati da Hugo. |
 | ~~Struttura Codice~~ | Completo | ~~Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli.~~ |
-| **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato. Però se evitiamo di caricare foto a massima risoluzione e usiamo versioni webP, per esempio, risolviamo il problema e non abbiamo più bisogno di una alternativa, dove Git andrebbe bene. Se webP, invece di 2 immagini, una max risoluzione e una miniatura, si puo usare una singola max e renderla più piccola con CSS per la miniatura, però significa più peso da caricare nella pagina. Google drive è una alternativa ma non può interagire direttamente con pages, per questo serve un sistema S3 simile e non un cloud. <u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
+| **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato.<br><u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
 | ~~Framework~~ | Completo | ~~Decidere quale framework usare come base e iniziare a integrarlo col sito base.~~ |
 | Definire la struttura del sito | **Work in Progress** | Stabilire pagine, sezioni e navigazione della prima versione. |
 | Preparare contenuti e risorse | **Da pianificare** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
@@ -114,9 +114,9 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Privacy e cookie | **Da valutare** | Informative predisposte in base ai trattamenti effettivi e facilmente raggiungibili dal footer. Pagina Privacy e cookie dedicata. |
-| Consenso e servizi esterni | **Da valutare** | Verificare analytics, font esterni e altre integrazioni; implementare un eventuale banner solo se necessario. |
-| Pagina Disclaimer | **Da pianificare** | Discaimer riguardo il pericolo di visitare siti pericolosi, e noi non abbiamo responsabilita a riguardo. Prendi spunto: https://ascosilasciti.com/it/disclaimer-utilizzo-sito/ |
+| Privacy e cookie | **Da pianificare** | Informative predisposte in base ai trattamenti effettivi e facilmente raggiungibili dal footer. Pagina Privacy e cookie dedicata. |
+| Consenso e servizi esterni | **Da pianificare** | Verificare analytics, font esterni e altre integrazioni; implementare un eventuale banner solo se necessario. |
+| Pagina Disclaimer | **Da pianificare** | Discaimer riguardo il pericolo di visitare siti pericolosi, e noi non abbiamo responsabilita a riguardo. [Prendi spunto](https://ascosilasciti.com/it/disclaimer-utilizzo-sito/) |
 
 ### 5. Qualità tecnica e prestazioni
 
@@ -127,16 +127,16 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Immagini, font e risorse | **Da verificare** | Dimensioni, formati e caricamento ottimizzati; nessuna risorsa mancante o layout shift evitabile. |
 | Preload dei font | **Da valutare** | Verificare se il preload dei font principali migliora il caricamento e riduce il FOUT, senza introdurre richieste inutili. |
 | JavaScript, link e percorsi | **Da verificare** | Nessun errore rilevante in console, collegamento rotto o comportamento imprevisto. |
-| Lighthouse e Core Web Vitals | **Da fare** | Test mobile e desktop eseguiti; LCP, CLS e INP valutati e criticità documentate. |
+| Lighthouse e Core Web Vitals | **Da pianificare** | Test mobile e desktop eseguiti; LCP, CLS e INP valutati e criticità documentate. |
 | Pagina 404 | **Da verificare** | Pagina personalizzata disponibile e risposta HTTP 404 effettiva per percorsi inesistenti. |
-| Audit tecnico e sicurezza | **Da fare** | Revisione di codice, configurazioni, dipendenze e dati sensibili, con problemi prioritari risolti o documentati. |
+| Audit tecnico e sicurezza | **Da pianificare** | Revisione di codice, configurazioni, dipendenze e dati sensibili, con problemi prioritari risolti o documentati. |
 
 ### 6. Verifica finale
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
 | ~~Predisporre la coming soon~~ | Completa | ~~Pagina provvisoria con logo, sfondo, presentazione e annuncio di prossima apertura.~~ |
-| Verifica finale in produzione | **Da fare** | Dominio, HTTPS, redirect, SEO, 404, link, risorse, mobile e anteprime social verificati sul sito pubblico. |
+| Verifica finale in produzione | **Da pianificare** | Dominio, HTTPS, redirect, SEO, 404, link, risorse, mobile e anteprime social verificati sul sito pubblico. |
 
 ## Idee per il sito e funzionalità da valutare
 
