@@ -1,0 +1,39 @@
+{{ $background := resources.Get "images/background.jpg" }}
+{{ $small := $background.Resize "768x webp q82" }}
+{{ $medium := $background.Resize "1440x webp q84" }}
+{{ $large := $background.Resize "2560x webp q84" }}
+{{ $logo := resources.Get "images/logo.png" }}
+<header class="hero" id="home">
+  <img class="hero-image" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 768w, {{ $medium.RelPermalink }} 1440w, {{ $large.RelPermalink }} 2560w" sizes="100vw" width="2560" height="1608" alt="" fetchpriority="high">
+  <div class="header-bar">
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Polesine Fantasma — homepage">
+      <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="">
+      <span>Polesine Fantasma</span>
+    </a>
+    <details class="navigation" id="navigation">
+      <summary class="menu-toggle">Menu {{ partial "icon.html" (dict "name" "menu") }}</summary>
+      <nav aria-label="Navigazione principale">
+        <ul class="menu">
+          <li><a href="{{ .Site.Home.RelPermalink }}" aria-current="page">Home</a></li>
+          <li><span aria-disabled="true" title="Sezione in preparazione">Esplora</span></li>
+          <li><span aria-disabled="true" title="Sezione in preparazione">Galleria</span></li>
+          <li><span aria-disabled="true" title="Sezione in preparazione">About</span></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </nav>
+    </details>
+    <div class="header-actions">
+      <div class="search" id="search" hidden>
+        <button class="icon-button search-toggle" type="button" aria-label="Apri ricerca" aria-expanded="false" aria-controls="search-panel">{{ partial "icon.html" (dict "name" "search") }}</button>
+        <div class="search-panel" id="search-panel" inert>
+          <label class="sr-only" for="search-input">Cerca negli articoli e nella galleria</label>
+          <input id="search-input" type="text" inputmode="search" aria-describedby="search-hint" autocomplete="off">
+        </div>
+        <span class="sr-only" id="search-hint">Ricerca in preparazione.</span>
+      </div>
+      <a class="icon-button" href="https://www.facebook.com/polesinefantasma/" aria-label="Polesine Fantasma su Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
+      <a class="icon-button" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+    </div>
+  </div>
+  <div class="hero-title"><h1>Polesine Fantasma</h1></div>
+</header>

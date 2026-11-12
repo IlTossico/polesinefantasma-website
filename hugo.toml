@@ -1,0 +1,9 @@
+baseURL = '/'
+locale = 'it-IT'
+defaultContentLanguage = 'it'
+title = 'Polesine Fantasma'
+disableKinds = ['taxonomy', 'term', 'sitemap']
+
+[params]
+  description = 'Storie, immagini e luoghi del Polesine che resistono allo scorrere del tempo.'
+  email = 'polesinefantasma@gmail.com'

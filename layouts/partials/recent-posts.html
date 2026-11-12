@@ -1,0 +1,8 @@
+{{/* Feed dimostrativo isolato. In futuro sostituire la sorgente con le pagine Markdown. */}}
+{{ range hugo.Data.demo.articles }}
+<article class="post-preview">
+  <h2>{{ .title }}</h2>
+  <p class="post-excerpt">{{ .excerpt }}</p>
+  <p class="post-meta">Polesine Fantasma <span aria-hidden="true">·</span> <time datetime="{{ .date }}">{{ .displayDate }}</time></p>
+</article>
+{{ end }}

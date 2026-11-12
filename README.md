@@ -2,43 +2,62 @@
 
 Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resistono allo scorrere del tempo.
 
-**Il sito definitivo al momento non esiste:** nella cartella è presente soltanto una pagina **coming soon provvisoria**, realizzata con i file e le risorse locali del progetto. Questo README costituisce la base per organizzarne lo sviluppo.
-
 ## Stato attuale del progetto
 
 | Voce | Stato attuale |
 | --- | --- |
-| Versione | **non definita.** Pagina provvisoria disponibile; sito definitivo da progettare e sviluppare.|
-| Ultimo aggiornamento di questa panoramica | **6 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo** Struttura, pagine, contenuti e funzionalità ancora da definire.|
-| Ultimi interventi completati | Nulla |
+| Versione | **v0.1.0** | Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
+| Ultimo aggiornamento di questa panoramica | **12 novembre 2026**. |
+| Sito | **Ci sto lavorando su, cazzo** Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
+| Ultimi interventi completati | Base Hugo, homepage responsive, menu mobile, interfaccia di ricerca, copia email e avvio automatico del server in VS Code. |
 | Lingue | IT, **EN da valutare** |
-| Pubblicazione definitiva | **Incompletata.** Dominio definitivo attivo con pagina coming-soon, futuro deploy dominio di test. |
+| Pubblicazione definitiva | **Incompletata.** Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
 ## Tecnologie e struttura
 
 | Ambito | Implementazione attuale |
 | --- | --- |
-| Pagina | HTML statico in italiano. |
-| Presentazione | CSS con adattamenti per schermi piccoli e finestre basse, sfondo fotografico e logo tramite maschera. |
-| Interazioni | JavaScript senza framework per la copia dell'email e il messaggio di conferma. |
-| Risorse | Immagini locali, icone SVG inline e font Special Elite e Inter caricati da Google Fonts. |
-| Architettura | Nessun backend, dipendenza da installare o processo di build. |
+| Pagina | HTML statico generato da template originale Hugo. |
+| Presentazione | CSS responsive, hero fotografica, logo PNG originale e layout a due colonne su desktop e a colonna singola su smartphone. |
+| Interazioni | JavaScript vanilla per menu mobile; voci del menu a 15,9 px con peso normale. |
+| Risorse | Sfondo convertito WebP responsive, logo PNG non rielaborato, sprite SVG locale, Special Elite locale per i due titoli, Inter locale nel footer e Roboto locale per gli altri testi; nessuna libreria o font remoto. |
+| Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
 ```text
 polesinefantasma-website/
-├── README.md          # Panoramica, stato, attività e idee
-├── AGENTS.md          # Regole per gli interventi
-├── index.html         # Coming soon provvisoria
-├── style.css          # Aspetto e adattamenti della pagina
-├── script.js          # Copia email e notifiche
+├── README.md               # Panoramica, stato, attività e idee
+├── AGENTS.md               # Regole per gli interventi
+├── hugo.toml               # Configurazione del sito Hugo
+├── .gitignore              # Esclusione di output e cache generati
+├── .vscode/tasks.json      # Avvio automatico del server Hugo
+├── layouts/
+│   ├── baseof.html         # Struttura HTML condivisa
+│   ├── home.html           # Homepage e sidebar
+│   └── partials/           # Header, footer, feed e icone
+├── data/demo.toml          # Articoli dimostrativi
 ├── assets/
-│   ├── background.jpg # Sfondo fotografico
-│   └── logo.png       # Sorgente della maschera del logo
+│   ├── css/main.css        # Stili responsive
+│   ├── js/main.js          # Interazioni della homepage
+│   └── images/
+│       ├── background.jpg # Sorgente dello sfondo WebP
+│       └── logo.png       # Logo PNG originale
+├── static/
+│   ├── icons.svg          # Sprite SVG locale
+│   └── fonts/             # Special Elite, Roboto e Inter WOFF2 con licenze
+├── public/                # Sito generato, ignorato da Git
+├── resources/             # Cache delle risorse Hugo, ignorata da Git
 └── docs/
-    ├── risorse.md     # Risorse e istruzioni tecniche di manutenzione
-    └── inspiration.md # Riferimenti per il futuro sito
+    ├── risorse.md          # Risorse e istruzioni tecniche di manutenzione
+    └── inspiration.md      # Riferimenti per il futuro sito
 ```
+
+## Versione locale attuale — Hugo
+
+La cartella locale contiene la prima versione grafica del nuovo sito, generata con **Hugo 0.169.0 Extended**, template originali, HTML, CSS e JavaScript vanilla. Nessuna dipendenza frontend, database, libreria di icone o font esterno. Questa versione non è stata pubblicata.
+
+VS Code avvia `hugo server -D` all’apertura della cartella tramite `.vscode/tasks.json`. Lo stesso comando può essere eseguito manualmente; anteprima su `http://localhost:1313/`. La build si esegue con `hugo build`, con output in `public/`.
+
+Configurazione in `hugo.toml`, template in `layouts/`, stili/script/immagini in `assets/` e sprite SVG in `static/`. I dettagli di manutenzione e la predisposizione per Cloudflare Pages sono in [docs/risorse.md](docs/risorse.md). 
 
 ## Idee struttura
 
@@ -59,16 +78,16 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Ricerca di ispirazione | **Da pianificare** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
-| Ricerca di ispirazione | **Da pianificare** | Siti/temi pre-assemblati da Astro |
+| Ricerca di ispirazione | **Work in Progress** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
+| Ricerca di ispirazione | **Work in Progress** | Siti/temi pre-assemblati da Hugo. |
 | ~~Struttura Codice~~ | Completo | ~~Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli.~~ |
 | **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato. Però se evitiamo di caricare foto a massima risoluzione e usiamo versioni webP, per esempio, risolviamo il problema e non abbiamo più bisogno di una alternativa, dove Git andrebbe bene. Se webP, invece di 2 immagini, una max risoluzione e una miniatura, si puo usare una singola max e renderla più piccola con CSS per la miniatura, però significa più peso da caricare nella pagina. Google drive è una alternativa ma non può interagire direttamente con pages, per questo serve un sistema S3 simile e non un cloud. <u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
-| Framework | **Da pianificare** | Decidere quale framework usare come base e iniziare a integrarlo col sito base |
-| Definire la struttura del sito | **Da pianificare** | Stabilire pagine, sezioni e navigazione della prima versione. |
+| ~~Framework~~ | Completo | ~~Decidere quale framework usare come base e iniziare a integrarlo col sito base.~~ |
+| Definire la struttura del sito | **Work in Progress** | Stabilire pagine, sezioni e navigazione della prima versione. |
 | Preparare contenuti e risorse | **Da pianificare** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
-| Definire la grafica definitiva | **Da pianificare** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
-| Sviluppare il sito definitivo | **Da pianificare** | Realizzare le pagine concordate mantenendo l'architettura statica. |
-| CMS | **Da pianificare**  | Aggiungere CMS Decap a Sito e blog completato? |
+| Definire la grafica definitiva | **Work in Progress** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
+| Sviluppare il sito definitivo | **Work in Progress** | Realizzare le pagine concordate mantenendo l'architettura statica. |
+| CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
 
 ### 2. SEO e indicizzazione
 
@@ -116,7 +135,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| ~~Predisporre la coming soon~~ | **Completa** | ~~Pagina provvisoria con logo, sfondo, presentazione e annuncio di prossima apertura.~~ |
+| ~~Predisporre la coming soon~~ | Completa | ~~Pagina provvisoria con logo, sfondo, presentazione e annuncio di prossima apertura.~~ |
 | Verifica finale in produzione | **Da fare** | Dominio, HTTPS, redirect, SEO, 404, link, risorse, mobile e anteprime social verificati sul sito pubblico. |
 
 ## Idee per il sito e funzionalità da valutare

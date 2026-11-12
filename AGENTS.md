@@ -12,9 +12,10 @@ Documenta le decisioni tecniche e le istruzioni necessarie alla manutenzione fut
 - Evita modifiche non strettamente necessarie e refactoring non richiesti.
 - Non modificare layout, animazioni, testi o comportamento del sito senza esplicita richiesta.
 - Non aggiungere dipendenze, nuovi file o livelli di astrazione se non portano un beneficio concreto.
-- Mantieni l'architettura statica e il workflow GitHub → Cloudflare Pages.
+- Mantieni l'architettura statica.
 - Se individui problemi non collegati alla richiesta, segnalali separatamente senza correggerli autonomamente.
 - Non effettuare commit o deploy senza autorizzazione.
+- Non utilizzare la skill Sites, ChatGPT Sites o altri strumenti di generazione automatica di siti web. Sviluppa e modifica direttamente il codice e i template Hugo nella cartella locale del progetto, utilizzando gli strumenti standard di Codex.
 
 ## Architettura e qualità del sito
 
