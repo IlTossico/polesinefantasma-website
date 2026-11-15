@@ -1,4 +1,56 @@
 (() => {
+  const root = document.documentElement;
+  if (root.dataset.typewriter !== 'pending') return;
+
+  const title = document.querySelector('.hero h1 .title-ink');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!title) {
+    delete root.dataset.typewriter;
+    return;
+  }
+
+  const text = title.textContent;
+  let timer;
+  const finish = () => {
+    clearTimeout(timer);
+    delete root.dataset.typewriter;
+    title.textContent = text;
+    motion.removeEventListener('change', onMotionChange);
+  };
+  const onMotionChange = () => { if (motion.matches) finish(); };
+  motion.addEventListener('change', onMotionChange);
+  if (motion.matches) {
+    finish();
+    return;
+  }
+
+  const letters = Array.from(text, (letter) => {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    return span;
+  });
+  title.replaceChildren(...letters);
+  let index = 0;
+  const type = () => {
+    if (root.dataset.typewriter !== 'pending') return;
+    letters[index].classList.add('is-typed');
+    index += 1;
+    if (index === letters.length) {
+      finish();
+      return;
+    }
+    // Battute secche e piccole esitazioni, soprattutto tra le due parole.
+    const pause = letters[index - 1].textContent === ' ' || index === 3 || index === 12;
+    timer = setTimeout(type, pause ? 300 : 125 + Math.random() * 75);
+  };
+  const start = () => {
+    if (root.dataset.typewriter === 'pending') timer = setTimeout(type, 450);
+  };
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start, { once: true });
+})();
+
+(() => {
   const themeToggle = document.querySelector('#theme-toggle');
   const syncTheme = () => {
     const dark = document.documentElement.dataset.theme === 'dark';

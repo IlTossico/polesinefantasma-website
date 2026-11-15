@@ -79,16 +79,16 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
 | Ricerca di ispirazione | **Work in Progress** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
-| Ricerca di ispirazione | **Work in Progress** | Siti/temi pre-assemblati da Hugo. |
 | ~~Struttura Codice~~ | Completo | ~~Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli.~~ |
 | **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato.<br><u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
 | ~~Framework~~ | Completo | ~~Decidere quale framework usare come base e iniziare a integrarlo col sito base.~~ |
 | Definire la struttura del sito | **Work in Progress** | Stabilire pagine, sezioni e navigazione della prima versione. |
-| Preparare contenuti e risorse | **Da pianificare** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
+| Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | Definire la grafica definitiva | **Work in Progress** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
 | Sviluppare il sito definitivo | **Work in Progress** | Realizzare le pagine concordate mantenendo l'architettura statica. |
 | CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
 | Email | **Da pianificare** | Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare. |
+| RSS | **Da pianificare** | Abilitare icona RSS per feed rss a sito ultimato prima di pubblicazione e check prestazioni |
 
 ### 2. SEO e indicizzazione
 
