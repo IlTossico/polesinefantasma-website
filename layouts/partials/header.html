@@ -1,10 +1,6 @@
-{{ $background := resources.Get "images/background.jpg" }}
-{{ $small := $background.Resize "768x webp q82" }}
-{{ $medium := $background.Resize "1440x webp q84" }}
-{{ $large := $background.Resize "2560x webp q84" }}
 {{ $logo := resources.Get "images/logo.png" }}
 <header class="hero{{ if .IsHome }} hero--home{{ end }}" id="home">
-  <img class="hero-image" src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} 768w, {{ $medium.RelPermalink }} 1440w, {{ $large.RelPermalink }} 2560w" sizes="100vw" width="2560" height="1608" alt="" fetchpriority="high">
+  {{ partial "hero-image.html" . }}
   <div class="header-bar">
     <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Polesine Fantasma — homepage">
       <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="">

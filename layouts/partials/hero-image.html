@@ -1,0 +1,35 @@
+{{ $config := images.Config "static/images/hero-fallback.webp" }}
+{{ $fallbackURL := "images/hero-fallback.webp" | relURL }}
+{{ $fallback := dict "key" "/images/hero/background.webp" "src" $fallbackURL "srcset" (printf "%s %dw" $fallbackURL $config.Width) "width" $config.Width "height" $config.Height }}
+{{ with resources.Get "images/hero/background.webp" }}
+  {{ $fallback = partial "hero-image-data.html" . }}
+{{ end }}
+{{ if .IsHome }}
+  {{ $photos := slice }}
+  {{ range resources.Match "images/hero/*.webp" }}
+    {{ $photos = $photos | append (partial "hero-image-data.html" .) }}
+  {{ end }}
+  {{/* Il template è inerte: il browser scarica solo la foto scelta, prima del resto dell'header. */}}
+  <template id="hero-image-template"><img class="hero-image" sizes="100vw" width="{{ $fallback.width }}" height="{{ $fallback.height }}" alt="" fetchpriority="high"></template>
+  <noscript><img class="hero-image" src="{{ $fallback.src }}" srcset="{{ $fallback.srcset }}" sizes="100vw" width="{{ $fallback.width }}" height="{{ $fallback.height }}" alt="" fetchpriority="high"></noscript>
+  <script>
+    (() => {
+      const photos = {{ $photos }};
+      const fallback = {{ $fallback }};
+      let previous;
+      try { previous = sessionStorage.getItem('polesine-hero-last'); } catch {}
+      const candidates = photos.length > 1 ? photos.filter(photo => photo.key !== previous) : photos;
+      const selected = candidates.length ? candidates[Math.floor(Math.random() * candidates.length)] : fallback;
+      const template = document.getElementById('hero-image-template');
+      const image = template.content.firstElementChild.cloneNode(true);
+      image.width = selected.width;
+      image.height = selected.height;
+      image.srcset = selected.srcset;
+      image.src = selected.src;
+      template.replaceWith(image);
+      try { sessionStorage.setItem('polesine-hero-last', selected.key); } catch {}
+    })();
+  </script>
+{{ else }}
+  <img class="hero-image" src="{{ $fallback.src }}" srcset="{{ $fallback.srcset }}" sizes="100vw" width="{{ $fallback.width }}" height="{{ $fallback.height }}" alt="" fetchpriority="high">
+{{ end }}

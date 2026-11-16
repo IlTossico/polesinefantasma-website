@@ -1,0 +1,15 @@
+{{/* URL responsive e dimensioni ricavati dalla stessa fotografia, senza ingrandirla. */}}
+{{ $source := . }}
+{{ $large := $source.Resize (printf "%dx webp q84" (math.Min 2560 $source.Width | int)) }}
+{{ $srcset := slice }}
+{{ range slice 768 1440 2560 }}
+  {{ if le . $source.Width }}
+    {{ $image := $source.Resize (printf "%dx webp q84" .) }}
+    {{ $srcset = $srcset | append (printf "%s %dw" $image.RelPermalink $image.Width) }}
+  {{ end }}
+{{ end }}
+{{ if not (in (slice 768 1440 2560) $source.Width) }}
+  {{ $full := $source | fingerprint }}
+  {{ $srcset = $srcset | append (printf "%s %dw" $full.RelPermalink $source.Width) }}
+{{ end }}
+{{ return (dict "key" $source.Name "src" $large.RelPermalink "srcset" (delimit $srcset ", ") "width" $large.Width "height" $large.Height) }}
