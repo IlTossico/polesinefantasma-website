@@ -41,7 +41,7 @@
     }
     // Battute secche e piccole esitazioni, soprattutto tra le due parole.
     const pause = letters[index - 1].textContent === ' ' || index === 3 || index === 12;
-    timer = setTimeout(type, pause ? 300 : 125 + Math.random() * 75);
+    timer = setTimeout(type, pause ? 300 : 100 + Math.random() * 54);
   };
   const start = () => {
     if (root.dataset.typewriter === 'pending') timer = setTimeout(type, 450);

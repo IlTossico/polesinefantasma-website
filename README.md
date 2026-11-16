@@ -87,7 +87,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Definire la grafica definitiva | **Work in Progress** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
 | Sviluppare il sito definitivo | **Work in Progress** | Realizzare le pagine concordate mantenendo l'architettura statica. |
 | CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
-| Email | **Da pianificare** | Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare. |
+| ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |
 | RSS | **Da pianificare** | Abilitare icona RSS per feed rss a sito ultimato prima di pubblicazione e check prestazioni |
 
 ### 2. SEO e indicizzazione
