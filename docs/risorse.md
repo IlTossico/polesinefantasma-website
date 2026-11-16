@@ -8,15 +8,16 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | --- | --- |
 | `hugo.toml` | Titolo, lingua e descrizione. `baseURL = '/'` serve all’anteprima; usare l’URL reale per la pubblicazione. |
 | `layouts/baseof.html` | Documento HTML, metadati, CSS/JS minificati con fingerprint e inclusione di header/footer. |
-| `layouts/home.html` | Homepage con feed a tutta larghezza, senza sidebar. |
+| `layouts/home.html` | Homepage con feed, link all’archivio e fascia Chi sono/Contatti; testi provvisori e collegamenti social modificabili qui. |
+| `content/esplora.md`, `layouts/esplora.html` | Pagina coming soon di Esplora, destinazione comune del menu e del link all’archivio. |
 | `layouts/partials/header.html` | Hero con sottotitolo, immagini responsive, navigazione, selettore tema e interfaccia di ricerca. |
 | `layouts/partials/recent-posts.html` | Feed e miniature dimostrative; unico punto in cui collegare in futuro gli articoli Markdown. |
-| `data/demo.toml` | Titoli, estratti e date dei sei esempi, mostrati nell’ordine del file. Non genera pagine articolo. |
-| `layouts/partials/footer.html` | Social, conferma email dimostrativa e footer. |
+| `data/demo.toml` | Titoli, estratti e date dei sei esempi; la home mostra i tre più recenti ordinati per `date` decrescente. Non genera pagine articolo. |
+| `layouts/partials/footer.html` | Footer con copyright, crediti e collegamenti di servizio. |
 | `layouts/partials/icon.html`, `static/icons.svg` | SVG locali condivisi attraverso uno sprite; URL versionato con hash del contenuto per aggiornare la cache quando cambiano i simboli. Niente librerie o richieste esterne. |
 | `static/fonts/` | Special Elite (licenza Apache 2.0), Source Sans 3 variabile normale/corsivo, Oswald variabile normale (200-700) e Inter variabile normale (licenza SIL OFL), in WOFF2 latino. Font e licenze conservati localmente, senza richieste a Google durante la visita. |
 | `assets/css/main.css` | Layout, colori, font locali, breakpoint, focus e animazione della ricerca. |
-| `assets/js/main.js` | Selettore tema, apertura/chiusura della ricerca, coordinamento del menu mobile e conferma email dimostrativa. |
+| `assets/js/main.js` | Comparsa del titolo, selettore tema, apertura/chiusura della ricerca, coordinamento del menu mobile e copia dell’email negli appunti. |
 | `assets/images/background.jpg` | Fotografia originale fornita, 2560 × 1608; Hugo pubblica solo le versioni WebP richiamate. |
 | `assets/images/logo.png` | Logo originale, 2300 × 2103, servito direttamente senza ridimensionamento o conversione Hugo. Le dimensioni visualizzate sono definite dal CSS dell’header. |
 | `.gitignore` | Esclude output Hugo e cartella temporanea delle verifiche locali. |
@@ -39,7 +40,7 @@ La cartella deve essere considerata attendibile e le task automatiche devono ess
 - Modificare `data/demo.toml` per sostituire gli esempi del feed. `date` usa `AAAA-MM-GG`; `displayDate` è l’etichetta italiana visibile.
 - Nella home da 960 px di larghezza, `.hero--home` usa `clamp(480px, calc(100vh - 440px), 1000px)`: i 440 px riservano spazio a due anteprime, padding iniziale e separatore inclusi. Rivalutare questa misura se cambia l’ingombro del feed. Titolo e sottotitolo condividono `--hero-text-scale`, interpolata sull’altezza CSS del viewport: 1 a 1080 px, 1,10 a 1440 px, 1,25 da 2160 px; senza supporto alle divisioni tra lunghezze in `calc()` conservano le dimensioni precedenti. Sotto 960 px resta il layout mobile.
 - Non collegare i titoli a URL inesistenti. Quando saranno approvati i contenuti reali, sostituire la sorgente del partial del feed con le pagine Markdown e aggiungere il template articolo.
-- Modificare l’email una sola volta in `hugo.toml`: etichetta, link di fallback e JavaScript la ricavano dal template. I link social sono nei partial header e footer.
+- Email e icone social di Contatti sono in `layouts/home.html`; i collegamenti social dell’header restano nel relativo partial. La busta copia l’indirizzo negli appunti con Clipboard API (HTTPS o localhost), mostrando «Copiato!» per due secondi solo dopo il successo; un errore mostra «Copia non riuscita». Senza JavaScript o API disponibile resta il link `mailto:info@polesinefantasma.it`. La fascia comune usa `--section-bg` nei due temi e la stessa `.content-layout` degli articoli.
 - Sostituire le immagini mantenendo i nomi oppure aggiornare `resources.Get` nell’header. Lo sfondo viene convertito in WebP a 768, 1440 e 2560 px, qualità 82/84; `srcset` sceglie la risorsa in base allo schermo. Se cambia il rapporto del sorgente aggiornare anche `width` e `height` dell’immagine hero. Mantenere il logo in PNG e preservarne la trasparenza.
 
 La prima build elabora lo sfondo; le successive riutilizzano la cache Hugo. Il logo resta il PNG originale: il segno è bianco su fondo trasparente e va osservato su fondo scuro. Eventuali vecchi `logo_hu_*.png` nelle directory generate sono derivati in cache, non il sorgente da modificare; l’header non li richiama più. Non occorre un convertitore esterno.
@@ -50,7 +51,7 @@ Il footer usa Inter locale, richiesto quando utilizzato, e padding verticale di 
 
 Il tema iniziale è chiaro, indipendentemente dalle preferenze di sistema. La chiave `polesine-theme` in `localStorage` conserva la scelta. Senza JavaScript il pulsante resta nascosto. 
 
-Il menu mobile usa `details/summary`, con righe ampie e apertura nativa anche senza JavaScript. Menu e ricerca non si sovrappongono quando JavaScript è attivo. Senza JavaScript la ricerca è nascosta e l’email resta un collegamento `mailto:`.
+Il menu mobile usa `details/summary`, con righe ampie e apertura nativa anche senza JavaScript. Menu e ricerca non si sovrappongono quando JavaScript è attivo. Chi sono e Contatti puntano alle ancore della home anche dalle altre pagine; l’header non è fisso e le sezioni hanno `scroll-margin-top: 24px`. Lo scorrimento fluido è attivo solo senza preferenza per il movimento ridotto. Senza JavaScript la ricerca è nascosta e l’email resta un collegamento `mailto:`.
 
 ## Build e Cloudflare Pages
 

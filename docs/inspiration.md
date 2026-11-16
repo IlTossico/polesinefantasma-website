@@ -21,6 +21,19 @@ Raccolta di riferimenti per la grafica, i contenuti e la navigazione del futuro 
 | --- | --- | --- |
 | Font | Instrument Serif | [link](https://fonts.google.com/specimen/Instrument+Serif?preview.script=Latn) |
 
+
+Colori Sfondo Chi sono - Attuali
+| Tema	| Sfondo fascia | Testo |
+| --- | --- | --- |
+| Chiaro | #F6F4EF — bianco caldo | #383838 |
+| Scuro | #3D4142 — grigio | #FFFFFF |
+
+Colori Sfondo Chi sono - Alternativi
+| Tema	| Sfondo fascia | Testo |
+| --- | --- | --- |
+| Chiaro | #E8D8AF — sabbia | #382F20 — marrone scuro |
+| Scuro | #443C2D — marrone scuro | #F5EDDC — avorio |   
+
 ## Siti di Riferimento
 
 - [https://www.travelonart.com/](https://www.travelonart.com/)

@@ -9,7 +9,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
 | Ultimo aggiornamento di questa panoramica | **16 novembre 2026**. |
 | Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
-| Ultimi interventi completati | Homepage con feed a tutta larghezza, selettore chiaro/scuro. Hero desktop adattiva tra 480 e 1.000 px. Comparsa del titolo in circa 3 secondi medi. |
+| Ultimi interventi completati | Homepage con tre articoli recenti, link a Esplora (coming soon), sezioni Chi sono e Contatti collegate al menu e testi aggiornati. Icone riordinate; copia email con tooltip centrato e conferma. Selettore chiaro/scuro, hero desktop adattiva tra 480 e 1.000 px e comparsa del titolo in circa 3 secondi medi. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -68,7 +68,7 @@ Configurazione in `hugo.toml`, template in `layouts/`, stili/script/immagini in 
 | Articoli | Come nella galleria, a sinistra elenco con gli articoli publicati e quando premi ti mostra l'articoli; ordinabili per alfabetico o data di publicazione. Magari una pagina base prima di selezionare il singolo articolo, con spiegazione e feed articoli. Per le foto duplicate tra articoli e galleria, metetre un sistema che richiama nell'articolo la foto della galleria, cosi evitiamo doppi caricamenti.  |
 | Framework | Hugo, più semplice da installare e usare, più rapido di Astro, adatto per siti stile blog. |
 | CMS | Pages CMS, meno complicato di Decap CMS da usare e installare, sistema di autenticazione con GitHub integrato. Perfetto per la gestione di articoli e galleria fotografica. |
-| Pagine | Unire contatti e chi siamo? |
+| Contatti | Aggiungere modulo email a pagina dedicata? |
 
 ## Checklist — Sviluppo e pubblicazione di Polesine Fantasma
 
@@ -78,7 +78,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Ricerca di ispirazione | **Work in Progress** | Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione. |
+| ~~Ricerca di ispirazione~~ | Completo | ~~Visitare altri siti e raccogliere riferimenti utili per grafica, organizzazione e navigazione.~~ |
 | ~~Struttura Codice~~ | Completo | ~~Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli.~~ |
 | **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato.<br><u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
 | ~~Framework~~ | Completo | ~~Decidere quale framework usare come base e iniziare a integrarlo col sito base.~~ |
@@ -131,7 +131,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Lighthouse e Core Web Vitals | **Da pianificare** | Test mobile e desktop eseguiti; LCP, CLS e INP valutati e criticità documentate. |
 | Pagina 404 | **Da verificare** | Pagina personalizzata disponibile e risposta HTTP 404 effettiva per percorsi inesistenti. |
 | Audit tecnico e sicurezza | **Da pianificare** | Revisione di codice, configurazioni, dipendenze e dati sensibili, con problemi prioritari risolti o documentati. |
-| Logo BIMI | **Da verificare** | Aggiunto ma fallisce controllo DMARC, servirebbe nuovo server SMTP in uscita, ma comunque mancherebbe verifica per essere visto da Gmail. |
+| Logo BIMI | **Non cocmpleto** | Aggiunto ma fallisce controllo DMARC, servirebbe nuovo server SMTP in uscita, ma comunque mancherebbe verifica per essere visto da Gmail. |
 
 ### 6. Verifica finale
 

@@ -1,7 +1,35 @@
 {{ define "main" }}
-<main id="contenuto" class="content-layout" tabindex="-1">
-  <section class="recent-posts" aria-label="Articoli recenti">
-    {{ partial "recent-posts.html" . }}
-  </section>
+<main id="contenuto" tabindex="-1">
+  <div class="content-layout">
+    <section class="recent-posts" aria-label="Articoli recenti">
+      {{ partial "recent-posts.html" . }}
+    </section>
+    <p class="archive-link"><a href="{{ (.Site.GetPage "/esplora").RelPermalink }}">Tutte le esplorazioni</a></p>
+  </div>
+  <div class="home-band">
+    <div class="content-layout">
+      {{/* Testi provvisori di Chi sono e Contatti: modificare qui. */}}
+      <section class="home-section" id="chi-sono" aria-labelledby="chi-sono-title">
+        <h2 id="chi-sono-title">Chi sono</h2>
+        <p>Polesine Fantasma è un progetto fotografico collaborativo nato percorrendo le strade del Polesine. Raccoglie fotografie e testimonianze su edifici e spazi pubblici in disuso o già scomparsi che hanno lasciato un segno nella vita del territorio. Alcuni si ricordano per la loro architettura, altri per le attività che ospitavano o per il posto che occupavano nella vita quotidiana di un paese.</p>
+        <p>L’archivio cresce grazie a chi conosce questi luoghi e ne conserva la memoria. Una fotografia d’epoca, il ricordo di chi ci lavorava o una segnalazione possono aiutare a ricostruirne la storia, anche quando l’edificio è stato demolito. Chi vuole condividere fotografie, ricordi o informazioni può contribuire al progetto.</p>
+      </section>
+      <section class="home-section social-section" id="contatti" aria-labelledby="contatti-title">
+        <h2 id="contatti-title">Contatti</h2>
+        <p>Ti incuriosisce Polesine Fantasma, hai una storia da raccontare o ti piacerebbe collaborare al progetto? Scrivici. Ci fa piacere conoscere chi ha voglia di condividere un ricordo, proporre un’idea o saperne di più su quello che facciamo. Puoi contattarci anche se hai una domanda su un luogo che abbiamo fotografato, se vuoi segnalarci qualcosa che ci è sfuggito o se hai delle foto che ti piacerebbe farci vedere.</p>
+        <div class="social-links">
+          <div class="email-control">
+            <a class="social-circle" id="email-feedback" href="mailto:info@polesinefantasma.it" aria-label="Scrivi a info@polesinefantasma.it">{{ partial "icon.html" (dict "name" "email") }}</a>
+            <span class="email-tooltip" id="email-tooltip" role="tooltip" hidden>Copia indirizzo email</span>
+            <span class="copy-status" role="status" aria-live="polite" aria-atomic="true"></span>
+          </div>
+          <a class="social-circle" href="https://www.facebook.com/polesinefantasma/" aria-label="Polesine Fantasma su Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
+          <a class="social-circle" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+          <a class="social-circle" href="https://www.youtube.com/@polesinefantasma" aria-label="Polesine Fantasma su YouTube">{{ partial "icon.html" (dict "name" "youtube") }}</a>
+          <a class="social-circle" href="{{ "index.xml" | relURL }}" aria-label="Feed RSS">{{ partial "icon.html" (dict "name" "rss") }}</a>
+        </div>
+      </section>
+    </div>
+  </div>
 </main>
 {{ end }}

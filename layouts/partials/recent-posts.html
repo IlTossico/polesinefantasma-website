@@ -1,6 +1,6 @@
 {{/* Feed dimostrativo isolato. In futuro sostituire la sorgente con le pagine Markdown. */}}
 {{ $thumbnail := (resources.Get "images/background.jpg").Fill "480x320 webp q80" }}
-{{ range hugo.Data.demo.articles }}
+{{ range first 3 (sort hugo.Data.demo.articles "date" "desc") }}
 <article class="post-preview">
   {{/* Immagine segnaposto decorativa, da sostituire con la miniatura del contenuto reale. */}}
   <img class="post-thumbnail" src="{{ $thumbnail.RelPermalink }}" width="480" height="320" alt="" loading="lazy" decoding="async">

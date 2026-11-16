@@ -122,11 +122,38 @@
   syncNavigation();
   mobile.addEventListener('change', syncNavigation);
   const emailButton = document.querySelector('#email-feedback');
-  const status = document.querySelector('.copy-status');
-  let statusTimeout;
-  emailButton.addEventListener('click', () => {
-    clearTimeout(statusTimeout);
-    status.textContent = 'Copiato!';
-    statusTimeout = setTimeout(() => { status.textContent = ''; }, 2000);
-  });
+  if (emailButton && navigator.clipboard?.writeText) {
+    const status = emailButton.parentElement.querySelector('.copy-status');
+    const tooltip = document.querySelector('#email-tooltip');
+    const email = emailButton.getAttribute('href').slice('mailto:'.length);
+    let statusTimeout;
+    emailButton.setAttribute('role', 'button');
+    emailButton.setAttribute('aria-label', `Copia ${email} negli appunti`);
+    emailButton.setAttribute('aria-describedby', tooltip.id);
+    tooltip.hidden = false;
+    emailButton.addEventListener('focus', () => { tooltip.hidden = false; });
+    emailButton.parentElement.addEventListener('pointerleave', () => { tooltip.hidden = false; });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') tooltip.hidden = true;
+    });
+    emailButton.addEventListener('keydown', (event) => {
+      if (event.key === ' ') {
+        event.preventDefault();
+        emailButton.click();
+      }
+    });
+    emailButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+      tooltip.hidden = true;
+      clearTimeout(statusTimeout);
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(email);
+        status.textContent = 'Copiato!';
+      } catch {
+        status.textContent = 'Copia non riuscita';
+      }
+      statusTimeout = setTimeout(() => { status.textContent = ''; }, 2000);
+    });
+  }
 })();
