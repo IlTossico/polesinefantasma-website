@@ -7,9 +7,9 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Voce | Stato attuale |
 | --- | --- |
 | Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
-| Ultimo aggiornamento di questa panoramica | **12 novembre 2026**. |
+| Ultimo aggiornamento di questa panoramica | **16 novembre 2026**. |
 | Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
-| Ultimi interventi completati | Homepage con feed a tutta larghezza, selettore chiaro/scuro. |
+| Ultimi interventi completati | Homepage con feed a tutta larghezza, selettore chiaro/scuro. Hero desktop adattiva tra 480 e 1.000 px. Comparsa del titolo in circa 3 secondi medi. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -68,7 +68,7 @@ Configurazione in `hugo.toml`, template in `layouts/`, stili/script/immagini in 
 | Articoli | Come nella galleria, a sinistra elenco con gli articoli publicati e quando premi ti mostra l'articoli; ordinabili per alfabetico o data di publicazione. Magari una pagina base prima di selezionare il singolo articolo, con spiegazione e feed articoli. Per le foto duplicate tra articoli e galleria, metetre un sistema che richiama nell'articolo la foto della galleria, cosi evitiamo doppi caricamenti.  |
 | Framework | Hugo, più semplice da installare e usare, più rapido di Astro, adatto per siti stile blog. |
 | CMS | Pages CMS, meno complicato di Decap CMS da usare e installare, sistema di autenticazione con GitHub integrato. Perfetto per la gestione di articoli e galleria fotografica. |
-| --- | --- |
+| Pagine | Unire contatti e chi siamo? |
 
 ## Checklist — Sviluppo e pubblicazione di Polesine Fantasma
 
@@ -147,15 +147,12 @@ Vedi [Inspiration](docs/inspiration.md) per siti web si riferimento.
 
 | Idea | Possibile sviluppo |
 | --- | --- |
-| Menu Hero | Menu reportage/articoli con pagina coming soon |
-| Hero | Blog nella hero main?? |
-| --- | --- |
 | Archivio dei luoghi | Schede dedicate ai luoghi del Polesine, con fotografie, descrizioni e memoria storica. |
 | Racconti e testimonianze | Storie legate al territorio, ricordi e contributi delle persone. |
-| Gallerie fotografiche | Percorsi visivi organizzati per luogo o tema. |
 | Confronti tra passato e presente | Affiancare immagini storiche e fotografie attuali, quando disponibili e utilizzabili. |
 | Esplorazione del territorio | Valutare una mappa dei luoghi o percorsi tematici, tenendo conto della semplicità di manutenzione. |
 | Presentazione del progetto | Raccontare l'origine di Polesine Fantasma, le sue finalità e come contattarlo per proporre materiali. |
+| Storia | Riferimenti storici al Polesine come zona geografica. |
 
 ## Licenza e copyright
 

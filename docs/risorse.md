@@ -37,7 +37,7 @@ La cartella deve essere considerata attendibile e le task automatiche devono ess
 ## Modifiche comuni
 
 - Modificare `data/demo.toml` per sostituire gli esempi del feed. `date` usa `AAAA-MM-GG`; `displayDate` è l’etichetta italiana visibile.
-- Nella home da 960 px di larghezza, `.hero--home` usa `max(480px, calc(100vh - 440px))`: i 440 px riservano spazio a due anteprime, padding iniziale e separatore inclusi. Rivalutare questa misura se cambia l’ingombro del feed; sotto 960 px restano le altezze mobile.
+- Nella home da 960 px di larghezza, `.hero--home` usa `clamp(480px, calc(100vh - 440px), 1000px)`: i 440 px riservano spazio a due anteprime, padding iniziale e separatore inclusi. Rivalutare questa misura se cambia l’ingombro del feed. Titolo e sottotitolo condividono `--hero-text-scale`, interpolata sull’altezza CSS del viewport: 1 a 1080 px, 1,10 a 1440 px, 1,25 da 2160 px; senza supporto alle divisioni tra lunghezze in `calc()` conservano le dimensioni precedenti. Sotto 960 px resta il layout mobile.
 - Non collegare i titoli a URL inesistenti. Quando saranno approvati i contenuti reali, sostituire la sorgente del partial del feed con le pagine Markdown e aggiungere il template articolo.
 - Modificare l’email una sola volta in `hugo.toml`: etichetta, link di fallback e JavaScript la ricavano dal template. I link social sono nei partial header e footer.
 - Sostituire le immagini mantenendo i nomi oppure aggiornare `resources.Get` nell’header. Lo sfondo viene convertito in WebP a 768, 1440 e 2560 px, qualità 82/84; `srcset` sceglie la risorsa in base allo schermo. Se cambia il rapporto del sorgente aggiornare anche `width` e `height` dell’immagine hero. Mantenere il logo in PNG e preservarne la trasparenza.

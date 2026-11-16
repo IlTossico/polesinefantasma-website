@@ -137,7 +137,15 @@ button { border: 0; }
 
 @media (min-width: 960px) {
   /* Spazio per due anteprime, padding iniziale e separatore inclusi. */
-  .hero--home { height: max(480px, calc(100vh - 440px)); }
+  .hero--home { height: clamp(480px, calc(100vh - 440px), 1000px); }
+  /* Scala comune: 1 a 1080 px, 1.10 a 1440 px e 1.25 da 2160 px. */
+  @supports (font-size: calc(1px * (1px / 1px))) {
+    .hero--home {
+      --hero-text-scale: clamp(1, min(calc(0.7 + 100vh / 3600px), calc(0.8 + 100vh / 4800px)), 1.25);
+    }
+    .hero--home h1 { font-size: calc(clamp(44px, 5.8vw, 80px) * var(--hero-text-scale)); }
+    .hero--home .hero-subtitle { font-size: calc(24px * var(--hero-text-scale)); }
+  }
 }
 
 @media (max-width: 1199px) {
