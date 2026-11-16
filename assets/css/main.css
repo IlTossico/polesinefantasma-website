@@ -120,7 +120,21 @@ button { border: 0; }
 .archive-link a { display: inline-block; padding: 8px; font-family: 'Oswald', Arial, sans-serif; font-size: 28px; text-decoration: underline; text-underline-offset: 4px; }
 .archive-link a:focus-visible { outline-color: currentColor; }
 .home-band :focus-visible { outline-color: var(--ink); }
-.home-band { padding: 56px 0 64px; background: var(--section-bg); }
+.home-band { padding: 56px 0 64px; background: #e8e5de; }
+.home-band .content-layout, .home-band .social-section { --ink: #383838; color: var(--ink); }
+[data-theme="dark"] .home-band { background: #454a4b; }
+[data-theme="dark"] .home-band .content-layout, [data-theme="dark"] .home-band .social-section { --ink: #fff; }
+.map-band { padding: 32px 0 16px; background: var(--section-bg); }
+.map-band + .home-band { padding-top: 32px; }
+.map-scroll { width: min(1600px, calc(100% - 64px)); margin: 0 auto; overflow-x: auto; }
+.map-scroll:focus-visible { outline-color: #44655c; outline-offset: 4px; }
+.map-image { display: block; width: 100%; height: auto; }
+@media (max-width: 959px) {
+  .map-band { padding: 24px 0 12px; }
+  .map-band + .home-band { padding-top: 24px; }
+  .map-scroll { width: calc(100% - 40px); }
+  .map-image { min-width: 1128px; }
+}
 .home-band .content-layout { padding-top: 0; }
 .home-section { scroll-margin-top: 24px; }
 .home-section + .home-section { margin-top: 48px; }

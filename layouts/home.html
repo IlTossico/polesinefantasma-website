@@ -6,6 +6,12 @@
     </section>
     <p class="archive-link"><a href="{{ (.Site.GetPage "/esplora").RelPermalink }}">Tutte le esplorazioni</a></p>
   </div>
+  {{ $map := resources.Get "images/mappa-polesine.svg" | fingerprint }}
+  <section class="map-band" aria-label="Mappa del Polesine">
+    <div class="map-scroll" tabindex="0" role="region" aria-label="Mappa illustrativa del Polesine; sugli schermi piccoli puoi scorrere orizzontalmente">
+      <img class="map-image" src="{{ $map.RelPermalink }}" width="2400" height="921" alt="Mappa del Polesine con Po, Adige, Canalbianco, i principali rami del Delta e tredici centri abitati, tra cui Rovigo e Adria." loading="lazy" decoding="async">
+    </div>
+  </section>
   <div class="home-band">
     <div class="content-layout">
       {{/* Testi provvisori di Chi sono e Contatti: modificare qui. */}}
