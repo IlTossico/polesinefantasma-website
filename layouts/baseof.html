@@ -12,7 +12,7 @@
       if (localStorage.getItem('polesine-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
     } catch {}
   </script>
-  <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ else if eq .Layout "informational" }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
   {{/* Prima versione dimostrativa: rimuovere noindex quando i contenuti saranno definitivi. */}}
   <meta name="robots" content="{{ if eq .Kind "404" }}noindex{{ else }}noindex, nofollow{{ end }}">

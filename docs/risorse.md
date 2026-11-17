@@ -11,8 +11,9 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | `layouts/home.html` | Homepage con feed, link all’archivio e fascia Chi sono/Contatti; testi provvisori e collegamenti social modificabili qui. |
 | `layouts/404.html` | Errore 404 nativo, generato in `public/404.html`, con header compatto e footer condivisi; nessuna pagina Markdown o hero fotografica. |
 | `content/esplora.md`, `content/galleria.md`, `layouts/coming-soon.html` | Due URL indipendenti con `layout = 'coming-soon'` e un solo template temporaneo; Esplora resta la destinazione del link all’archivio. |
+| `content/privacy.md`, `content/disclaimer.md`, `layouts/informational.html` | Pagine informative indipendenti con testi provvisori in Markdown, template condiviso e collegamenti nel footer. |
 | `layouts/partials/header.html` | Hero con sottotitolo, immagini responsive, navigazione, selettore tema e interfaccia di ricerca. |
-| `layouts/partials/use-home-hero.html` | Abilita la hero della homepage, fotografie casuali e animazione del titolo anche per le pagine con layout `coming-soon`. |
+| `layouts/partials/use-home-hero.html` | Abilita la hero della homepage, fotografie casuali e animazione del titolo anche per i layout `coming-soon` e `informational`. |
 | `layouts/partials/hero-image.html`, `layouts/partials/hero-image-data.html` | Elenco automatico delle foto hero, URL responsive e scelta immediata nel browser con esclusione dell’ultima foto. |
 | `layouts/partials/recent-posts.html` | Feed e miniature dimostrative; unico punto in cui collegare in futuro gli articoli Markdown. |
 | `data/demo.toml` | Titoli, estratti e date dei sei esempi; la home mostra i tre più recenti ordinati per `date` decrescente. Non genera pagine articolo. |
@@ -25,7 +26,7 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | `assets/images/hero/*.webp` | Foto casuali della home: aggiungere o rimuovere WebP direttamente nella cartella e ricostruire il sito. |
 | `assets/images/hero/background.webp` | Foto precedente, inclusa nell’estrazione e usata normalmente come fallback, sfondo delle altre pagine e sorgente delle miniature dimostrative. |
 | `static/images/hero-fallback.webp` | Copia di sicurezza indipendente dalla cartella hero: mantiene il fallback anche rimuovendo tutte le foto, compresa `background.webp`. |
-| `assets/images/logo.png` | Logo originale, 2300 × 2103, servito direttamente senza ridimensionamento o conversione Hugo. Le dimensioni visualizzate sono definite dal CSS dell’header. |
+| `assets/images/logo.png` | Logo originale, 2300 × 2103, servito senza ridimensionamento o conversione Hugo. Nell’header `.brand-logo` ne usa la trasparenza come maschera CSS per seguire il colore del nome durante hover e focus; il PNG resta il fallback se le maschere non sono supportate. Le dimensioni visualizzate sono definite dal CSS dell’header. |
 | `.gitignore` | Esclude output Hugo e cartella temporanea delle verifiche locali. |
 
 ## Font utilizzati
@@ -81,6 +82,7 @@ La cartella deve essere considerata attendibile e le task automatiche devono ess
 
 ## Modifiche comuni
 
+- I testi di Privacy Policy e Disclaimer si sostituiscono rispettivamente in `content/privacy.md` e `content/disclaimer.md`, dopo il front matter `+++`, mantenendo `layout = 'informational'`. Il template genera l’H1 dal campo `title`; usare `##` per i sottotitoli. La colonna di lettura è limitata a 760 px e segue il tema; il footer rimane nel flusso anche con testi lunghi. Il titolo nella hero usa un paragrafo con classe `.hero-heading` su queste pagine, lasciando un unico H1 nel contenuto; stile e animazione del sito sono condivisi con le altre pagine.
 - Esplora e Galleria usano il template condiviso `layouts/coming-soon.html`: solo «Coming Soon» in Oswald su fondo bianco, con header, hero e footer esistenti. Gli stili di pagina sono limitati a `.page--coming-soon` e `.coming-soon`; il footer segue il contenuto ed è spinto a fondo viewport quando il contenuto è breve. Per pubblicare una sezione definitiva, cambiare solo il suo `layout` nel corrispondente file `content/*.md`, aggiungere il nuovo template e i contenuti; l’altra sezione e la homepage restano indipendenti.
 - L’angolo storico è in `layouts/partials/history-corner.html` e usa il JPG originale `assets/images/il-polesine.jpg`, ritagliato solo via CSS. Il wrapper `.page-surface` in `baseof.html` racchiude header e contenuti; la guida assoluta `.history-rail` permette allo sticky di fermarsi a filo del bordo superiore del footer senza JavaScript. Il triangolo misura 112 px (76 px sotto 640 px), si solleva al mouse e collega Wikipedia in una nuova scheda. Tooltip e focus sono gestiti via CSS; la transizione è disattivata con movimento ridotto. La mappa SVG della home è indipendente.
 - La fascia della mappa in `layouts/home.html` precede Chi sono e usa `assets/images/mappa-polesine.svg`, servito con fingerprint. Il fondo usa `--section-bg`: `#F6F4EF` nel tema chiaro e `#3D4142` nello scuro; Chi sono/Contatti hanno fondo `#E8E5DE` e testo `#383838` nel tema chiaro, fondo `#454A4B` e testo bianco nello scuro. La sagoma della copia SVG usa `#BFBCB3`. La mappa è illustrativa, larga al massimo 1600 px; sotto 960 px mantiene una larghezza minima di 1128 px per le etichette, con scorrimento orizzontale nel solo contenitore, accessibile anche da tastiera. Conservare proporzioni e dimensioni dell’immagine nel template se si sostituisce l’SVG.

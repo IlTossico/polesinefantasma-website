@@ -5,7 +5,7 @@
   {{ end }}
   <div class="header-bar">
     <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Polesine Fantasma — homepage">
-      <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="">
+      <span class="brand-logo" style="--brand-logo: url('{{ $logo.RelPermalink }}')"><img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt=""></span>
       <span>Polesine Fantasma</span>
     </a>
     <details class="navigation" id="navigation">
@@ -41,7 +41,7 @@
   </div>
   {{ if ne .Kind "404" }}
   <div class="hero-title">
-    <h1><span class="sr-only">Polesine Fantasma</span><span class="title-ink" aria-hidden="true">Polesine Fantasma</span></h1>
+    {{ if eq .Layout "informational" }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">Polesine Fantasma</span><span class="title-ink" aria-hidden="true">Polesine Fantasma</span>{{ if eq .Layout "informational" }}</p>{{ else }}</h1>{{ end }}
     <p class="hero-subtitle">Storie, immagini e luoghi che resistono allo scorrere del tempo</p>
   </div>
   {{ end }}

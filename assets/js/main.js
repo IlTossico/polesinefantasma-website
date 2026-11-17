@@ -2,7 +2,7 @@
   const root = document.documentElement;
   if (root.dataset.typewriter !== 'pending') return;
 
-  const title = document.querySelector('.hero h1 .title-ink');
+  const title = document.querySelector('.hero .title-ink');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (!title) {
     delete root.dataset.typewriter;

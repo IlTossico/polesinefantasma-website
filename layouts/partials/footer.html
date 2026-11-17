@@ -6,7 +6,7 @@
     </div>
     <p class="footer-home"><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#home">TORNA ALLA HOME</a></p>
     <div class="footer-legal">
-      <p class="legal-placeholder"><span title="Pagina in preparazione">Privacy</span> / <span title="Pagina in preparazione">Disclaimer</span></p>
+      <p><a href="{{ (.Site.GetPage "/privacy").RelPermalink }}" aria-label="Privacy Policy">Privacy</a> / <a href="{{ (.Site.GetPage "/disclaimer").RelPermalink }}">Disclaimer</a></p>
       <p class="footer-credit">Legal Information</p>
     </div>
   </div>
