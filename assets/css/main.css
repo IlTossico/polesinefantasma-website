@@ -243,10 +243,15 @@ button { border: 0; }
   .home-section + .home-section { margin-top: 36px; }
   .home-section h2 { font-size: 28px; }
   .home-section p { font-size: 17px; }
-  .social-links { gap: 24px; }
+  .social-links { max-width: 240px; margin-inline: auto; justify-content: center; gap: 24px; }
   .social-circle { width: 64px; height: 64px; }
   .social-circle .icon { width: 32px; height: 32px; }
-  .footer-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; width: calc(100% - 40px); }
+  .site-footer { padding-block: 16px; }
+  .footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; align-items: start; width: calc(100% - 40px); }
+  .footer-identity .footer-credit { text-align: left; }
+  .footer-site-name { display: block; white-space: nowrap; }
+  .footer-legal, .footer-legal .footer-credit { text-align: right; }
+  .footer-home { grid-column: 1 / -1; grid-row: 1; }
 }
 
 @media (max-width: 359px) {
