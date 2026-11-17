@@ -28,7 +28,9 @@
   <div class="page-surface">
     {{ partial "header.html" . }}
     {{ block "main" . }}{{ end }}
-    {{ partial "history-corner.html" . }}
+    {{ if .Site.Params.features.wikipediaTriangle }}
+      {{ partial "history-corner.html" . }}
+    {{ end }}
   </div>
   {{ partial "footer.html" . }}
 </body>

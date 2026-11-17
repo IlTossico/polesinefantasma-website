@@ -6,8 +6,8 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 
 | File | Responsabilità |
 | --- | --- |
-| `hugo.toml` | Titolo, lingua e descrizione. `baseURL = '/'` serve all’anteprima; usare l’URL reale per la pubblicazione. |
-| `layouts/baseof.html` | Documento HTML, metadati, CSS/JS minificati con fingerprint e inclusione di header/footer. |
+| `hugo.toml` | Titolo, lingua, descrizione e feature flags in `[params.features]`. `baseURL = '/'` serve all’anteprima; usare l’URL reale per la pubblicazione. |
+| `layouts/baseof.html` | Documento HTML, metadati, CSS/JS minificati con fingerprint, inclusione di header/footer e inclusione condizionale del triangolo Wikipedia. |
 | `layouts/home.html` | Homepage con feed, link all’archivio e fascia Chi sono/Contatti; testi provvisori e collegamenti social modificabili qui. |
 | `content/esplora.md`, `layouts/esplora.html` | Pagina coming soon di Esplora, destinazione comune del menu e del link all’archivio. |
 | `layouts/partials/header.html` | Hero con sottotitolo, immagini responsive, navigazione, selettore tema e interfaccia di ricerca. |
@@ -33,6 +33,44 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | Source Sans 3 | Testi generali, titoli, estratti e date del feed, campo di ricerca e sottotitolo dell’hero (in corsivo). |
 | Oswald | Voci di navigazione e pulsante Menu sui dispositivi mobili. |
 | Inter | Tutti i testi e i collegamenti del footer. |
+
+### Feature flags
+
+Le feature flags sono interruttori booleani nella configurazione nativa di Hugo: permettono di includere o escludere funzionalità durante la compilazione. L’unica disponibile è il triangolo con collegamento a Wikipedia e scritta «La Storia».
+
+Modificare [hugo.toml](hugo.toml), nella radice del progetto (`C:\Users\Phil\Desktop\polesinefantasma-website\hugo.toml`): cercare la chiave `wikipediaTriangle` nella sezione `[params.features]`, cioè `params.features.wikipediaTriangle`, attualmente alla **riga 11**. Il numero è un riferimento attuale: se cambia, cercare il nome della chiave.
+
+```toml
+[params.features]
+  wikipediaTriangle = false
+```
+
+Usare `wikipediaTriangle = false` per disabilitarlo (valore iniziale) oppure `wikipediaTriangle = true` per abilitarlo, senza virgolette. Con `false`, triangolo, scritta e tooltip non vengono generati nell’HTML; il codice resta disponibile per riattivarli. Per rendere la modifica visibile online servono una nuova compilazione e un deploy.
+
+### Avvio e riavvio del server locale Hugo
+
+In PowerShell, avviare dalla radice del progetto:
+
+```powershell
+Set-Location 'C:\Users\Phil\Desktop\polesinefantasma-website'
+hugo server -D
+```
+
+Anteprima su `http://localhost:1313/`. VS Code avvia già lo stesso comando all’apertura della cartella tramite `.vscode/tasks.json`: non avviare un secondo server sulla stessa porta. Per arrestare quello manuale usare `Ctrl+C`, poi rieseguire `hugo server -D` per riavviarlo. Per la task VS Code usare **Tasks: Terminate Task**, quindi **Tasks: Run Task → Hugo: server di sviluppo**.
+
+Il server Hugo rileva automaticamente il salvataggio di `hugo.toml` e ricompila anche quando cambia il feature flag: **non serve un riavvio manuale**. La build locale senza server si esegue dalla stessa directory con `hugo build`, con output in `public/`; non pubblica il sito.
+
+### Pubblicazione tramite GitHub e Cloudflare Pages
+
+Le modifiche locali non vengono pubblicate automaticamente. Nel workflow con integrazione GitHub e deploy automatici abilitati su Cloudflare Pages, occorre creare un commit e fare push sul branch collegato: il push avvia automaticamente compilazione e deploy. Non serve avviare manualmente un deploy da Cloudflare, salvo problemi particolari.
+
+Il repository locale usa `main`, che segue `origin/main`. L’esempio seguente, dalla radice del progetto, usa Conventional Commits e presuppone che `main` sia il branch collegato a Pages; il collegamento e i deploy automatici vanno verificati nelle impostazioni Cloudflare, non sono definiti nel repository.
+
+```powershell
+git add hugo.toml layouts/baseof.html README.md docs/risorse.md
+git commit -m "feat(history): add Wikipedia triangle feature flag"
+git push origin main
+```
 
 ## Anteprima automatica in VS Code
 
