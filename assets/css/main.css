@@ -113,10 +113,19 @@ button { border: 0; }
 .post-preview { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 28px; padding: 28px 0 30px; border-bottom: 1px solid var(--line); }
 .post-thumbnail { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .post-preview:first-child { padding-top: 0; }
-.post-preview h2 { font-family: 'Source Sans 3', Arial, sans-serif; margin: 0 0 12px; font-size: 28px; line-height: 1.22; letter-spacing: -.6px; font-weight: 750; }
+.post-preview h2 { position: relative; font-family: 'Source Sans 3', Arial, sans-serif; margin: 0 0 12px; font-size: 28px; line-height: 1.22; letter-spacing: -.6px; font-weight: 750; }
 .post-excerpt { margin: 0 0 12px; font-size: 15px; line-height: 1.8; font-style: normal; color: var(--muted); }
 .post-meta { margin: 0; font-size: 16px; line-height: 1.65; font-style: normal; color: var(--muted); }
 .post-meta span { padding: 0 4px; }
+
+.post-preview h2::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 56px; height: 3px; background: #b58b20; transform: scaleX(.4); transform-origin: left; pointer-events: none; }
+.post-preview:focus-within h2::after { transform: scaleX(1); }
+@media (hover: hover) and (pointer: fine) {
+  .post-preview:hover h2::after { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .post-preview h2::after { transition: transform .22s ease-out; }
+}
 
 .archive-link { margin: 0; padding: 28px 0 40px; text-align: center; }
 .archive-link a { display: inline-block; padding: 8px; font-family: 'Oswald', Arial, sans-serif; font-size: 28px; text-decoration: underline; text-underline-offset: 4px; }
@@ -170,8 +179,14 @@ button { border: 0; }
 
 @media (min-width: 960px) {
   .social-links { margin-top: 50px; }
-  /* Spazio per due anteprime, padding iniziale e separatore inclusi. */
-  .hero--home { height: clamp(480px, calc(100vh - 440px), 1000px); }
+  .content-layout--home { width: min(1180px, calc(100% - 64px)); }
+  .post-preview { grid-template-columns: 260px minmax(0, 1fr); padding-block: 32px; }
+  .post-thumbnail { aspect-ratio: 260 / 173; }
+  .post-preview h2 { margin-bottom: 18px; font-size: 30px; }
+  .post-excerpt { margin-bottom: 16px; font-size: 16px; line-height: 1.75; }
+  .post-meta { font-size: 16px; }
+  /* Riduzione del 6% rispetto all'altezza desktop precedente. */
+  .hero--home { height: calc(clamp(480px, calc(100vh - 440px), 1000px) * .94); }
   /* Scala comune: 1 a 1080 px, 1.10 a 1440 px e 1.25 da 2160 px. */
   @supports (font-size: calc(1px * (1px / 1px))) {
     .hero--home {

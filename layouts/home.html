@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main id="contenuto" tabindex="-1">
-  <div class="content-layout">
+  <div class="content-layout content-layout--home">
     <section class="recent-posts" aria-label="Articoli recenti">
       {{ partial "recent-posts.html" . }}
     </section>
@@ -13,7 +13,7 @@
     </div>
   </section>
   <div class="home-band">
-    <div class="content-layout">
+    <div class="content-layout content-layout--home">
       {{/* Testi provvisori di Chi sono e Contatti: modificare qui. */}}
       <section class="home-section" id="chi-sono" aria-labelledby="chi-sono-title">
         <h2 id="chi-sono-title">Chi sono</h2>
