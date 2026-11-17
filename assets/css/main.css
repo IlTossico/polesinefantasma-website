@@ -45,6 +45,7 @@
   --muted: #747474;
   --line: #e8e8e8;
   --accent: #44655c;
+  --menu-hover: #f2ca68;
   --anthracite: #282b2d;
   --section-bg: #f6f4ef;
 }
@@ -84,7 +85,14 @@ button { border: 0; }
 .navigation::details-content { content-visibility: visible; }
 .menu { display: flex; align-items: center; gap: 30px; margin: 0; padding: 0; list-style: none; }
 .menu a { font-family: 'Oswald', Arial, sans-serif; display: block; padding: 12px 0; font-size: 15.9px; line-height: 1.5; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
-.menu a:hover, .header-actions a:hover { opacity: .75; }
+.header-actions a:hover { opacity: .75; }
+.menu a:focus-visible { color: var(--menu-hover); }
+@media (hover: hover) and (pointer: fine) {
+  .menu a:hover { color: var(--menu-hover); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .menu a { transition: color .25s ease-in-out; }
+}
 .header-actions { display: flex; align-items: center; justify-self: stretch; gap: 6px; }
 .header-actions > a { flex: none; }
 .icon-button { display: inline-flex; justify-content: center; align-items: center; width: 44px; height: 44px; padding: 10px; background: transparent; }
@@ -208,7 +216,7 @@ button { border: 0; }
   .theme-toggle { right: auto; left: 0; }
   .search-toggle { margin-left: 50px; }
   .search-panel { left: 98px; width: calc(100% - 106px); }
-  .navigation { justify-self: end; }
+  .navigation { --menu-hover: #8a6516; justify-self: end; }
   .navigation > summary { font-family: 'Oswald', Arial, sans-serif; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px; list-style: none; font-size: 15.9px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
   .navigation > summary::-webkit-details-marker { display: none; }
   .navigation::details-content { content-visibility: hidden; }
@@ -218,7 +226,6 @@ button { border: 0; }
   .menu { display: block; }
   .menu a { padding: 13px 0; letter-spacing: 1px; }
   .menu li + li { border-top: 1px solid var(--line); }
-  .menu a:hover { color: var(--accent); opacity: 1; }
   .menu :focus-visible { outline-color: var(--accent); outline-offset: 1px; }
 }
 
