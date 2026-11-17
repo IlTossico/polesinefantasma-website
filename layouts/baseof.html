@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-    {{ if .IsHome }}
+    {{ if partial "use-home-hero.html" . }}
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.typewriter = 'pending';
     {{ end }}
     try {
@@ -23,7 +23,7 @@
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
 </head>
-<body>
+<body{{ if eq .Layout "coming-soon" }} class="page--coming-soon"{{ end }}>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
   <div class="page-surface">
     {{ partial "header.html" . }}

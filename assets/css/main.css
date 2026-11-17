@@ -83,9 +83,8 @@ button { border: 0; }
 /* Le details restano accessibili senza JavaScript; su desktop il menu è sempre visibile. */
 .navigation::details-content { content-visibility: visible; }
 .menu { display: flex; align-items: center; gap: 30px; margin: 0; padding: 0; list-style: none; }
-.menu a, .menu span { font-family: 'Oswald', Arial, sans-serif; display: block; padding: 12px 0; font-size: 15.9px; line-height: 1.5; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+.menu a { font-family: 'Oswald', Arial, sans-serif; display: block; padding: 12px 0; font-size: 15.9px; line-height: 1.5; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
 .menu a:hover, .header-actions a:hover { opacity: .75; }
-.menu [aria-disabled] { cursor: default; }
 .header-actions { display: flex; align-items: center; justify-self: stretch; gap: 6px; }
 .header-actions > a { flex: none; }
 .icon-button { display: inline-flex; justify-content: center; align-items: center; width: 44px; height: 44px; padding: 10px; background: transparent; }
@@ -118,7 +117,7 @@ button { border: 0; }
 .post-meta { margin: 0; font-size: 16px; line-height: 1.65; font-style: normal; color: var(--muted); }
 .post-meta span { padding: 0 4px; }
 
-.post-preview h2::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 56px; height: 3px; background: #b58b20; transform: scaleX(.4); transform-origin: left; pointer-events: none; }
+.post-preview h2::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 112px; height: 3px; background: #b58b20; transform: scaleX(.5); transform-origin: left; pointer-events: none; }
 .post-preview:focus-within h2::after { transform: scaleX(1); }
 @media (hover: hover) and (pointer: fine) {
   .post-preview:hover h2::after { transform: scaleX(1); }
@@ -152,7 +151,11 @@ button { border: 0; }
 .home-section h2 { margin: 0 0 20px; font-size: 32px; line-height: 1.2; font-weight: 750; }
 .home-section p { margin: 0 0 16px; font-size: 18px; line-height: 1.7; }
 .home-section p:last-child { margin-bottom: 0; }
-.coming-soon { padding-bottom: 64px; }
+.page--coming-soon { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+.page--coming-soon .page-surface { display: flex; flex: 1; flex-direction: column; }
+.page--coming-soon .hero { flex: none; }
+.coming-soon { display: grid; flex: 1; place-items: center; padding: clamp(64px, 8vw, 128px) 24px; background: #fff; color: var(--anthracite); text-align: center; }
+.coming-soon h2 { margin: 0; font-family: 'Oswald', Arial, sans-serif; font-size: clamp(56px, 8vw, 128px); font-weight: 400; line-height: 1.1; }
 .social-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 24px 32px; margin-top: 40px; }
 .social-circle { --icon-cutout: #414644; display: inline-flex; flex: none; width: 80px; height: 80px; align-items: center; justify-content: center; border-radius: 50%; background: #414644; color: #fff; }
 .social-circle .icon { width: 38px; height: 38px; }
@@ -174,7 +177,7 @@ button { border: 0; }
 }
 
 @media (min-width: 1920px) {
-  .menu a, .menu span { font-size: 17px; }
+  .menu a { font-size: 17px; }
 }
 
 @media (min-width: 960px) {
@@ -213,9 +216,8 @@ button { border: 0; }
   .navigation:not([open]) > nav { display: none; }
   .navigation > nav { position: absolute; top: 76px; left: 24px; right: 24px; padding: 12px 22px; border-radius: 3px; color: var(--ink); background: #fff; box-shadow: 0 8px 25px rgb(0 0 0 / 16%); }
   .menu { display: block; }
-  .menu a, .menu span { padding: 13px 0; letter-spacing: 1px; }
+  .menu a { padding: 13px 0; letter-spacing: 1px; }
   .menu li + li { border-top: 1px solid var(--line); }
-  .menu [aria-disabled] { color: var(--muted); }
   .menu a:hover { color: var(--accent); opacity: 1; }
   .menu :focus-visible { outline-color: var(--accent); outline-offset: 1px; }
 }

@@ -1,5 +1,5 @@
 {{ $logo := resources.Get "images/logo.png" }}
-<header class="hero{{ if .IsHome }} hero--home{{ end }}" id="home">
+<header class="hero{{ if partial "use-home-hero.html" . }} hero--home{{ end }}" id="home">
   {{ partial "hero-image.html" . }}
   <div class="header-bar">
     <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Polesine Fantasma — homepage">
@@ -12,7 +12,7 @@
         <ul class="menu">
           <li><a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a></li>
           <li><a href="{{ (.Site.GetPage "/esplora").RelPermalink }}"{{ if eq .RelPermalink (.Site.GetPage "/esplora").RelPermalink }} aria-current="page"{{ end }}>Esplora</a></li>
-          <li><span aria-disabled="true" title="Sezione in preparazione">Galleria</span></li>
+          <li><a href="{{ (.Site.GetPage "/galleria").RelPermalink }}"{{ if eq .RelPermalink (.Site.GetPage "/galleria").RelPermalink }} aria-current="page"{{ end }}>Galleria</a></li>
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#chi-sono">Chi sono</a></li>
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#contatti">Contatti</a></li>
         </ul>

@@ -1,6 +1,4 @@
 +++
 title = 'Esplora'
-layout = 'esplora'
+layout = 'coming-soon'
 +++
-
-Coming soon. Le esplorazioni saranno disponibili prossimamente.

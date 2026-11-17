@@ -4,7 +4,7 @@
 {{ with resources.Get "images/hero/background.webp" }}
   {{ $fallback = partial "hero-image-data.html" . }}
 {{ end }}
-{{ if .IsHome }}
+{{ if partial "use-home-hero.html" . }}
   {{ $photos := slice }}
   {{ range resources.Match "images/hero/*.webp" }}
     {{ $photos = $photos | append (partial "hero-image-data.html" .) }}
