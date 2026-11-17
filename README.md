@@ -7,9 +7,9 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Voce | Stato attuale |
 | --- | --- |
 | Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
-| Ultimo aggiornamento di questa panoramica | **16 novembre 2026**. |
+| Ultimo aggiornamento di questa panoramica | **17 novembre 2026**. |
 | Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
-| Ultimi interventi completati | Hero con foto casuali, tre articoli recenti e link a Esplora (coming soon). Sezioni Chi sono e Contatti con testi aggiornati e ancore nel menu; copia email con tooltip e conferma. |
+| Ultimi interventi completati | Hero con foto casuali, titolo ingrandito del 10% e sottotitolo del 15%; tre articoli e link a Esplora (coming soon). Mappa illustrativa prima di Chi sono e Contatti, con testi aggiornati, ancore nel menu e copia email. Piega con mappa storica e scritta «La Storia», collegata a Wikipedia.|
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -17,10 +17,10 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 
 | Ambito | Implementazione attuale |
 | --- | --- |
-| Pagina | HTML statico generato da template originale Hugo. |
-| Presentazione | CSS responsive e layout singola colonna. Hero desktop tra 480 e 1.000 px, con spazio per circa due anteprime e testi che crescono con l’altezza del viewport fino al +25%. |
-| Interazioni | JavaScript vanilla per menu mobile, interfaccia di ricerca, tema salvato nel browser e copia email. Titolo con comparsa in circa 3 secondi medi. Foto hero casuale a ogni caricamento. |
-| Risorse | Foto WebP in `assets/images/hero/`. Fallback separato per cartella vuota o JavaScript disattivato. Logo PNG originale e sprite SVG locale; Oswald per menu e link all’archivio, Inter nel footer, Source Sans 3 per gli altri testi e Special Elite per i titoli del progetto. Nessuna libreria o font remoto. |
+| Pagina | HTML statico generato da Hugo.|
+| Presentazione | CSS responsive e layout singola colonna. Hero desktop tra 480 e 1.000 px, con spazio per circa due anteprime e testi che crescono con l’altezza del viewport fino al +25%. Mappa SVG proporzionata, con scorrimento orizzontale su mobile. |
+| Interazioni | JavaScript vanilla per menu mobile, interfaccia di ricerca, tema salvato nel browser e copia email. Titolo con comparsa in circa 3 secondi medi; foto hero casuale. Piega «La Storia» gestita in CSS. |
+| Risorse | Foto WebP in `assets/images/hero/`, con fallback separato; mappa geografica SVG e mappa storica JPG. Logo PNG e sprite SVG locale. Oswald per menu, link all’archivio e «La Storia», Inter nel footer, Source Sans 3 per gli altri testi e Special Elite per i titoli del progetto. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
 ```text
@@ -34,7 +34,7 @@ polesinefantasma-website/
 │   ├── baseof.html         # Struttura HTML condivisa
 │   ├── home.html           # Homepage
 │   ├── esplora.html        # Pagina Esplora coming soon
-│   └── partials/           # Header, selezione foto hero, footer, feed e icone
+│   └── partials/           # Header, foto hero, footer, feed, icone e history-corner.html
 ├── content/esplora.md      # Contenuto provvisorio di Esplora
 ├── data/demo.toml          # Articoli dimostrativi
 ├── assets/
@@ -42,6 +42,8 @@ polesinefantasma-website/
 │   ├── js/main.js          # Interazioni della homepage
 │   └── images/
 │       ├── hero/          # Sette foto WebP, inclusa background.webp
+│       ├── mappa-polesine.svg # Mappa illustrativa della home
+│       ├── il-polesine.jpg # Foto originale della piega «La Storia»
 │       └── logo.png       # Logo PNG originale
 ├── static/
 │   ├── icons.svg          # Sprite SVG locale
@@ -60,7 +62,7 @@ La cartella locale contiene la prima versione grafica del nuovo sito, generata c
 
 VS Code avvia `hugo server -D` all’apertura della cartella tramite `.vscode/tasks.json`. Lo stesso comando può essere eseguito manualmente; anteprima su `http://localhost:1313/`. La build si esegue con `hugo build`, con output in `public/`.
 
-Configurazione in `hugo.toml`, template e testi di Chi sono/Contatti in `layouts/`, pagina Esplora in `content/`, stili/script/foto hero in `assets/`, fallback e sprite SVG in `static/`. I dettagli di manutenzione, del velo scuro della hero e della predisposizione per Cloudflare Pages sono in [docs/risorse.md](docs/risorse.md).
+Configurazione in `hugo.toml`, template e testi di Chi sono/Contatti in `layouts/`, pagina Esplora in `content/`, stili/script/immagini in `assets/`, fallback e sprite SVG in `static/`. I dettagli di manutenzione di hero, mappa e piega storica e della predisposizione per Cloudflare Pages sono in [docs/risorse.md](docs/risorse.md).
 
 ## Idee struttura
 
@@ -85,7 +87,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | ~~Struttura Codice~~ | Completo | ~~Valutare come integrare CMS e Framework engine "Astro" o valuta altri modelli.~~ |
 | **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato.<br><u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
 | ~~Framework~~ | Completo | ~~Decidere quale framework usare come base e iniziare a integrarlo col sito base.~~ |
-| Definire la struttura del sito | **Work in Progress** | Stabilire pagine, sezioni e navigazione della prima versione. |
+| Definire la struttura del sito | **Work in Progress** | Triangolo "la storia" da migliorare?, da aggiungere idee su file inspiration. |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | Definire la grafica definitiva | **Work in Progress** | Approvare il design desktop e mobile, coerente con l'identità di Polesine Fantasma. |
 | Sviluppare il sito definitivo | **Work in Progress** | Realizzare le pagine concordate mantenendo l'architettura statica. |
@@ -154,8 +156,8 @@ Vedi [Inspiration](docs/inspiration.md) per siti web si riferimento.
 | Racconti e testimonianze | Storie legate al territorio, ricordi e contributi delle persone. |
 | Confronti tra passato e presente | Affiancare immagini storiche e fotografie attuali, quando disponibili e utilizzabili. |
 | Esplorazione del territorio | Valutare una mappa dei luoghi o percorsi tematici, tenendo conto della semplicità di manutenzione. |
-| Presentazione del progetto | Raccontare l'origine di Polesine Fantasma, le sue finalità e come contattarlo per proporre materiali. |
-| Storia | Riferimenti storici al Polesine come zona geografica. |
+| Collaborazione | Pagina per proposte collaborative? |
+| Storia | Riferimenti storici al Polesine come zona geografica. - pagina storia sul Polesine |
 
 ## Licenza e copyright
 
