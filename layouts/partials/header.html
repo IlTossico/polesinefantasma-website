@@ -1,6 +1,8 @@
 {{ $logo := resources.Get "images/logo.png" }}
-<header class="hero{{ if partial "use-home-hero.html" . }} hero--home{{ end }}" id="home">
+<header class="{{ if eq .Kind "404" }}site-header{{ else }}hero{{ if partial "use-home-hero.html" . }} hero--home{{ end }}{{ end }}" id="home">
+  {{ if ne .Kind "404" }}
   {{ partial "hero-image.html" . }}
+  {{ end }}
   <div class="header-bar">
     <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="Polesine Fantasma — homepage">
       <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="">
@@ -37,8 +39,10 @@
       <a class="icon-button" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
     </div>
   </div>
+  {{ if ne .Kind "404" }}
   <div class="hero-title">
     <h1><span class="sr-only">Polesine Fantasma</span><span class="title-ink" aria-hidden="true">Polesine Fantasma</span></h1>
     <p class="hero-subtitle">Storie, immagini e luoghi che resistono allo scorrere del tempo</p>
   </div>
+  {{ end }}
 </header>

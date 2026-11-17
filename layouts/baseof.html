@@ -11,10 +11,10 @@
       if (localStorage.getItem('polesine-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
     } catch {}
   </script>
-  <title>{{ .Site.Title }}</title>
+  <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
   {{/* Prima versione dimostrativa: rimuovere noindex quando i contenuti saranno definitivi. */}}
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="{{ if eq .Kind "404" }}noindex{{ else }}noindex, nofollow{{ end }}">
   <link rel="preload" href="{{ "fonts/special-elite-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ "fonts/source-sans-3-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
@@ -23,12 +23,12 @@
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
 </head>
-<body{{ if eq .Layout "coming-soon" }} class="page--coming-soon"{{ end }}>
+<body{{ if eq .Kind "404" }} class="page--404"{{ else if eq .Layout "coming-soon" }} class="page--coming-soon"{{ end }}>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
   <div class="page-surface">
     {{ partial "header.html" . }}
     {{ block "main" . }}{{ end }}
-    {{ if .Site.Params.features.wikipediaTriangle }}
+    {{ if and (ne .Kind "404") .Site.Params.features.wikipediaTriangle }}
       {{ partial "history-corner.html" . }}
     {{ end }}
   </div>

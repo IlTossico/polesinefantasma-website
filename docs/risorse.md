@@ -9,6 +9,7 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | `hugo.toml` | Titolo, lingua, descrizione e feature flags in `[params.features]`. `baseURL = '/'` serve all’anteprima; usare l’URL reale per la pubblicazione. |
 | `layouts/baseof.html` | Documento HTML, metadati, CSS/JS minificati con fingerprint, inclusione di header/footer e inclusione condizionale del triangolo Wikipedia. |
 | `layouts/home.html` | Homepage con feed, link all’archivio e fascia Chi sono/Contatti; testi provvisori e collegamenti social modificabili qui. |
+| `layouts/404.html` | Errore 404 nativo, generato in `public/404.html`, con header compatto e footer condivisi; nessuna pagina Markdown o hero fotografica. |
 | `content/esplora.md`, `content/galleria.md`, `layouts/coming-soon.html` | Due URL indipendenti con `layout = 'coming-soon'` e un solo template temporaneo; Esplora resta la destinazione del link all’archivio. |
 | `layouts/partials/header.html` | Hero con sottotitolo, immagini responsive, navigazione, selettore tema e interfaccia di ricerca. |
 | `layouts/partials/use-home-hero.html` | Abilita la hero della homepage, fotografie casuali e animazione del titolo anche per le pagine con layout `coming-soon`. |
@@ -102,6 +103,10 @@ La home sceglie la foto con uno script inline nell’header, prima di assegnare 
 Il menu mobile usa `details/summary`, con righe ampie e apertura nativa anche senza JavaScript. Menu e ricerca non si sovrappongono quando JavaScript è attivo. Chi sono e Contatti puntano alle ancore della home anche dalle altre pagine; l’header non è fisso e le sezioni hanno `scroll-margin-top: 24px`. Lo scorrimento fluido è attivo solo senza preferenza per il movimento ridotto. Senza JavaScript la ricerca è nascosta e l’email resta un collegamento `mailto:`.
 
 ## Build e Cloudflare Pages
+
+La 404 usa `layouts/404.html` secondo le [convenzioni Hugo](https://gohugo.io/templates/404/). Gli stili `.page--404` e `.not-found` mantengono la stessa composizione chiara nei due temi, con contenuto centrato e footer in fondo alla finestra. Titolo e `noindex` dedicati dipendono da `.Kind == "404"` in `baseof.html`; le altre pagine mantengono i metadati dimostrativi preesistenti. L’header condiviso omette solo foto, titolo e sottotitolo della hero sulla 404, escludendo anche il triangolo storico. Le risorse e i collegamenti usano URL dalla radice del sito, validi anche per errori su percorsi annidati.
+
+In locale avviare `hugo server -D` dalla radice e aprire `http://localhost:1313/404.html` per l’anteprima, oppure un URL inesistente come `/percorso/inesistente/` per controllare la risposta di errore. Cloudflare Pages utilizza il `404.html` nella radice dell’output per le richieste non trovate, senza fallback SPA: vedere [Serving Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior). Non sono previste regole `_redirects` o configurazioni aggiuntive. Dopo il deploy verificare un percorso inesistente annidato con `curl.exe -I https://DOMINIO-DEL-SITO/percorso/inesistente/`: deve rispondere HTTP 404, senza redirect; aprirlo anche nel browser per controllare pagina e risorse. L’accesso diretto a `/404.html` non dimostra lo stato HTTP di un URL inesistente.
 
 Usare Hugo **0.169.0 Extended** anche in Cloudflare Pages per mantenere coerenti template e pipeline delle immagini. Non occorrono installazioni npm.
 
