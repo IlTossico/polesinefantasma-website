@@ -164,6 +164,10 @@ button { border: 0; }
   .hero { height: 480px; }
 }
 
+@media (min-width: 1920px) {
+  .menu a, .menu span { font-size: 17px; }
+}
+
 @media (min-width: 960px) {
   .social-links { margin-top: 50px; }
   /* Spazio per due anteprime, padding iniziale e separatore inclusi. */
