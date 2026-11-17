@@ -19,6 +19,7 @@ Stato del progetto e attività aperte sono nel [README](../README.md). Lavorare 
 | `layouts/partials/footer.html` | Footer con copyright, crediti e collegamenti di servizio. |
 | `layouts/partials/icon.html`, `static/icons.svg` | SVG locali condivisi attraverso uno sprite; URL versionato con hash del contenuto per aggiornare la cache quando cambiano i simboli. Niente librerie o richieste esterne. |
 | `static/fonts/` | Special Elite (licenza Apache 2.0), Source Sans 3 variabile normale/corsivo, Oswald variabile normale (200-700) e Inter variabile normale (licenza SIL OFL), in WOFF2 latino. Font e licenze conservati localmente, senza richieste a Google durante la visita. |
+| `static/favicon.svg` | Favicon SVG originale, pubblicata in `/favicon.svg` e richiamata una sola volta nel `<head>` condiviso di `layouts/baseof.html`, inclusa la 404. Nessuna variante PNG o ICO. |
 | `assets/css/main.css` | Layout, colori, font locali, breakpoint, focus e animazione della ricerca. |
 | `assets/js/main.js` | Comparsa del titolo, selettore tema, apertura/chiusura della ricerca, coordinamento del menu mobile e copia dell’email negli appunti. |
 | `assets/images/hero/*.webp` | Foto casuali della home: aggiungere o rimuovere WebP direttamente nella cartella e ricostruire il sito. |

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_2" data-name="Livello 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1095.31 1095.31">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f0e51b;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #5a4520;
+      }
+    </style>
+  </defs>
+  <g id="Livello_1-2" data-name="Livello 1">
+    <rect class="cls-1" width="1095.31" height="1095.31"/>
+    <rect class="cls-2" x="47.65" y="47.65" width="1000" height="1000"/>
+    <path class="cls-3" d="m156.63,1031.38V249.32h86.82v-86.82h86.82v-87.05h434.55v87.05h86.82v86.82h87.05v782.05h-87.05v-86.82h-86.82v86.82h-86.82v-86.82h-87.05v86.82h-86.82v-86.82h-86.82v86.82h-87.05v-86.82h-86.82v86.82h-86.82Zm608.19-347.5v-173.87h-86.82v-86.82h-347.73v434.55h87.05v-87.05h260.68v-86.82h86.82Zm-260.68-347.5v-87.05h-86.82v87.05h86.82Zm-86.82,347.5v-173.87h260.68v173.87h-260.68Zm260.68-347.5v-87.05h-87.05v87.05h87.05Zm0,434.32v87.05h86.82v-87.05h-86.82Z"/>
+    <rect class="cls-2" x="47.65" y="47.66" width="194.04" height="1000"/>
+  </g>
+</svg>
