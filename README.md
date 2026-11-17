@@ -6,10 +6,10 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 
 | Voce | Stato attuale |
 | --- | --- |
-| Versione | **v0.1.0** <br>Prima versione grafica Hugo. Homepage dimostrativa disponibile in locale. |
-| Ultimo aggiornamento di questa panoramica | **17 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo.** <br>Impostazione grafica della homepage realizzata; pagine interne, contenuti reali, gallerie e ricerca effettiva ancora da definire e implementare. |
-| Ultimi interventi completati | Hero con foto casuali, titolo ingrandito del 10% e sottotitolo del 15%; tre articoli e link a Esplora. Esplora e Galleria con Coming Soon condivisa. Mappa illustrativa prima di Chi sono e Contatti, con testi aggiornati, ancore nel menu e copia email. Piega con mappa storica e scritta «La Storia», collegata a Wikipedia e disattivata tramite feature flag.|
+| Versione | **v0.2.0** <br> Homepage dimostrativa disponibile in locale. |
+| Ultimo aggiornamento di questa panoramica | **18 novembre 2026**. |
+| Sito | **Ci sto lavorando su, cazzo.** <br>Homepage dimostrativa, Coming Soon di Esplora/Galleria, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, archivio, galleria e ricerca effettiva ancora da implementare. |
+| Ultimi interventi completati | Hero con foto casuali e titolo animato; tre anteprime con barre ocra, mappa indipendente e sezioni Chi sono/Contatti. Header e footer condivisi, link alle informative, favicon SVG e hover ocra. Triangolo Wikipedia conservato ma disattivato. Regola HTTP noindex per il solo sito test predisposta nei sorgenti, da verificare dopo il deploy. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -18,9 +18,9 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Ambito | Implementazione attuale |
 | --- | --- |
 | Pagina | HTML statico generato da Hugo.|
-| Presentazione | CSS responsive e layout singola colonna. Hero desktop tra circa 451 e 940 px e testi che crescono con l’altezza del viewport fino al +25%. Feed Chi sono/Contatti allineati a massimo 1180 px da 960 px; mappa SVG indipendente, larga al massimo 1600 px, con scorrimento orizzontale su mobile. |
-| Interazioni | JavaScript vanilla per menu mobile, interfaccia di ricerca, tema salvato nel browser e copia email. Titolo con comparsa in circa 3 secondi medi; foto hero casuale. Piega «La Storia» gestita in CSS. |
-| Risorse | Foto WebP in `assets/images/hero/`, con fallback separato; mappa geografica SVG e mappa storica JPG. Logo PNG e sprite SVG locale. Oswald per menu, link all’archivio, «La Storia» e «Coming Soon», Inter nel footer, Source Sans 3 per gli altri testi e Special Elite per i titoli del progetto. Nessuna libreria o font remoto. |
+| Presentazione | CSS responsive. Hero condivisa tra home, Coming Soon e informative; desktop tra circa 451 e 940 px. Feed e Chi sono/Contatti allineati a massimo 1180 px da 960 px; mappa indipendente da massimo 1600 px. |
+| Interazioni | JavaScript vanilla per foto casuali, titolo animato, tema locale, coordinamento menu/ricerca e copia email. La ricerca è solo un’interfaccia provvisoria. Hover e barre ocra sono gestiti in CSS e rispettano il movimento ridotto. |
+| Risorse | Foto WebP e fallback locale; mappe SVG/JPG, logo PNG originale, sprite SVG e favicon SVG. Oswald per menu, titoli Chi sono/Contatti, informative, Coming Soon e numero 404; Inter nel footer, Source Sans 3 per contenuti e sottotitolo, Special Elite per nome del sito e messaggio 404. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
 ```text
@@ -34,19 +34,25 @@ polesinefantasma-website/
 │   ├── baseof.html         # Struttura HTML condivisa
 │   ├── home.html           # Homepage
 │   ├── coming-soon.html    # Template condiviso di Esplora e Galleria
+│   ├── informational.html  # Template condiviso di Privacy Policy e Disclaimer
+│   ├── 404.html            # Errore nativo Hugo, senza hero fotografica
 │   └── partials/           # Header, foto hero, footer, feed, icone, history-corner.html e use-home-hero.html
 ├── content/esplora.md      # Pagina /esplora/ con layout coming-soon
 ├── content/galleria.md     # Pagina /galleria/ con lo stesso layout coming-soon
+├── content/privacy.md      # Testo provvisorio di /privacy/
+├── content/disclaimer.md   # Testo provvisorio di /disclaimer/
 ├── data/demo.toml          # Articoli dimostrativi
 ├── assets/
 │   ├── css/main.css        # Stili responsive
-│   ├── js/main.js          # Interazioni condivise tra homepage e Coming Soon
+│   ├── js/main.js          # Interazioni condivise tra le pagine
 │   └── images/
 │       ├── hero/          # Sette foto WebP, inclusa background.webp
 │       ├── mappa-polesine.svg # Mappa illustrativa della home
 │       ├── il-polesine.jpg # Foto originale della piega «La Storia»
 │       └── logo.png       # Logo PNG originale
 ├── static/
+│   ├── _headers           # Noindex HTTP limitato a test.polesinefantasma.it
+│   ├── favicon.svg        # Favicon originale, pubblicata in /favicon.svg
 │   ├── icons.svg          # Sprite SVG locale
 │   ├── images/hero-fallback.webp # Foto di sicurezza se la cartella hero è vuota
 │   └── fonts/             # Font WOFF2 locali con licenze
@@ -59,22 +65,31 @@ polesinefantasma-website/
 
 ## Versione locale attuale — Hugo
 
+**Hugo 0.169.0 Extended**
+
 La cartella locale contiene la prima versione grafica del nuovo sito, generata con Hugo 0.169.0 Extended, template originali, HTML, CSS e JavaScript vanilla. Nessuna dipendenza frontend, database, libreria di icone o font esterno. La pubblicazione definitiva resta incompleta.
 
 VS Code avvia hugo server -D all’apertura della cartella tramite .vscode/tasks.json. Lo stesso comando può essere eseguito manualmente; anteprima su http://localhost:1313/. La build si esegue con hugo build, con output in public/.
 
+### Noindex provvisorio — da rivedere prima della pubblicazione definitiva
 
+Prima della pubblicazione definitiva controllare questi tre punti:
+
+- **`static/_headers`:** aggiunge `X-Robots-Tag: noindex, nofollow` soltanto a `https://test.polesinefantasma.it/*`, escludendo dominio principale, www e `pages.dev`. È una regola provvisoria da rivedere: mantenerla se `test` resta un ambiente di sviluppo, modificarla o rimuoverla se cambia o viene dismesso.
+- **`layouts/baseof.html`:** il metatag `noindex, nofollow` blocca ancora tutte le pagine HTML, su qualsiasi dominio. Rimuoverlo o renderlo condizionale sulle pagine definitive indicizzabili, conservando il noindex della 404 e la protezione del test.
+- **`hugo.toml`:** rivalutare la sitemap ora disabilitata e impostare/passare l’URL assoluto corretto al posto di `baseURL = '/'`.
 
 ## Feature flags
 
-Disponibili: 
-- il triangolo con collegamento a Wikipedia e scritta «La Storia».
+Interruttori booleani nativi di Hugo; l’unico disponibile è il triangolo Wikipedia con scritta «La Storia». 
 
-Su `Risorse` info su come attivarlo e procedura da seguire.
+Con `false`, triangolo, scritta e tooltip non vengono generati nell’HTML; il codice resta disponibile. Il server rileva il salvataggio senza riavvio manuale, ma online servono una nuova build e un deploy. Dettagli in [Risorse](docs/risorse.md#feature-flags).
 
 ## Idee struttura
 
-| Ambito | Implementazione attuale |
+Proposte per le funzionalità definitive
+
+| Ambito | Proposta |
 | --- | --- |
 | Homepage | Statica con foto/sfondo che prende metà della hero, con logo+nome e breve descrizione di PF. Sotto piccolo feed degli articoli più recenti o di nostra scelta |
 | Galleria Fotografica | Pagina semplice e statica, a sinistra un menu che mostra e divide le foto su ogni progetto/categoria?/luogo e la pagina che le mostra ha tante miniature, abbastanza grandi, premendo la miniatura la foto diventa fullscreen(lightbox); PhotoSwipe, libreria JavaScript per la gestione di questa funzione. Il caricamento delle foto è gestito tramite CMS che auto adatta la pagina con le nuove miniature e si aggiorna automaticamente. |
@@ -95,17 +110,17 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
 | ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |
-| RSS | **Da pianificare** | Abilitare icona RSS per feed rss a sito ultimato prima di pubblicazione e check prestazioni |
+| RSS | **Da pianificare** | Definire il feed degli articoli reali: icona e RSS nativo esistono, ma il feed include le pagine Markdown e non le anteprime dimostrative. |
 
 ### 2. SEO e indicizzazione
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Metadati SEO | **Da verificare** | Ogni pagina dispone di title, description e canonical corretti, con URL definitivi. |
-| Sitemap e robots.txt | **Da verificare** | Sitemap valida con tutte le pagine indicizzabili, robots.txt accessibile e correttamente configurato. |
+| Metadati SEO | **Parziale** | Title e description presenti; rivedere titoli, canonical e URL definitivi, **togliendo o limitando il noindex globale prima della pubblicazione.** |
+| Sitemap e robots.txt | **Da verificare** | Sitemap ora disabilitata; rivalutarla per la produzione. Controllare anche il robots.txt gestito da Cloudflare, senza bloccare la lettura del noindex sul test. |
 | Dati strutturati JSON-LD | **Da verificare** | Dati strutturati pertinenti a Polesine Fantasma, sintatticamente validi e coerenti con i contenuti. |
 | Anteprime social | **Da verificare** | Open Graph e Twitter Card configurati con titolo, descrizione e immagine corretti. |
-| Favicon e identità browser | **Da verificare** | Favicon presente e funzionante sulle pagine e nei principali browser. |
+| Favicon e identità browser | **Implementato** | SVG originale in `static/favicon.svg`, incluso nel head condiviso. Da valutare. |
 | Google Search Console | **Da fare** | Dominio verificato, sitemap inviata e indicizzazione controllata. |
 
 ### 3. Cloudflare e infrastruttura
@@ -116,15 +131,15 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Dominio, DNS e HTTPS | **Da verificare** | `polesinefantasma.it` funzionante in HTTPS, certificato valido e redirect permanente da www. |
 | Sicurezza Cloudflare | **Da verificare** | WAF, protezione bot e header HTTP controllati, senza blocchi indesiderati o incompatibilità. |
 | Cloudflare Web Analytics | **Da fare** | Analytics attivato, integrato e raccolta delle visite verificata. |
-| Ambiente di test | **Da verificare** | Eventuali versioni di sviluppo escluse dall'indicizzazione e separate dal sito pubblico. |
+| Ambiente di test | **Implementato** | Noindex HTTP limitato a `test.polesinefantasma.it` in `static/_headers`. |
 
 ### 4. Privacy e conformità
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Privacy e cookie | **Da pianificare** | Informative predisposte in base ai trattamenti effettivi e facilmente raggiungibili dal footer. Pagina Privacy e cookie dedicata. |
-| Consenso e servizi esterni | **Da pianificare** | Verificare analytics, font esterni e altre integrazioni; implementare un eventuale banner solo se necessario. |
-| Pagina Disclaimer | **Da pianificare** | Discaimer riguardo il pericolo di visitare siti pericolosi, e noi non abbiamo responsabilita a riguardo. [Prendi spunto](https://ascosilasciti.com/it/disclaimer-utilizzo-sito/) |
+| Privacy e cookie | **In Lavorazione** | `/privacy/` e collegamento nel footer presenti. Sostituire i segnaposto con contenuti definitivi basati sul funzionamento effettivo del sito. |
+| Consenso e servizi esterni | **Da pianificare** | Da implementare su pagina `disclaimer`. |
+| Pagina Disclaimer | **In Lavorazione** | `/disclaimer/` e collegamento nel footer presenti; definire e verificare il testo prima della pubblicazione. |
 
 ### 5. Qualità tecnica e prestazioni
 
@@ -136,7 +151,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Preload dei font | **Da valutare** | Verificare se il preload dei font principali migliora il caricamento e riduce il FOUT, senza introdurre richieste inutili. |
 | JavaScript, link e percorsi | **Da verificare** | Nessun errore rilevante in console, collegamento rotto o comportamento imprevisto. |
 | Lighthouse e Core Web Vitals | **Da pianificare** | Test mobile e desktop eseguiti; LCP, CLS e INP valutati e criticità documentate. |
-| Pagina 404 | **Da verificare** | Pagina personalizzata disponibile e risposta HTTP 404 effettiva per percorsi inesistenti. |
+| Pagina 404 | **Implementato** | Template nativo `layouts/404.html`, senza hero fotografica; da verificare a deploy effettivo. |
 | Audit tecnico e sicurezza | **Da pianificare** | Revisione di codice, configurazioni, dipendenze e dati sensibili, con problemi prioritari risolti o documentati. |
 | Logo BIMI | **Non cocmpleto** | Aggiunto ma fallisce controllo DMARC, servirebbe nuovo server SMTP in uscita, ma comunque mancherebbe verifica per essere visto da Gmail. |
 
