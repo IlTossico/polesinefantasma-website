@@ -120,7 +120,8 @@ button { border: 0; }
 .hero--home .hero-heading { font-size: clamp(48.4px, 6.38vw, 88px); }
 .hero--home .hero-subtitle { font-size: 27.6px; }
 
-.content-layout { width: min(1110px, calc(100% - 64px)); margin: 0 auto; padding-top: 50px; }
+.content-layout, .informational-content { width: min(1110px, calc(100% - 64px)); margin-inline: auto; }
+.content-layout { margin-block: 0; padding-top: 50px; }
 #contenuto:focus { outline: none; }
 .post-preview { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 28px; padding: 28px 0 30px; border-bottom: 1px solid var(--line); }
 .post-thumbnail { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
@@ -171,10 +172,13 @@ button { border: 0; }
 .coming-soon h2 { margin: 0; font-family: 'Oswald', Arial, sans-serif; font-size: clamp(56px, 8vw, 128px); font-weight: 400; line-height: 1.1; }
 .informational { background: #fff; color: var(--ink); }
 [data-theme="dark"] .informational { background: #35393b; color: #fff; }
-.informational-content { width: min(760px, calc(100% - 48px)); margin-inline: auto; padding-block: clamp(40px, 5vw, 72px); text-align: left; }
-.informational h1 { margin: 0 0 28px; font-family: 'Oswald', Arial, sans-serif; font-size: clamp(36px, 4vw, 52px); font-weight: 400; line-height: 1.2; }
-.informational h2 { margin: 40px 0 16px; font-size: clamp(22px, 2.3vw, 28px); font-weight: 750; line-height: 1.3; }
-.informational p { margin: 0 0 20px; font-size: clamp(17px, 1.2vw, 18px); line-height: 1.8; }
+.informational-content { padding-block: clamp(40px, 5vw, 72px); text-align: left; }
+.informational-content a { text-decoration: underline; }
+.informational h1 { margin: 0 0 28px; font-family: 'Oswald', Arial, sans-serif; font-size: clamp(38px, 4.5vw, 60px); font-weight: 700; line-height: 1.2; }
+.informational h2 { position: relative; margin: 52px 0 16px; font-size: clamp(24px, 2.5vw, 32px); font-weight: 750; line-height: 1.3; }
+.informational h2 ~ h2 { margin-top: 77px; }
+.informational h2 ~ h2::before { content: ""; position: absolute; inset: -46px 0 auto; height: 2px; background: #b58b20; }
+.informational p { margin: 0 0 20px; font-size: clamp(17px, 1.2vw, 18px); line-height: 1.85; }
 .informational-content > :last-child { margin-bottom: 0; }
 body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; background: #f6f4ef; color: var(--anthracite); }
 .page--404 .page-surface { display: flex; flex: 1; flex-direction: column; }
@@ -216,7 +220,7 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 
 @media (min-width: 960px) {
   .social-links { margin-top: 50px; }
-  .content-layout--home { width: min(1180px, calc(100% - 64px)); }
+  .content-layout--home, .informational-content { width: min(1180px, calc(100% - 64px)); }
   .post-preview { grid-template-columns: 260px minmax(0, 1fr); padding-block: 32px; }
   .post-thumbnail { aspect-ratio: 260 / 173; }
   .post-preview h2 { margin-bottom: 18px; font-size: 30px; }
@@ -258,7 +262,8 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 @media (max-width: 959px) {
   .hero { height: 390px; }
   .hero-title { top: 80px; }
-  .content-layout { width: calc(100% - 48px); padding-top: 40px; }
+  .content-layout, .informational-content { width: calc(100% - 48px); }
+  .content-layout { padding-top: 40px; }
   .post-preview { grid-template-columns: 190px minmax(0, 1fr); gap: 24px; }
   .post-preview h2 { font-size: 26px; }
   .footer-inner { width: calc(100% - 48px); }
@@ -288,7 +293,8 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
   .hero .hero-heading { max-width: 460px; font-size: clamp(38px, 10vw, 58px); letter-spacing: -1.5px; }
   .hero--home .hero-heading { font-size: clamp(41.8px, 11vw, 63.8px); }
   .hero-image { object-position: center 50%; }
-  .content-layout { width: calc(100% - 40px); padding-top: 34px; }
+  .content-layout, .informational-content { width: calc(100% - 40px); }
+  .content-layout { padding-top: 34px; }
   .post-preview { grid-template-columns: 100px minmax(0, 1fr); gap: 16px; padding: 25px 0; }
   .post-preview h2 { font-size: 25px; }
   .post-excerpt { font-size: 15px; line-height: 1.75; }

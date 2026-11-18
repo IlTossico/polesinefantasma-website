@@ -106,9 +106,11 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| **Fotografie Loadout** | **Da pianificare** | Non possiamo caricare foto su Git, e c'è un limite a Pages, Cloudflare R2 (object storage) potrebbe essere una soluzione ma va implementato.<br><u>Una soluzione valida sarebbe un sistema S3 tipo Minio sul mio NAS, collegato con Tunnel Cloudflare al Pages. Perche Nicolo acceda poi al mio archivio locale, ~~Seafile~~/ownCloud, interfaccia simile drive che interagisce con S3, collegato al tunnel e poi con Cloudflare Access, altrimenti Tailscale. Oppure tenere Drive e usare il mio NAS solo per le foto del sito.</u>  |
+| Feed e pagina Esplora | **Work in Progress** | Realizzare la struttura degli articoli Hugo: ultimi articoli in homepage, archivio completo in Esplora e pagine dei singoli articoli. |
+| CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
+| Articoli di prova | **Da pianificare** | Scrivere qualche articolo reale o di prova, con immagini WebP su GitHub. Questo ci permetterà anche di capire quali dimensioni e qualità usare. |
+| Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria.  |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
-| CMS | **Da pianificare**  | Aggiungere CMS Pages a Sito e blog completato? |
 | ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |
 | RSS | **Da pianificare** | Definire il feed degli articoli reali: icona e RSS nativo esistono, ma il feed include le pagine Markdown e non le anteprime dimostrative. |
 
@@ -121,7 +123,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Dati strutturati JSON-LD | **Da verificare** | Dati strutturati pertinenti a Polesine Fantasma, sintatticamente validi e coerenti con i contenuti. |
 | Anteprime social | **Da verificare** | Open Graph e Twitter Card configurati con titolo, descrizione e immagine corretti. |
 | Favicon e identità browser | **Implementato** | SVG originale in `static/favicon.svg`, incluso nel head condiviso. Da valutare. |
-| Google Search Console | **Da fare** | Dominio verificato, sitemap inviata e indicizzazione controllata. |
+| Google Search Console | **Da verificare** | Dominio verificato, sitemap inviata e indicizzazione controllata. |
 
 ### 3. Cloudflare e infrastruttura
 
@@ -130,16 +132,16 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Hosting e distribuzione | **Da verificare** | Cloudflare Pages collegato a GitHub, deploy funzionante e modalità di pubblicazione configurata. |
 | Dominio, DNS e HTTPS | **Da verificare** | `polesinefantasma.it` funzionante in HTTPS, certificato valido e redirect permanente da www. |
 | Sicurezza Cloudflare | **Da verificare** | WAF, protezione bot e header HTTP controllati, senza blocchi indesiderati o incompatibilità. |
-| Cloudflare Web Analytics | **Da fare** | Analytics attivato, integrato e raccolta delle visite verificata. |
+| Cloudflare Web Analytics | **Da verificare** | Analytics attivato, integrato e raccolta delle visite verificata. |
 | Ambiente di test | **Implementato** | Noindex HTTP limitato a `test.polesinefantasma.it` in `static/_headers`. |
 
 ### 4. Privacy e conformità
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Privacy e cookie | **In Lavorazione** | `/privacy/` e collegamento nel footer presenti. Sostituire i segnaposto con contenuti definitivi basati sul funzionamento effettivo del sito. |
-| Consenso e servizi esterni | **Da pianificare** | Da implementare su pagina `disclaimer`. |
-| Pagina Disclaimer | **In Lavorazione** | `/disclaimer/` e collegamento nel footer presenti; definire e verificare il testo prima della pubblicazione. |
+| Privacy e cookie | **Check finale** | `/privacy/` e collegamento nel footer presenti; verificare il testo prima della pubblicazione. |
+| Consenso e servizi esterni | **Da pianificare** | Da implementare su pagina `privacy`. |
+| Pagina Disclaimer | **Check finale** | `/disclaimer/` e collegamento nel footer presenti; verificare il testo prima della pubblicazione. |
 
 ### 5. Qualità tecnica e prestazioni
 
