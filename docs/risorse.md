@@ -14,7 +14,7 @@ Il [README](../README.md) contiene panoramica, stato e attività aperte. Questo 
 | `layouts/404.html` | Errore nativo Hugo, generato come `public/404.html`; nessun contenuto Markdown dedicato. |
 | `content/esplora.md`, `content/galleria.md` | Pagine con `layout = 'coming-soon'`. |
 | `content/privacy.md`, `content/disclaimer.md` | Testi provvisori con `layout = 'informational'`. |
-| `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, tema, social, copyright e link alle informative. |
+| `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, social, copyright e link alle informative. |
 | `layouts/partials/use-home-hero.html` | Seleziona la hero completa per homepage, Coming Soon e informative. La 404 usa un header compatto. |
 | `layouts/partials/hero-image.html`, `hero-image-data.html` | Foto casuali, fallback, dimensioni e varianti responsive. |
 | `layouts/partials/recent-posts.html`, `data/demo.toml` | Sei esempi ordinati per data decrescente; in home compaiono i primi tre. Non generano pagine articolo. |
@@ -68,8 +68,8 @@ La build si esegue con `hugo build`; le prime elaborazioni fotografiche sono pi�
 
 - **Homepage:** cambiare i testi di Chi sono/Contatti e i social in `layouts/home.html`. Le voci del menu puntano alle ancore della home anche dalle altre pagine.
 - **Anteprime:** modificare titoli, estratti e date in `data/demo.toml`; `date` usa `AAAA-MM-GG`, `displayDate` è l’etichetta visibile. Per gli articoli reali sostituire la sorgente del partial e aggiungere i template delle pagine; non collegare titoli a URL inesistenti.
-- **Esplora e Galleria:** cambiare il solo `layout` e contenuto della pagina da sostituire. Il template Coming Soon lascia un messaggio Oswald su fondo bianco in entrambi i temi e mantiene il footer a fondo viewport quando il contenuto è breve.
-- **Privacy Policy e Disclaimer:** sostituire i segnaposto dopo il front matter `+++`, mantenendo `layout = 'informational'`; `title` genera l’H1 e `##` genera gli H2. La colonna massima è 760 px, il fondo segue il tema e il footer resta nel flusso con testi lunghi. Non inserire un secondo H1 nel Markdown.
+- **Esplora e Galleria:** cambiare il solo `layout` e contenuto della pagina da sostituire. Il template Coming Soon lascia un messaggio Oswald su fondo bianco e mantiene il footer a fondo viewport quando il contenuto è breve.
+- **Privacy Policy e Disclaimer:** sostituire i segnaposto dopo il front matter `+++`, mantenendo `layout = 'informational'`; `title` genera l’H1 e `##` genera gli H2. La colonna massima è 760 px, il fondo è bianco e il footer resta nel flusso con testi lunghi. Non inserire un secondo H1 nel Markdown.
 
 Le pagine informative usano un paragrafo per il titolo del sito nella hero e un H1 nel contenuto. La classe `.hero-heading` e il selettore `.hero .title-ink` mantengono stile e animazione condivisi senza dipendere dal tag del titolo.
 
@@ -79,7 +79,7 @@ La hero completa è condivisa da home, Coming Soon e informative. Da 960 px `.he
 
 Titolo e sottotitolo condividono `--hero-text-scale`: 1 a 1080 px, 1,10 a 1440 px e 1,25 da 2160 px. La scala richiede il supporto CSS alle divisioni tra lunghezze; il fallback mantiene le misure di base. Le immagini usano `object-fit: cover`, senza deformazioni.
 
-Il velo `.hero::before` è un gradiente a 180° di `rgb(15 24 24)`, con opacità 68% in alto, 40% alla posizione 40% e 35% in basso. È condiviso dai due temi.
+Il velo `.hero::before` è un gradiente a 180° di `rgb(15 24 24)`, con opacità 68% in alto, 40% alla posizione 40% e 35% in basso.
 
 Aggiungere o rimuovere foto `.webp` in `assets/images/hero/` e ricompilare. Hugo genera varianti a 768, 1440 e 2560 px in qualità 84, senza ingrandire, includendo il sorgente quando ha una larghezza diversa. Dimensioni e `srcset` sono ricavati dalle immagini. La selezione avviene subito nell’header: un `<template>` inerte evita di scaricare anche una foto non scelta.
 
@@ -96,7 +96,7 @@ Aggiungere o rimuovere foto `.webp` in `assets/images/hero/` e ricompilare. Hugo
 | Mappa | SVG 2400×921, massimo 1600 px; margini di almeno 32 px desktop e 20 px sotto 960 px. Su mobile il disegno mantiene una larghezza minima di 1128 px, con scorrimento nel solo `.map-scroll`, accessibile da tastiera. |
 | Contatti | Titoli Chi sono/Contatti in Oswald; cinque icone, su mobile fino a tre nella prima riga e due nella seconda, centrate, entro 240 px. Cerchi 80 px desktop/64 px mobile; simboli 38/32 px. |
 
-La mappa è illustrativa: conservare dimensioni e proporzioni nel template. Fondo mappa `--section-bg`: `#f6f4ef` chiaro e `#3d4142` scuro; sagoma SVG `#bfbcb3`. La fascia Chi sono/Contatti usa fondo `#e8e5de` e testo `#383838` in chiaro, fondo `#454a4b` e testo bianco in scuro.
+La mappa è illustrativa: conservare dimensioni e proporzioni nel template. La mappa usa `--section-bg` (`#f6f4ef`) come fondo e `#bfbcb3` per la sagoma SVG. La fascia Chi sono/Contatti usa fondo `#e8e5de` e testo `#383838`.
 
 ### Logo, icone, hover e footer
 
@@ -116,7 +116,7 @@ Il triangolo Wikipedia resta in `history-corner.html`, con JPG ritagliato solo v
 
 ## Interazioni e accessibilità
 
-Il tema iniziale è chiaro; `localStorage` conserva la scelta in `polesine-theme`. Le informative seguono il tema; Coming Soon e 404 mantengono il rispettivo fondo chiaro anche in modalità scura. Il pulsante tema resta nascosto senza JavaScript.
+La palette è definita in `assets/css/main.css`. La proprietà `color-scheme: only light` sul selettore `:root` indica al browser di usare lo schema chiaro anche per gli elementi nativi.
 
 Il titolo della hero viene animato da `main.js` solo se `data-typewriter` è `pending`; rispetta il movimento ridotto. Anche transizioni ocra, barre, scorrimento fluido e piega storica rispettano `prefers-reduced-motion`. Non applicare l’animazione della hero ai titoli delle informative o al contenuto 404.
 
@@ -141,7 +141,7 @@ Il push sul branch collegato a Pages avvia il deploy se l’integrazione automat
 
 ### Pagina 404
 
-Il [template nativo Hugo](https://gohugo.io/templates/404/) genera `public/404.html`. L’header compatto riusa logo, menu e icone, ma non foto, titolo/sottotitolo della hero o triangolo storico. Il contenuto è centrato su `#f6f4ef` nei due temi, con numero Oswald, messaggio Special Elite e footer a fondo viewport quando il contenuto è breve. Titolo HTML e `noindex` sono specifici per `.Kind == "404"`.
+Il [template nativo Hugo](https://gohugo.io/templates/404/) genera `public/404.html`. L’header compatto riusa logo, menu e icone, ma non foto, titolo/sottotitolo della hero o triangolo storico. Il contenuto è centrato su `#f6f4ef`, con numero Oswald, messaggio Special Elite e footer a fondo viewport quando il contenuto è breve. Titolo HTML e `noindex` sono specifici per `.Kind == "404"`.
 
 In locale avviare `hugo server -D` dalla radice e aprire `http://localhost:1313/404.html` per l’anteprima, oppure un URL inesistente come `/percorso/inesistente/` per controllare la risposta di errore. Cloudflare Pages utilizza il `404.html` nella radice dell’output per le richieste non trovate, senza fallback SPA: vedere [Serving Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior). Non sono previste regole `_redirects` o configurazioni aggiuntive. Dopo il deploy verificare un percorso inesistente annidato con `curl.exe -I https://DOMINIO-DEL-SITO/percorso/inesistente/`: deve rispondere HTTP 404, senza redirect; aprirlo anche nel browser per controllare pagina e risorse. L’accesso diretto a `/404.html` non dimostra lo stato HTTP di un URL inesistente. 
 

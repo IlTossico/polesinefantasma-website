@@ -17,7 +17,7 @@ Il sito è ospitato su **Cloudflare Pages**. Durante la navigazione possono esse
 
 Il sito usa **Cloudflare Web Analytics** per misurare le visite e le prestazioni delle pagine. Secondo la documentazione del fornitore, il servizio non usa cookie, memoria locale del browser o tecniche di fingerprinting per riconoscere i visitatori.
 
-Il sito usa la memoria locale del browser (localStorage) per ricordare il tema scelto. Puoi cancellare questa preferenza dalle impostazioni del browser. Le protezioni Cloudflare possono inoltre impostare cookie tecnici di sicurezza, per esempio per ricordare l’esito di una verifica. Gli strumenti strettamente necessari alla sicurezza o a una funzione richiesta dal visitatore non richiedono consenso preventivo. [Documentazione sui cookie di Cloudflare](https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/).
+Le protezioni Cloudflare possono impostare cookie tecnici di sicurezza, per esempio per ricordare l’esito di una verifica. Gli strumenti strettamente necessari alla sicurezza o a una funzione richiesta dal visitatore non richiedono consenso preventivo. [Documentazione sui cookie di Cloudflare](https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/).
 
 ## Contatti e servizi esterni
 

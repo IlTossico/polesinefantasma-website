@@ -51,21 +51,6 @@
 })();
 
 (() => {
-  const themeToggle = document.querySelector('#theme-toggle');
-  const syncTheme = () => {
-    const dark = document.documentElement.dataset.theme === 'dark';
-    themeToggle.setAttribute('aria-pressed', String(dark));
-    themeToggle.setAttribute('aria-label', dark ? 'Attiva modalità chiara' : 'Attiva modalità scura');
-  };
-  syncTheme();
-  themeToggle.hidden = false;
-  themeToggle.addEventListener('click', () => {
-    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = theme;
-    syncTheme();
-    try { localStorage.setItem('polesine-theme', theme); } catch {}
-  });
-
   const navigation = document.querySelector('#navigation');
   const mobile = window.matchMedia('(max-width: 1199px)');
 

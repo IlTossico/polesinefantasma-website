@@ -8,8 +8,8 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | --- | --- |
 | Versione | **v0.2.0** <br> Homepage dimostrativa disponibile in locale. |
 | Ultimo aggiornamento di questa panoramica | **18 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo.** <br>Homepage dimostrativa, Coming Soon di Esplora/Galleria, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, archivio, galleria e ricerca effettiva ancora da implementare. |
-| Ultimi interventi completati | Hero con foto casuali e titolo animato; tre anteprime con barre ocra, mappa indipendente e sezioni Chi sono/Contatti. Header e footer condivisi, link alle informative, favicon SVG e hover ocra. Triangolo Wikipedia conservato ma disattivato. Regola HTTP noindex per il solo sito test predisposta nei sorgenti, da verificare dopo il deploy. Rimossa funzione giorno/notte. |
+| Sito | **Ci sto lavorando su, cazzo.** <br>Homepage dimostrativa, Coming Soon di Esplora/Galleria, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, archivio, galleria e ricerca ancora da implementare. |
+| Ultimi interventi completati | Hero con foto casuali e titolo animato; mappa indipendente e sezioni Chi sono/Contatti. Triangolo Wikipedia conservato ma disattivato. . Rimossa funzione giorno/notte e ricerca.|
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -19,7 +19,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | --- | --- |
 | Pagina | HTML statico generato da Hugo.|
 | Presentazione | CSS responsive. Hero condivisa tra home, Coming Soon e informative; desktop tra circa 451 e 940 px. Feed e Chi sono/Contatti allineati a massimo 1180 px da 960 px; mappa indipendente da massimo 1600 px. |
-| Interazioni | JavaScript vanilla per foto casuali, titolo animato, tema locale, coordinamento menu/ricerca e copia email. La ricerca è solo un’interfaccia provvisoria. Hover e barre ocra sono gestiti in CSS e rispettano il movimento ridotto. |
+| Interazioni | JavaScript vanilla per foto casuali, titolo animato, gestione del menu mobile e copia email. La palette chiara è fissa. Hover e barre ocra sono gestiti in CSS e rispettano il movimento ridotto. |
 | Risorse | Foto WebP e fallback locale; mappe SVG/JPG, logo PNG originale, sprite SVG e favicon SVG. Oswald per menu, titoli Chi sono/Contatti, informative, Coming Soon e numero 404; Inter nel footer, Source Sans 3 per contenuti e sottotitolo, Special Elite per nome del sito e messaggio 404. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 

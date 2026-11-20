@@ -4,14 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  {{ if partial "use-home-hero.html" . }}
   <script>
-    {{ if partial "use-home-hero.html" . }}
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.typewriter = 'pending';
-    {{ end }}
-    try {
-      if (localStorage.getItem('polesine-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
-    } catch {}
   </script>
+  {{ end }}
   <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ else if eq .Layout "informational" }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
   {{/* Prima versione dimostrativa: rimuovere noindex quando i contenuti saranno definitivi. */}}
