@@ -254,8 +254,7 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
   .navigation > nav { top: 110px; left: 18px; right: 18px; }
   .header-actions { grid-column: 1 / -1; width: 100%; }
   .hero-title { top: 112px; }
-  .hero-title .hero-subtitle { width: auto; overflow-x: visible; white-space: normal; text-align: center; text-wrap: balance; font-size: 22px; line-height: 1.35; }
-  .hero--home .hero-subtitle { font-size: 25.3px; }
+  .hero-title .hero-subtitle { width: auto; overflow-x: visible; white-space: normal; text-align: center; text-wrap: balance; font-size: 18px; line-height: 1.35; }
 }
 
 @media (max-width: 639px) {
