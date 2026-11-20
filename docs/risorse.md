@@ -14,7 +14,7 @@ Il [README](../README.md) contiene panoramica, stato e attività aperte. Questo 
 | `layouts/404.html` | Errore nativo Hugo, generato come `public/404.html`; nessun contenuto Markdown dedicato. |
 | `content/esplora.md`, `content/galleria.md` | Pagine con `layout = 'coming-soon'`. |
 | `content/privacy.md`, `content/disclaimer.md` | Testi provvisori con `layout = 'informational'`. |
-| `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, ricerca, tema, social, copyright e link alle informative. |
+| `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, tema, social, copyright e link alle informative. |
 | `layouts/partials/use-home-hero.html` | Seleziona la hero completa per homepage, Coming Soon e informative. La 404 usa un header compatto. |
 | `layouts/partials/hero-image.html`, `hero-image-data.html` | Foto casuali, fallback, dimensioni e varianti responsive. |
 | `layouts/partials/recent-posts.html`, `data/demo.toml` | Sei esempi ordinati per data decrescente; in home compaiono i primi tre. Non generano pagine articolo. |
@@ -33,7 +33,7 @@ Il [README](../README.md) contiene panoramica, stato e attività aperte. Questo 
 | Font | Impiego |
 | --- | --- |
 | Special Elite | Nome del sito nell’header, titolo della hero e messaggio principale della 404. Licenza Apache 2.0. |
-| Source Sans 3 | Contenuti, titoli delle anteprime, sottotitoli delle informative, ricerca e sottotitolo corsivo della hero. Variabile normale/corsivo, licenza SIL OFL. |
+| Source Sans 3 | Contenuti, titoli delle anteprime, sottotitoli delle informative e sottotitolo corsivo della hero. Variabile normale/corsivo, licenza SIL OFL. |
 | Oswald | Menu, link all’archivio, titoli Chi sono/Contatti e informative, Coming Soon, numero 404, ritorno alla home nella 404 e scritta «La Storia». Variabile 200–700, licenza SIL OFL. |
 | Inter | Footer. Variabile 100–900, licenza SIL OFL. |
 
@@ -120,7 +120,7 @@ Il tema iniziale è chiaro; `localStorage` conserva la scelta in `polesine-theme
 
 Il titolo della hero viene animato da `main.js` solo se `data-typewriter` è `pending`; rispetta il movimento ridotto. Anche transizioni ocra, barre, scorrimento fluido e piega storica rispettano `prefers-reduced-motion`. Non applicare l’animazione della hero ai titoli delle informative o al contenuto 404.
 
-Il menu mobile usa `details/summary`, funziona anche senza JavaScript e chiude la ricerca quando viene aperto; ricerca e menu sono coordinati anche con Escape e resize. La ricerca resta una sola interfaccia dimostrativa, senza risultati reali.
+Il menu mobile usa `details/summary` e funziona anche senza JavaScript. JavaScript gestisce la chiusura tramite Escape, clic esterno o selezione di un link e sincronizza lo stato al cambio di breakpoint.
 
 La busta dei Contatti copia `info@polesinefantasma.it` con Clipboard API, disponibile su HTTPS o localhost. Mostra «Copiato!» per due secondi dopo il successo o «Copia non riuscita» in caso di errore. Senza JavaScript/API rimane il link `mailto:`. Le ancore di sezione hanno `scroll-margin-top: 24px`; focus, nomi accessibili e dimensioni delle immagini sono gestiti nei template/CSS.
 

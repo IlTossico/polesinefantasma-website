@@ -9,7 +9,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Versione | **v0.2.0** <br> Homepage dimostrativa disponibile in locale. |
 | Ultimo aggiornamento di questa panoramica | **18 novembre 2026**. |
 | Sito | **Ci sto lavorando su, cazzo.** <br>Homepage dimostrativa, Coming Soon di Esplora/Galleria, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, archivio, galleria e ricerca effettiva ancora da implementare. |
-| Ultimi interventi completati | Hero con foto casuali e titolo animato; tre anteprime con barre ocra, mappa indipendente e sezioni Chi sono/Contatti. Header e footer condivisi, link alle informative, favicon SVG e hover ocra. Triangolo Wikipedia conservato ma disattivato. Regola HTTP noindex per il solo sito test predisposta nei sorgenti, da verificare dopo il deploy. |
+| Ultimi interventi completati | Hero con foto casuali e titolo animato; tre anteprime con barre ocra, mappa indipendente e sezioni Chi sono/Contatti. Header e footer condivisi, link alle informative, favicon SVG e hover ocra. Triangolo Wikipedia conservato ma disattivato. Regola HTTP noindex per il solo sito test predisposta nei sorgenti, da verificare dopo il deploy. Rimossa funzione giorno/notte. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -97,6 +97,7 @@ Proposte per le funzionalità definitive
 | Framework | Hugo, più semplice da installare e usare, più rapido di Astro, adatto per siti stile blog. |
 | CMS | Pages CMS, meno complicato di Decap CMS da usare e installare, sistema di autenticazione con GitHub integrato. Perfetto per la gestione di articoli e galleria fotografica. |
 | Contatti | Aggiungere modulo email a pagina dedicata? |
+| Ricerca | Implementare futuro motore di ricerca, con icona (che apre barra bianca) (vedi screenshot) su header e sezione ricerca sulla sidebar di esplora? |
 
 ## Checklist — Sviluppo e pubblicazione di Polesine Fantasma
 
