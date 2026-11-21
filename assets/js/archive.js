@@ -9,6 +9,34 @@
     tags: JSON.parse(node.dataset.tags) || []
   }));
   const keys = ['luogo', 'periodo', 'tag'];
+  const filterToggle = sidebar.querySelector('.archive-filter-toggle');
+  const filterPanel = sidebar.querySelector('#archive-filter-panel');
+  const activeFilters = sidebar.querySelector('#archive-active-filters');
+  const showResults = sidebar.querySelector('.archive-show-results');
+  const mobile = window.matchMedia('(max-width: 767px)');
+  let filtersOpen = false;
+
+  function syncFilterPanel() {
+    const collapsed = mobile.matches && !filtersOpen;
+    filterPanel.hidden = collapsed;
+    filterToggle.setAttribute('aria-expanded', String(!collapsed));
+    if (collapsed && filterPanel.contains(document.activeElement)) filterToggle.focus({ preventScroll: true });
+  }
+
+  filterToggle.addEventListener('click', () => {
+    filtersOpen = !filtersOpen;
+    syncFilterPanel();
+  });
+  showResults.addEventListener('click', () => {
+    filtersOpen = false;
+    syncFilterPanel();
+    archive.setAttribute('tabindex', '-1');
+    archive.focus({ preventScroll: true });
+    archive.scrollIntoView({ block: 'start' });
+  });
+  mobile.addEventListener('change', syncFilterPanel);
+  sidebar.classList.add('archive-filters-ready');
+  syncFilterPanel();
   const matches = (card, key, value) => {
     if (key === 'tag') return card.tags.includes(value);
     if (key === 'periodo') return card.periodo.startsWith(value);
@@ -33,7 +61,11 @@
       card.node.hidden = !fits(card);
       if (!card.node.hidden) count++;
     }
-    document.querySelector('#archive-results').textContent = count === 1 ? '1 articolo' : count + ' articoli';
+    const resultLabel = count === 1 ? '1 articolo' : count + ' articoli';
+    document.querySelector('#archive-results').textContent = resultLabel;
+    showResults.textContent = 'Mostra ' + resultLabel;
+    activeFilters.textContent = active.size === 1 ? '1 filtro attivo' : active.size + ' filtri attivi';
+    activeFilters.hidden = active.size === 0;
     document.querySelector('#archive-empty').hidden = count > 0;
     for (const link of options) {
       const {filter, value} = link.dataset;

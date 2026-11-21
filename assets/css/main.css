@@ -378,6 +378,7 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 .archive-sidebar [aria-current] { font-weight: 700; }
 .archive-sidebar [aria-current]::after { content: " ×"; }
 .archive-sidebar [data-reset] { margin-top: 16px; }
+.archive-filter-toggle, .archive-show-results { display: none; }
 .exploration-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, var(--content-max-width)) minmax(0, 1fr); max-width: 1200px; margin-inline: auto; font-size: 18px; line-height: 1.7; overflow-wrap: anywhere; }
 .exploration-story > * { grid-column: 2; min-width: 0; }
 .exploration-story > p { margin-block: 0 16px; }
@@ -395,6 +396,19 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 }
 @media (max-width: 767px) {
   .exploration { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; }
+  .archive-sidebar.archive-filters-ready { padding-top: 4px; }
+  .archive-sidebar.archive-filters-ready:has(> .archive-filter-toggle[aria-expanded="false"]) { padding-block: 4px; }
+  .archive-sidebar.archive-filters-ready:has(> .archive-filter-toggle[aria-expanded="true"]) { padding-bottom: 16px; }
+  .archive-filters-ready .archive-filter-toggle { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; width: 100%; min-height: 44px; padding: 5px 0; border: 0; color: inherit; background: transparent; font-family: 'Oswald', Arial, sans-serif; font-size: 24px; line-height: 1.4; text-align: left; cursor: pointer; }
+  .archive-filter-toggle::after { content: "+"; flex: none; }
+  .archive-filter-toggle[aria-expanded="true"]::after { content: "−"; }
+  #archive-active-filters { display: block; font-family: 'Source Sans 3', Arial, sans-serif; font-size: 14px; line-height: 1.5; }
+  .archive-filter-toggle[aria-expanded="true"] #archive-active-filters { display: none; }
+  .archive-filters-ready #archive-filter-panel { margin-top: 12px; }
+  .archive-filters-ready #archive-filter-panel section + section { margin-top: 12px; padding-top: 12px; }
+  .archive-filters-ready #archive-filter-panel h2 { margin-bottom: 4px; }
+  .archive-filters-ready #archive-filter-panel a, .archive-filters-ready #archive-filter-panel summary { min-height: 36px; padding-block: 4px; }
+  #archive-filter-panel [data-reset] { display: none; }
   .hero.hero--compact { height: auto; min-height: clamp(300px, 40vh, 360px); display: flex; flex-direction: column; }
   .hero--compact .hero-title { position: static; flex: 1; padding: 18px 22px 30px; }
   .hero--compact .hero-image { object-position: var(--hero-position-mobile, center 50%); }

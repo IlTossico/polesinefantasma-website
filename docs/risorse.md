@@ -93,6 +93,8 @@ Home ed Esplora usano `exploration-pages.html`, che esclude bozze, contenuti fut
 
 I filtri combinano luogo, periodo e tag tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11&tag=Memoria`. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
 
+Sotto 768 px, solo nell’archivio, `archive.js` raccoglie i filtri in un pannello inizialmente chiuso, con numero di filtri attivi. La selezione aggiorna subito risultati, conteggi e URL senza chiudere il pannello, che si richiude dalla barra «Filtra le esplorazioni». Il link «Tutte le esplorazioni» e il pulsante «Mostra X articoli» sono nascosti nel pannello mobile. Da 768 px la sidebar resta visibile; senza JavaScript i filtri rimangono espansi.
+
 Il layout condiviso è in `partials/exploration.html`, gli stili in `assets/css/main.css`. Il feed RSS degli articoli è `/esplora/index.xml`.
 
 ### Hero e fotografie

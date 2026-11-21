@@ -1,6 +1,6 @@
 {{ $pages := partial "exploration-pages.html" . }}
 <main id="contenuto" tabindex="-1" class="exploration">
-  {{ partial "archive-sidebar.html" $pages }}
+  {{ partial "archive-sidebar.html" (dict "pages" $pages "collapsible" .IsSection) }}
   <div class="exploration-content">
   {{ if .IsSection }}
   <section id="archivio" aria-labelledby="archive-title">
