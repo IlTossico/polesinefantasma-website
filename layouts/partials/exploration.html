@@ -1,6 +1,6 @@
 {{ $pages := partial "exploration-pages.html" . }}
 <main id="contenuto" tabindex="-1" class="exploration">
-  {{ partial "archive-sidebar.html" (dict "pages" $pages "collapsible" .IsSection) }}
+  {{ partial "archive-sidebar.html" (dict "pages" $pages "collapsible" true) }}
   <div class="exploration-content">
   {{ if .IsSection }}
   <section id="archivio" aria-labelledby="archive-title">
@@ -11,14 +11,14 @@
     </div>
     <p id="archive-empty" {{ if $pages }}hidden{{ end }}>Nessun articolo trovato. <a href="{{ .RelPermalink }}#archivio" data-reset>Tutte le esplorazioni</a></p>
   </section>
-  {{ $js := resources.Get "js/archive.js" | minify | fingerprint }}
-  <script defer src="{{ $js.RelPermalink }}"></script>
   {{ else }}
   <article class="exploration-story" aria-labelledby="article-title">
-    <h1 id="article-title">{{ .Title }}</h1>
+    <h1 id="article-title" class="sr-only">{{ .Title }}</h1>
     <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ with .Params.comune }} · {{ . }}{{ end }}</p>
     {{ .Content }}
   </article>
   {{ end }}
   </div>
+  {{ $js := resources.Get "js/archive.js" | minify | fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}"></script>
 </main>

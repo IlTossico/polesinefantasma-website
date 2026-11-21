@@ -53,6 +53,8 @@ Le dimensioni della concessionaria testimoniano l'ambizione dell'impresa: offrir
 
 Ancora oggi, la conformazione dell'edificio rende immediatamente riconoscibile la sua destinazione originaria.
 
+![Vetrine](/images/articoli/fabbris/f2.webp)
+
 ## La chiusura del 2014
 
 Nell'agosto del 2014 la concessionaria cessò la propria attività, ponendo fine a oltre vent'anni di presenza nel panorama automobilistico rodigino.
@@ -99,6 +101,8 @@ Al momento degli scatti, l'immobile risultava ancora proposto in vendita, anche 
 
 La documentazione del gennaio 2024 costituisce una testimonianza delle condizioni osservate in quel periodo e non deve essere confusa con una verifica dello stato attuale dell'edificio.
 
+![Vetrine](/images/articoli/fabbris/f1.webp)
+
 ## Il riutilizzo parziale: l'arrivo di Prima Store
 
 A distanza di oltre dieci anni dalla chiusura della concessionaria, il complesso di viale Porta Po ha iniziato a conoscere nuove forme di utilizzo.
@@ -140,6 +144,8 @@ La vicenda dell'ex Fabbris racconta una trasformazione che interessa numerose ci
 L'edificio di viale Porta Po conserva ancora oggi una parte riconoscibile della memoria economica di Rovigo.
 
 Una storia iniziata con l'espansione del mercato automobilistico, proseguita attraverso oltre vent'anni di attività e interrotta con la chiusura del 2014, il cui capitolo conclusivo deve ancora essere scritto.
+
+![Vetrine](/images/articoli/fabbris/f3.webp)
 
 ---
 

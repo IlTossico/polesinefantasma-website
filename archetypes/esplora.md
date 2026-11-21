@@ -13,3 +13,5 @@ tags = []
 ## Il luogo
 
 Scrivi qui il racconto.
+
+<!-- Immagini: ![Testo alternativo](/images/articoli/cartella/foto.webp "Didascalia della foto") -->

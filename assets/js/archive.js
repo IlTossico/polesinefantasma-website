@@ -1,13 +1,6 @@
 (() => {
   const archive = document.querySelector('#archivio');
   const sidebar = document.querySelector('.archive-sidebar');
-  const options = [...sidebar.querySelectorAll('[data-filter]')];
-  const cards = [...archive.querySelectorAll('.post-preview')].map(node => ({
-    node,
-    luogo: node.dataset.luogo,
-    periodo: node.dataset.periodo
-  }));
-  const keys = ['luogo', 'periodo'];
   const filterToggle = sidebar.querySelector('.archive-filter-toggle');
   const filterPanel = sidebar.querySelector('#archive-filter-panel');
   const activeFilters = sidebar.querySelector('#archive-active-filters');
@@ -26,6 +19,18 @@
     filtersOpen = !filtersOpen;
     syncFilterPanel();
   });
+  mobile.addEventListener('change', syncFilterPanel);
+  sidebar.classList.add('archive-filters-ready');
+  syncFilterPanel();
+  // Negli articoli il pannello usa i link verso l'archivio, senza filtrare il racconto.
+  if (!archive) return;
+  const options = [...sidebar.querySelectorAll('[data-filter]')];
+  const cards = [...archive.querySelectorAll('.post-preview')].map(node => ({
+    node,
+    luogo: node.dataset.luogo,
+    periodo: node.dataset.periodo
+  }));
+  const keys = ['luogo', 'periodo'];
   showResults.addEventListener('click', () => {
     filtersOpen = false;
     syncFilterPanel();
@@ -33,9 +38,6 @@
     archive.focus({ preventScroll: true });
     archive.scrollIntoView({ block: 'start' });
   });
-  mobile.addEventListener('change', syncFilterPanel);
-  sidebar.classList.add('archive-filters-ready');
-  syncFilterPanel();
   const matches = (card, key, value) => {
     if (key === 'periodo') return card.periodo.startsWith(value);
     return card.luogo === value;

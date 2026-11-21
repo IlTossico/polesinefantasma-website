@@ -83,19 +83,21 @@ Le pagine informative usano un paragrafo per il titolo del sito nella hero e un 
 
 ### Archivio Esplora e articoli
 
-Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Il template inserisce `title` come H1 in Oswald all’inizio dell’articolo. Scrivere il corpo in Markdown, con sezioni da H2 e sottosezioni H3, e rimuovere `draft = true` per pubblicare.
+Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Il titolo automatico `title` rimane accessibile agli screen reader tramite `sr-only`, senza essere ripetuto visivamente sotto la hero. I titoli scritti nel corpo Markdown restano visibili. Scrivere le sezioni in Markdown e rimuovere `draft = true` per pubblicare.
 
 - `title`, `date`, `description` e `comune` alimentano anteprime, metadati e filtri. I `tags` restano nel front matter per utilizzi futuri e non partecipano ai filtri.
 - `hero_image`, `hero_title` e `hero_subtitle` definiscono fotografia fissa e testi personalizzati della scheda. Esplora usa foto casuali e testi della Home.
 - `thumbnail` è facoltativo e ripiega su `hero_image`. Le immagini possono stare in `assets/` o accanto all’`index.md`. `hero_position` e `hero_position_mobile` regolano l’inquadratura, ad esempio `center 35%`.
 
+Le immagini Markdown degli articoli mostrano una didascalia sotto la foto, con la stessa tipografia della data iniziale (16 px, interlinea 1,7 e colore attenuato). Usare `![Testo alternativo](/images/articoli/fabbris/f1.webp "Didascalia della foto")`: il testo tra virgolette è la didascalia; se manca, viene usato il testo alternativo tra parentesi quadre. Senza entrambi, non viene aggiunta una didascalia vuota. Il render hook è `layouts/_markup/render-image.html`.
+
 Home ed Esplora usano `exploration-pages.html`, che esclude bozze, contenuti futuri e scaduti e ordina per data decrescente. La Home mostra fino a tre articoli. Per eliminare le schede temporanee, rimuovere `content/esplora/demo-01.md`–`demo-06.md` e rigenerare il sito.
 
 I filtri combinano luogo e periodo tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11`. Gli eventuali parametri `tag` dei vecchi collegamenti vengono eliminati dall’URL. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
 
-Sotto 768 px, solo nell’archivio, `archive.js` raccoglie i filtri in un pannello inizialmente chiuso, con numero di filtri attivi. La selezione aggiorna subito risultati, conteggi e URL senza chiudere il pannello, che si richiude dalla barra «Filtra le esplorazioni». Il link «Tutte le esplorazioni» e il pulsante «Mostra X articoli» sono nascosti nel pannello mobile. Da 768 px la sidebar resta visibile; senza JavaScript i filtri rimangono espansi.
+Sotto 768 px, nell’archivio e negli articoli, `archive.js` raccoglie i filtri in un pannello inizialmente chiuso. Nell’archivio mostra il numero di filtri attivi e la selezione aggiorna subito risultati, conteggi e URL senza chiudere il pannello. Negli articoli i link portano all’archivio filtrato. Il pannello si richiude dalla barra «Filtra le esplorazioni»; il link «Tutte le esplorazioni» e il pulsante «Mostra X articoli» sono nascosti su mobile. Da 768 px la sidebar resta visibile; senza JavaScript i filtri rimangono espansi.
 
-Il layout condiviso è in `partials/exploration.html`, gli stili in `assets/css/main.css`. Il feed RSS degli articoli è `/esplora/index.xml`.
+Il layout condiviso è in `partials/exploration.html`, gli stili in `assets/css/main.css`. Archivio e articoli condividono il contenitore centrato e il posizionamento della sidebar. Il feed RSS degli articoli è `/esplora/index.xml`.
 
 ### Hero e fotografie
 
