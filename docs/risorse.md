@@ -9,15 +9,23 @@ Il [README](../README.md) contiene panoramica, stato e attività aperte. Questo 
 | `hugo.toml` | Titolo, lingua, descrizione, funzionalità opzionali e tipi di output disabilitati. |
 | `layouts/baseof.html` | Head condiviso, metadati, favicon, CSS/JS minificati con fingerprint, header/footer e inclusione condizionale del triangolo storico. |
 | `layouts/home.html` | Homepage, mappa, testi di Chi sono/Contatti e collegamenti social. |
-| `layouts/coming-soon.html` | Template unico per Esplora e Galleria, con URL distinti. |
+| `layouts/coming-soon.html` | Pagina provvisoria di Galleria. |
 | `layouts/informational.html` | Template delle informative: H1 dal front matter e contenuto Markdown. |
 | `layouts/404.html` | Errore nativo Hugo, generato come `public/404.html`; nessun contenuto Markdown dedicato. |
-| `content/esplora.md`, `content/galleria.md` | Pagine con `layout = 'coming-soon'`. |
+| `content/esplora/` | Indice `_index.md` e articoli Markdown dell’archivio. |
+| `content/galleria.md` | Pagina con `layout = 'coming-soon'`. |
 | `content/privacy.md`, `content/disclaimer.md` | Testi provvisori con `layout = 'informational'`. |
 | `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, social, copyright e link alle informative. |
-| `layouts/partials/use-home-hero.html` | Seleziona la hero completa per homepage, Coming Soon e informative. La 404 usa un header compatto. |
+| `layouts/partials/use-home-hero.html` | Abilita l’animazione della hero per Home, Esplora, articoli, Coming Soon e informative. |
 | `layouts/partials/hero-image.html`, `hero-image-data.html` | Foto casuali, fallback, dimensioni e varianti responsive. |
-| `layouts/partials/recent-posts.html`, `data/demo.toml` | Sei esempi ordinati per data decrescente; in home compaiono i primi tre. Non generano pagine articolo. |
+| `layouts/esplora/`, `layouts/partials/exploration.html` | Archivio e articoli con griglia condivisa. |
+| `layouts/partials/exploration-pages.html` | Sorgente comune delle pagine pubblicabili. |
+| `layouts/partials/archive-sidebar.html`, `archive-option.html` | Filtri e link verso l’archivio generati dai metadati. |
+| `layouts/partials/post-preview.html` | Anteprima condivisa delle pagine Markdown di Esplora. |
+| `assets/js/archive.js` | Filtri combinati, conteggi e cronologia nell’archivio. |
+| `archetypes/esplora.md` | Modello iniziale per nuove schede in bozza. |
+| `layouts/_markup/render-image.html` | Immagini Markdown responsive con dimensioni locali. |
+| `layouts/partials/recent-posts.html` | La Home mostra fino a tre pagine della stessa sorgente di Esplora, ordinate dalla più recente. |
 | `layouts/partials/history-corner.html`, `assets/images/il-polesine.jpg` | Triangolo storico opzionale con immagine JPG e collegamento Wikipedia. |
 | `assets/css/main.css`, `assets/js/main.js` | Stili e interazioni vanilla condivisi. Nessuna dipendenza frontend. |
 | `assets/images/hero/`, `assets/images/mappa-polesine.svg`, `assets/images/logo.png` | Foto WebP, mappa illustrativa e logo PNG originale. |
@@ -67,11 +75,25 @@ La build si esegue con `hugo build`; le prime elaborazioni fotografiche sono pi�
 ### Pagine e testi
 
 - **Homepage:** cambiare i testi di Chi sono/Contatti e i social in `layouts/home.html`. Le voci del menu puntano alle ancore della home anche dalle altre pagine.
-- **Anteprime:** modificare titoli, estratti e date in `data/demo.toml`; `date` usa `AAAA-MM-GG`, `displayDate` è l’etichetta visibile. Per gli articoli reali sostituire la sorgente del partial e aggiungere i template delle pagine; non collegare titoli a URL inesistenti.
-- **Esplora e Galleria:** cambiare il solo `layout` e contenuto della pagina da sostituire. Il template Coming Soon lascia un messaggio Oswald su fondo bianco e mantiene il footer a fondo viewport quando il contenuto è breve.
+- **Anteprime:** `post-preview.html` è condiviso tra Home ed Esplora. Entrambi usano `exploration-pages.html`, comprese le schede dimostrative pubblicate. La Home applica `first 3`: con meno articoli mostra soltanto quelli disponibili, con nessuno il feed è vuoto.
+- **Galleria:** la pagina usa il layout Coming Soon.
 - **Privacy Policy e Disclaimer:** sostituire i segnaposto dopo il front matter `+++`, mantenendo `layout = 'informational'`; `title` genera l’H1 e `##` genera gli H2. La colonna massima è 760 px, il fondo è bianco e il footer resta nel flusso con testi lunghi. Non inserire un secondo H1 nel Markdown.
 
 Le pagine informative usano un paragrafo per il titolo del sito nella hero e un H1 nel contenuto. La classe `.hero-heading` e il selettore `.hero .title-ink` mantengono stile e animazione condivisi senza dipendere dal tag del titolo.
+
+### Archivio Esplora e articoli
+
+Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Scrivere il corpo in Markdown, con sezioni da H2, e rimuovere `draft = true` per pubblicare.
+
+- `title`, `date`, `description`, `comune` e `tags` alimentano anteprime, metadati e filtri.
+- `hero_image`, `hero_title` e `hero_subtitle` definiscono fotografia fissa e testi personalizzati della scheda. Esplora usa foto casuali e testi della Home.
+- `thumbnail` è facoltativo e ripiega su `hero_image`. Le immagini possono stare in `assets/` o accanto all’`index.md`. `hero_position` e `hero_position_mobile` regolano l’inquadratura, ad esempio `center 35%`.
+
+Home ed Esplora usano `exploration-pages.html`, che esclude bozze, contenuti futuri e scaduti e ordina per data decrescente. La Home mostra fino a tre articoli. Per eliminare le schede temporanee, rimuovere `content/esplora/demo-01.md`–`demo-06.md` e rigenerare il sito.
+
+I filtri combinano luogo, periodo e tag tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11&tag=Memoria`. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
+
+Il layout condiviso è in `partials/exploration.html`, gli stili in `assets/css/main.css`. Il feed RSS degli articoli è `/esplora/index.xml`.
 
 ### Hero e fotografie
 
@@ -135,7 +157,7 @@ Usare Hugo **0.169.0 Extended**, senza installazioni npm. Le impostazioni seguen
 | Output | `public` |
 | Variabile di ambiente | `HUGO_VERSION=0.169.0` |
 
-In produzione passare il dominio assoluto corretto con `--baseURL` o aggiornare `hugo.toml`. I link del feed RSS dipendono dall’URL di build. Il feed nativo include attualmente le pagine Markdown, non gli esempi in `data/demo.toml`: va definito il feed degli articoli reali.
+In produzione passare il dominio assoluto corretto con `--baseURL` o aggiornare `hugo.toml`. I link del feed RSS dipendono dall’URL di build. Il feed generale include le pagine Markdown, comprese le informative. Per gli articoli usare il feed di sezione descritto sopra.
 
 Il push sul branch collegato a Pages avvia il deploy se l’integrazione automatica è attiva; modifiche locali e build non pubblicano nulla. 
 

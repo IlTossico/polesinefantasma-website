@@ -9,7 +9,7 @@
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.dataset.typewriter = 'pending';
   </script>
   {{ end }}
-  <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ else if eq .Layout "informational" }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if eq .Kind "404" }}404 — Pagina non trovata | {{ else if or (eq .Layout "informational") (eq .Section "esplora") }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
   {{/* Prima versione dimostrativa: rimuovere noindex quando i contenuti saranno definitivi. */}}
   <meta name="robots" content="{{ if eq .Kind "404" }}noindex{{ else }}noindex, nofollow{{ end }}">
@@ -21,7 +21,7 @@
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
 </head>
-<body{{ if eq .Kind "404" }} class="page--404"{{ else if eq .Layout "coming-soon" }} class="page--coming-soon"{{ end }}>
+<body{{ if eq .Kind "404" }} class="page--404"{{ else if eq .Layout "coming-soon" }} class="page--coming-soon"{{ else if eq .Section "esplora" }} class="page--exploration"{{ end }}>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
   <div class="page-surface">
     {{ partial "header.html" . }}

@@ -1,0 +1,26 @@
+<nav class="archive-sidebar" aria-label="Filtri dell’archivio">
+  <section><h2>Luogo</h2>
+    {{ range .GroupByParam "comune" }}{{ if .Key }}
+      {{ partial "archive-option.html" (dict "key" "luogo" "value" .Key "label" .Key "count" (len .Pages)) }}
+    {{ end }}{{ end }}
+  </section>
+  <section><h2>Anno</h2>
+    {{ range .GroupByDate "2006" }}
+    <details>
+      <summary>{{ .Key }} (<span>{{ len .Pages }}</span>)</summary>
+      {{ partial "archive-option.html" (dict "key" "periodo" "value" .Key "label" "Tutto l’anno" "count" (len .Pages)) }}
+      {{ range .Pages.GroupByDate "2006-01" }}
+        {{ partial "archive-option.html" (dict "key" "periodo" "value" .Key "label" ((index .Pages 0).Date | time.Format "January") "count" (len .Pages)) }}
+      {{ end }}
+    </details>
+    {{ end }}
+  </section>
+  <section><h2>Tag</h2>
+    {{ $counts := newScratch }}
+    {{ range . }}{{ range .Params.tags | default slice | uniq }}{{ $counts.Add . 1 }}{{ end }}{{ end }}
+    {{ range $tag, $count := $counts.Values }}
+      {{ partial "archive-option.html" (dict "key" "tag" "value" $tag "label" $tag "count" $count) }}
+    {{ end }}
+  </section>
+  <a href="{{ (site.GetPage "/esplora").RelPermalink }}#archivio" data-reset>Tutte le esplorazioni</a>
+</nav>

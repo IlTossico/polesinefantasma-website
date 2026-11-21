@@ -1,0 +1,23 @@
+{{ $pages := partial "exploration-pages.html" . }}
+<main id="contenuto" tabindex="-1" class="exploration">
+  {{ partial "archive-sidebar.html" $pages }}
+  <div class="exploration-content">
+  {{ if .IsSection }}
+  <section id="archivio" aria-labelledby="archive-title">
+    <h2 id="archive-title">Archivio delle esplorazioni</h2>
+    <p id="archive-results" role="status" aria-live="polite">{{ len $pages }} {{ if eq (len $pages) 1 }}articolo{{ else }}articoli{{ end }}</p>
+    <div class="archive-posts">
+      {{ range $pages }}{{ partial "post-preview.html" (dict "page" .) }}{{ end }}
+    </div>
+    <p id="archive-empty" {{ if $pages }}hidden{{ end }}>Nessun articolo trovato. <a href="{{ .RelPermalink }}#archivio" data-reset>Tutte le esplorazioni</a></p>
+  </section>
+  {{ $js := resources.Get "js/archive.js" | minify | fingerprint }}
+  <script defer src="{{ $js.RelPermalink }}"></script>
+  {{ else }}
+  <article class="exploration-story" aria-label="{{ .Title }}">
+    <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ with .Params.comune }} · {{ . }}{{ end }}</p>
+    {{ .Content }}
+  </article>
+  {{ end }}
+  </div>
+</main>

@@ -6,10 +6,10 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 
 | Voce | Stato attuale |
 | --- | --- |
-| Versione | **v0.2.0** <br> Homepage dimostrativa disponibile in locale. |
-| Ultimo aggiornamento di questa panoramica | **18 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo.** <br>Homepage dimostrativa, Coming Soon di Esplora/Galleria, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, archivio, galleria e ricerca ancora da implementare. |
-| Ultimi interventi completati | Hero con foto casuali e titolo animato; mappa indipendente e sezioni Chi sono/Contatti. Triangolo Wikipedia conservato ma disattivato. . Rimossa funzione giorno/notte e ricerca.|
+| Versione | **v0.2.0** <br> Homepage, archivio Esplora e pagine articolo disponibili in locale. |
+| Ultimo aggiornamento di questa panoramica | **21 novembre 2026**. |
+| Sito | **Ci sto lavorando su, cazzo.** <br>Articoli dimostrativi Markdown in Esplora, con filtri per luogo, periodo e tag. La Home mostra i tre più recenti dalla stessa sorgente. Galleria in Coming Soon, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, galleria e ricerca ancora da sviluppare. |
+| Ultimi interventi completati | Feed della Home collegato a Esplora e anteprime condivise. Archivio a tutta larghezza con sidebar beige continua, tipografia più leggibile e articoli con testo e fotografie centrati nella colonna bianca. Palette chiara fissa e controlli di ricerca rimossi. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
 
@@ -18,8 +18,8 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Ambito | Implementazione attuale |
 | --- | --- |
 | Pagina | HTML statico generato da Hugo.|
-| Presentazione | CSS responsive. Hero condivisa tra home, Coming Soon e informative; desktop tra circa 451 e 940 px. Feed e Chi sono/Contatti allineati a massimo 1180 px da 960 px; mappa indipendente da massimo 1600 px. |
-| Interazioni | JavaScript vanilla per foto casuali, titolo animato, gestione del menu mobile e copia email. La palette chiara è fissa. Hover e barre ocra sono gestiti in CSS e rispettano il movimento ridotto. |
+| Presentazione | CSS responsive. Hero completa per Home, Coming Soon e informative. Esplora e articoli usano una hero compatta da 40vh (310–510 px su desktop). Sidebar al 25%, fino a 400 px, affiancata al contenuto da 768 px. |
+| Interazioni | JavaScript vanilla per foto casuali, titolo animato, menu mobile, filtri combinabili e copia email. Luogo, anno o mese e tag aggiornano conteggi e opzioni, con stato nell’URL e navigazione Avanti/Indietro. Le schede rimandano all’archivio filtrato. |
 | Risorse | Foto WebP e fallback locale; mappe SVG/JPG, logo PNG originale, sprite SVG e favicon SVG. Oswald per menu, titoli Chi sono/Contatti, informative, Coming Soon e numero 404; Inter nel footer, Source Sans 3 per contenuti e sottotitolo, Special Elite per nome del sito e messaggio 404. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
@@ -33,17 +33,20 @@ polesinefantasma-website/
 ├── layouts/
 │   ├── baseof.html         # Struttura HTML condivisa
 │   ├── home.html           # Homepage
-│   ├── coming-soon.html    # Template condiviso di Esplora e Galleria
+│   ├── coming-soon.html    # Pagina provvisoria di Galleria
+│   ├── esplora/           # Archivio e articoli con struttura condivisa
+│   ├── _markup/           # Immagini Markdown responsive
 │   ├── informational.html  # Template condiviso di Privacy Policy e Disclaimer
 │   ├── 404.html            # Errore nativo Hugo, senza hero fotografica
 │   └── partials/           # Header, foto hero, footer, feed, icone, history-corner.html e use-home-hero.html
-├── content/esplora.md      # Pagina /esplora/ con layout coming-soon
-├── content/galleria.md     # Pagina /galleria/ con lo stesso layout coming-soon
+├── content/esplora/        # _index.md e sei schede dimostrative demo-01.md–demo-06.md
+├── content/galleria.md     # Pagina /galleria/ con layout coming-soon
 ├── content/privacy.md      # Testo provvisorio di /privacy/
 ├── content/disclaimer.md   # Testo provvisorio di /disclaimer/
-├── data/demo.toml          # Articoli dimostrativi
+├── archetypes/esplora.md   # Modello in bozza per i nuovi articoli
 ├── assets/
 │   ├── css/main.css        # Stili responsive
+│   ├── js/archive.js       # Filtri, conteggi e URL di Esplora
 │   ├── js/main.js          # Interazioni condivise tra le pagine
 │   └── images/
 │       ├── hero/          # Sette foto WebP, inclusa background.webp
@@ -107,13 +110,13 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Feed e pagina Esplora | **Work in Progress** | Realizzare la struttura degli articoli Hugo: ultimi articoli in homepage, archivio completo in Esplora e pagine dei singoli articoli. |
+| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili, ordinati per data decrescente. Da finalizzare.  |
 | CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
-| Articoli di prova | **Da pianificare** | Scrivere qualche articolo reale o di prova, con immagini WebP su GitHub. Questo ci permetterà anche di capire quali dimensioni e qualità usare. |
+| Articoli di prova | **Implementati** | Contenuti dimostrativi con immagini locali, comuni e tag per valutare impaginazione e filtri. Sostituirli con contenuti editoriali verificati. |
 | Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria.  |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |
-| RSS | **Da pianificare** | Definire il feed degli articoli reali: icona e RSS nativo esistono, ma il feed include le pagine Markdown e non le anteprime dimostrative. |
+| RSS | **Da finalizzare** | Feed generale in `/index.xml`, comprendente anche le informative, e feed degli articoli in `/esplora/index.xml`. Definire il collegamento definitivo e verificare gli URL sul dominio di produzione. |
 
 ### 2. SEO e indicizzazione
 

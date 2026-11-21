@@ -1,0 +1,1 @@
+<a data-filter="{{ .key }}" data-value="{{ .value }}" href="{{ printf "%s?%s#archivio" (site.GetPage "/esplora").RelPermalink (querify .key .value) }}">{{ .label }} (<span>{{ .count }}</span>)</a>

@@ -1,1 +1,1 @@
-{{ return (or .IsHome (in (slice "coming-soon" "informational") .Layout)) }}
+{{ return (or .IsHome (eq .Section "esplora") (in (slice "coming-soon" "informational") .Layout)) }}

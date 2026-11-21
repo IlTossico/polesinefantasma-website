@@ -1,5 +1,12 @@
 {{ $logo := resources.Get "images/logo.png" }}
-<header class="{{ if eq .Kind "404" }}site-header{{ else }}hero{{ if partial "use-home-hero.html" . }} hero--home{{ end }}{{ end }}" id="home">
+{{ $article := and .IsPage (eq .Section "esplora") }}
+{{ $heading := "Polesine Fantasma" }}
+{{ $subtitle := "Storie, immagini e luoghi che resistono allo scorrere del tempo" }}
+{{ if $article }}
+  {{ $heading = .Params.hero_title | default "" }}
+  {{ $subtitle = .Params.hero_subtitle | default "" }}
+{{ end }}
+<header class="{{ if eq .Kind "404" }}site-header{{ else }}hero{{ if eq .Section "esplora" }} hero--compact{{ else if partial "use-home-hero.html" . }} hero--home{{ end }}{{ end }}" id="home">
   {{ if ne .Kind "404" }}
   {{ partial "hero-image.html" . }}
   {{ end }}
@@ -13,7 +20,7 @@
       <nav aria-label="Navigazione principale">
         <ul class="menu">
           <li><a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a></li>
-          <li><a href="{{ (.Site.GetPage "/esplora").RelPermalink }}"{{ if eq .RelPermalink (.Site.GetPage "/esplora").RelPermalink }} aria-current="page"{{ end }}>Esplora</a></li>
+          <li><a href="{{ (.Site.GetPage "/esplora").RelPermalink }}"{{ if eq .Section "esplora" }} aria-current="page"{{ end }}>Esplora</a></li>
           <li><a href="{{ (.Site.GetPage "/galleria").RelPermalink }}"{{ if eq .RelPermalink (.Site.GetPage "/galleria").RelPermalink }} aria-current="page"{{ end }}>Galleria</a></li>
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#chi-sono">Chi sono</a></li>
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#contatti">Contatti</a></li>
@@ -27,8 +34,8 @@
   </div>
   {{ if ne .Kind "404" }}
   <div class="hero-title">
-    {{ if eq .Layout "informational" }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">Polesine Fantasma</span><span class="title-ink" aria-hidden="true">Polesine Fantasma</span>{{ if eq .Layout "informational" }}</p>{{ else }}</h1>{{ end }}
-    <p class="hero-subtitle">Storie, immagini e luoghi che resistono allo scorrere del tempo</p>
+    {{ if eq .Layout "informational" }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">{{ $heading }}</span><span class="title-ink" aria-hidden="true">{{ $heading }}</span>{{ if eq .Layout "informational" }}</p>{{ else }}</h1>{{ end }}
+    <p class="hero-subtitle">{{ $subtitle }}</p>
   </div>
   {{ end }}
 </header>

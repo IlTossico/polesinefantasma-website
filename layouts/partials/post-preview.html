@@ -1,0 +1,22 @@
+{{ $title := "" }}{{ $excerpt := "" }}{{ $date := "" }}{{ $label := "" }}{{ $url := "" }}
+{{ $page := .page }}
+{{ $imagePath := "images/hero/background.webp" }}
+{{ $place := "" }}{{ $period := "" }}{{ $tags := slice }}
+{{ with .page }}
+  {{ $title = .Title }}{{ $excerpt = .Description | default (.Summary | plainify) }}
+  {{ $date = .Date.Format "2006-01-02" }}{{ $label = .Date | time.Format ":date_long" }}{{ $url = .RelPermalink }}
+  {{ $imagePath = or .Params.thumbnail .Params.hero_image $imagePath }}
+  {{ $place = .Params.comune | default "" }}{{ $period = .Date.Format "2006-01" }}{{ $tags = .Params.tags | default slice }}
+{{ end }}
+{{ $thumbnail := "images/hero-fallback.webp" | relURL }}
+{{ $image := resources.Get $imagePath }}
+{{ with $page }}{{ $image = or (.Resources.GetMatch $imagePath) $image }}{{ end }}
+{{ with $image }}{{ $thumbnail = (.Fill "480x320 webp q80").RelPermalink }}{{ end }}
+<article class="post-preview"{{ if $url }} data-luogo="{{ $place }}" data-periodo="{{ $period }}" data-tags="{{ $tags | jsonify }}"{{ end }}>
+  {{ if $url }}<a href="{{ $url }}" tabindex="-1" aria-label="{{ $title }}">{{ end }}<img class="post-thumbnail" src="{{ $thumbnail }}" width="480" height="320" alt="" loading="lazy" decoding="async">{{ if $url }}</a>{{ end }}
+  <div class="post-content">
+    <h2>{{ if $url }}<a href="{{ $url }}">{{ end }}{{ $title }}{{ if $url }}</a>{{ end }}</h2>
+    <p class="post-excerpt">{{ $excerpt }}</p>
+    <p class="post-meta">Polesine Fantasma <span aria-hidden="true">·</span> <time datetime="{{ $date }}">{{ $label }}</time></p>
+  </div>
+</article>

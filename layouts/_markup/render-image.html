@@ -1,0 +1,7 @@
+{{ $image := or (.Page.Resources.GetMatch .Destination) (resources.Get .Destination) }}
+{{ if $image }}
+  {{ $data := partial "hero-image-data.html" $image }}
+  <img src="{{ $data.src }}" srcset="{{ $data.srcset }}" sizes="(min-width: 960px) 880px, 100vw" width="{{ $data.width }}" height="{{ $data.height }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{ else }}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{ end }}

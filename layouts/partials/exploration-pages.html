@@ -1,0 +1,5 @@
+{{ $pages := where (site.GetPage "/esplora").RegularPagesRecursive "Draft" false }}
+{{ $pages = where $pages "Date" "le" now }}
+{{ $pages = where $pages "PublishDate" "le" now }}
+{{ $pages = where $pages "ExpiryDate" "gt" now | union (where $pages "ExpiryDate.IsZero" true) }}
+{{ return $pages.ByDate.Reverse }}

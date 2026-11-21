@@ -4,7 +4,14 @@
 {{ with resources.Get "images/hero/background.webp" }}
   {{ $fallback = partial "hero-image-data.html" . }}
 {{ end }}
-{{ if partial "use-home-hero.html" . }}
+{{ $article := and .IsPage (eq .Section "esplora") }}
+{{ if $article }}
+  {{ with or .Params.hero_image .Params.thumbnail }}
+    {{ $image := or ($.Resources.GetMatch .) (resources.Get .) }}
+    {{ with $image }}{{ $fallback = partial "hero-image-data.html" . }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ if and (partial "use-home-hero.html" .) (not $article) }}
   {{ $photos := slice }}
   {{ range resources.Match "images/hero/*.webp" }}
     {{ $photos = $photos | append (partial "hero-image-data.html" .) }}
@@ -31,5 +38,5 @@
     })();
   </script>
 {{ else }}
-  <img class="hero-image" src="{{ $fallback.src }}" srcset="{{ $fallback.srcset }}" sizes="100vw" width="{{ $fallback.width }}" height="{{ $fallback.height }}" alt="" fetchpriority="high">
+  <img class="hero-image" src="{{ $fallback.src }}" srcset="{{ $fallback.srcset }}" sizes="100vw" width="{{ $fallback.width }}" height="{{ $fallback.height }}" alt="" fetchpriority="high"{{ if $article }} style="--hero-position: {{ .Params.hero_position | default "center 48%" }}; --hero-position-mobile: {{ or .Params.hero_position_mobile .Params.hero_position "center 50%" }}"{{ end }}>
 {{ end }}

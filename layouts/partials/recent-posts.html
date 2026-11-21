@@ -1,16 +1,3 @@
-{{/* Feed dimostrativo isolato. In futuro sostituire la sorgente con le pagine Markdown. */}}
-{{ $thumbnailURL := "images/hero-fallback.webp" | relURL }}
-{{ with resources.Get "images/hero/background.webp" }}
-  {{ $thumbnailURL = (.Fill "480x320 webp q80").RelPermalink }}
-{{ end }}
-{{ range first 3 (sort hugo.Data.demo.articles "date" "desc") }}
-<article class="post-preview">
-  {{/* Immagine segnaposto decorativa, da sostituire con la miniatura del contenuto reale. */}}
-  <img class="post-thumbnail" src="{{ $thumbnailURL }}" width="480" height="320" alt="" loading="lazy" decoding="async">
-  <div class="post-content">
-    <h2>{{ .title }}</h2>
-    <p class="post-excerpt">{{ .excerpt }}</p>
-    <p class="post-meta">Polesine Fantasma <span aria-hidden="true">·</span> <time datetime="{{ .date }}">{{ .displayDate }}</time></p>
-  </div>
-</article>
+{{ range first 3 (partial "exploration-pages.html" .) }}
+  {{ partial "post-preview.html" (dict "page" .) }}
 {{ end }}

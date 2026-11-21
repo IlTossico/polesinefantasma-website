@@ -4,7 +4,7 @@
 
   const title = document.querySelector('.hero .title-ink');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!title) {
+  if (!title?.textContent.trim()) {
     delete root.dataset.typewriter;
     return;
   }
