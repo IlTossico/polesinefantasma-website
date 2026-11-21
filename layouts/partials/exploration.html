@@ -14,7 +14,8 @@
   {{ $js := resources.Get "js/archive.js" | minify | fingerprint }}
   <script defer src="{{ $js.RelPermalink }}"></script>
   {{ else }}
-  <article class="exploration-story" aria-label="{{ .Title }}">
+  <article class="exploration-story" aria-labelledby="article-title">
+    <h1 id="article-title">{{ .Title }}</h1>
     <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ with .Params.comune }} · {{ . }}{{ end }}</p>
     {{ .Content }}
   </article>

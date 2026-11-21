@@ -83,7 +83,7 @@ Le pagine informative usano un paragrafo per il titolo del sito nella hero e un 
 
 ### Archivio Esplora e articoli
 
-Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Scrivere il corpo in Markdown, con sezioni da H2, e rimuovere `draft = true` per pubblicare.
+Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Il template inserisce `title` come H1 in Oswald all’inizio dell’articolo. Scrivere il corpo in Markdown, con sezioni da H2 e sottosezioni H3, e rimuovere `draft = true` per pubblicare.
 
 - `title`, `date`, `description`, `comune` e `tags` alimentano anteprime, metadati e filtri.
 - `hero_image`, `hero_title` e `hero_subtitle` definiscono fotografia fissa e testi personalizzati della scheda. Esplora usa foto casuali e testi della Home.

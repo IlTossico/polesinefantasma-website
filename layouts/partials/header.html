@@ -34,7 +34,8 @@
   </div>
   {{ if ne .Kind "404" }}
   <div class="hero-title">
-    {{ if eq .Layout "informational" }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">{{ $heading }}</span><span class="title-ink" aria-hidden="true">{{ $heading }}</span>{{ if eq .Layout "informational" }}</p>{{ else }}</h1>{{ end }}
+    {{ $heroParagraph := or $article (eq .Layout "informational") }}
+    {{ if $heroParagraph }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">{{ $heading }}</span><span class="title-ink" aria-hidden="true">{{ $heading }}</span>{{ if $heroParagraph }}</p>{{ else }}</h1>{{ end }}
     <p class="hero-subtitle">{{ $subtitle }}</p>
   </div>
   {{ end }}
