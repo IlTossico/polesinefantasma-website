@@ -358,6 +358,13 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 /* Solo l'archivio: i singoli articoli conservano il contenitore originale. */
 .exploration:has(> .exploration-content > #archivio) { width: min(100%, 1320px); margin-inline: auto; }
 @media (min-width: 1200px) {
+  .exploration:has(> .exploration-content > #archivio) {
+    --archive-sidebar-width: clamp(190px, 25vw, 330px);
+    width: min(100%, calc(var(--content-max-width) + 64px + 2 * var(--archive-sidebar-width)));
+    /* Compensa la sidebar per centrare l'archivio rispetto alla pagina. */
+    padding-inline-end: var(--archive-sidebar-width);
+    grid-template-columns: var(--archive-sidebar-width) minmax(0, 1fr);
+  }
   .exploration:has(> .exploration-content > #archivio) > .exploration-content { padding-top: clamp(28px, 3vw, 48px); padding-inline: 32px; }
 }
 .archive-sidebar section + section { position: relative; margin-top: 28px; padding-top: 24px; }
@@ -377,20 +384,11 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
 .exploration-story h1 { font-family: 'Oswald', Arial, sans-serif; font-size: clamp(34px, 3.5vw, 48px); font-weight: 750; line-height: 1.2; margin: 0 0 24px; }
 .exploration-story h2 { font-size: 32px; line-height: 1.2; margin-block: 32px 20px; }
 .exploration-story h3 { font-size: 24px; line-height: 1.35; margin-block: 28px 16px; }
-.exploration-story .post-meta { font-size: 16px; color: var(--muted); }
+.exploration-story .post-meta { font-size: 16px; line-height: 1.7; color: var(--muted); }
 .exploration-story > p:has(img), .exploration-story > figure { grid-column: 1 / -1; margin: 16px 0 32px; }
 .exploration-story img { display: block; max-width: 100%; width: auto; height: auto; margin-inline: auto; }
 .exploration-story blockquote { margin-inline: 0; padding-left: 20px; border-left: 2px solid var(--line); }
 .exploration-story pre, .exploration-story table { display: block; max-width: 100%; overflow-x: auto; }
-.exploration .post-content { min-width: 0; overflow-wrap: anywhere; }
-.exploration .post-preview { padding-block: 32px; }
-.exploration .post-preview:first-child { padding-top: 0; }
-.exploration .post-excerpt { max-width: 75ch; font-size: 17px; line-height: 1.8; }
-.exploration .post-meta { font-size: 16px; line-height: 1.7; }
-@media (min-width: 960px) {
-  .exploration .post-preview { grid-template-columns: 240px minmax(0, 1fr); gap: 32px; }
-  .exploration .post-preview h2 { font-size: 38px; }
-}
 @media (max-width: 639px) {
   .exploration-story { font-size: 17px; }
   .exploration-story h2 { font-size: 28px; }
