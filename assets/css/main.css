@@ -410,7 +410,6 @@ body.page--404 { display: flex; flex-direction: column; min-height: 100vh; min-h
   .archive-filters-ready #archive-filter-panel > section { min-width: 0; }
   .archive-filters-ready #archive-filter-panel > section:nth-child(2) { margin-top: 0; padding-top: 0; }
   .archive-filters-ready #archive-filter-panel > section:nth-child(2)::before { inset: 0 auto 0 -13px; width: 2px; height: auto; }
-  .archive-filters-ready #archive-filter-panel > section:nth-child(3) { grid-column: 1 / -1; }
   .archive-filters-ready #archive-filter-panel h2 { margin-bottom: 4px; }
   .archive-filters-ready #archive-filter-panel a, .archive-filters-ready #archive-filter-panel summary { min-height: 36px; padding-block: 4px; }
   #archive-filter-panel [data-reset] { display: none; }

@@ -85,13 +85,13 @@ Le pagine informative usano un paragrafo per il titolo del sito nella hero e un 
 
 Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Il template inserisce `title` come H1 in Oswald all’inizio dell’articolo. Scrivere il corpo in Markdown, con sezioni da H2 e sottosezioni H3, e rimuovere `draft = true` per pubblicare.
 
-- `title`, `date`, `description`, `comune` e `tags` alimentano anteprime, metadati e filtri.
+- `title`, `date`, `description` e `comune` alimentano anteprime, metadati e filtri. I `tags` restano nel front matter per utilizzi futuri e non partecipano ai filtri.
 - `hero_image`, `hero_title` e `hero_subtitle` definiscono fotografia fissa e testi personalizzati della scheda. Esplora usa foto casuali e testi della Home.
 - `thumbnail` è facoltativo e ripiega su `hero_image`. Le immagini possono stare in `assets/` o accanto all’`index.md`. `hero_position` e `hero_position_mobile` regolano l’inquadratura, ad esempio `center 35%`.
 
 Home ed Esplora usano `exploration-pages.html`, che esclude bozze, contenuti futuri e scaduti e ordina per data decrescente. La Home mostra fino a tre articoli. Per eliminare le schede temporanee, rimuovere `content/esplora/demo-01.md`–`demo-06.md` e rigenerare il sito.
 
-I filtri combinano luogo, periodo e tag tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11&tag=Memoria`. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
+I filtri combinano luogo e periodo tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11`. Gli eventuali parametri `tag` dei vecchi collegamenti vengono eliminati dall’URL. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
 
 Sotto 768 px, solo nell’archivio, `archive.js` raccoglie i filtri in un pannello inizialmente chiuso, con numero di filtri attivi. La selezione aggiorna subito risultati, conteggi e URL senza chiudere il pannello, che si richiude dalla barra «Filtra le esplorazioni». Il link «Tutte le esplorazioni» e il pulsante «Mostra X articoli» sono nascosti nel pannello mobile. Da 768 px la sidebar resta visibile; senza JavaScript i filtri rimangono espansi.
 

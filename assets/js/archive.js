@@ -5,10 +5,9 @@
   const cards = [...archive.querySelectorAll('.post-preview')].map(node => ({
     node,
     luogo: node.dataset.luogo,
-    periodo: node.dataset.periodo,
-    tags: JSON.parse(node.dataset.tags) || []
+    periodo: node.dataset.periodo
   }));
-  const keys = ['luogo', 'periodo', 'tag'];
+  const keys = ['luogo', 'periodo'];
   const filterToggle = sidebar.querySelector('.archive-filter-toggle');
   const filterPanel = sidebar.querySelector('#archive-filter-panel');
   const activeFilters = sidebar.querySelector('#archive-active-filters');
@@ -38,13 +37,14 @@
   sidebar.classList.add('archive-filters-ready');
   syncFilterPanel();
   const matches = (card, key, value) => {
-    if (key === 'tag') return card.tags.includes(value);
     if (key === 'periodo') return card.periodo.startsWith(value);
     return card.luogo === value;
   };
 
   function render() {
     const url = new URL(location.href);
+    // Elimina il parametro del filtro rimosso anche dai vecchi collegamenti.
+    url.searchParams.delete('tag');
     const active = new Map();
     for (const key of keys) {
       const value = url.searchParams.get(key);

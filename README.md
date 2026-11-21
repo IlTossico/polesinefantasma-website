@@ -8,7 +8,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | --- | --- |
 | Versione | **v0.2.0** <br> Homepage, archivio Esplora e pagine articolo disponibili in locale. |
 | Ultimo aggiornamento di questa panoramica | **21 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo.** <br>Articoli dimostrativi Markdown in Esplora, con filtri per luogo, periodo e tag. La Home mostra i tre più recenti dalla stessa sorgente. Galleria in Coming Soon, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, galleria e ricerca ancora da sviluppare. |
+| Sito | **Ci sto lavorando su, cazzo.** <br>Articoli dimostrativi Markdown in Esplora, con filtri per luogo e periodo. La Home mostra i tre più recenti dalla stessa sorgente. Galleria in Coming Soon, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, galleria e ricerca ancora da sviluppare. |
 | Ultimi interventi completati | Feed della Home collegato a Esplora e anteprime condivise. Archivio a tutta larghezza con sidebar beige continua, tipografia più leggibile e articoli con testo e fotografie centrati nella colonna bianca. Palette chiara fissa e controlli di ricerca rimossi. |
 | Lingue | IT, **EN da valutare** |
 | Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
@@ -19,7 +19,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | --- | --- |
 | Pagina | HTML statico generato da Hugo.|
 | Presentazione | CSS responsive. Hero completa per Home, Coming Soon e informative. Esplora e articoli usano una hero compatta da 40vh (310–510 px su desktop). Sidebar al 25%, fino a 400 px, affiancata al contenuto da 768 px. |
-| Interazioni | JavaScript vanilla per foto casuali, titolo animato, menu mobile, filtri combinabili e copia email. Luogo, anno o mese e tag aggiornano conteggi e opzioni, con stato nell’URL e navigazione Avanti/Indietro. Le schede rimandano all’archivio filtrato. |
+| Interazioni | JavaScript vanilla per foto casuali, titolo animato, menu mobile, filtri combinabili e copia email. Luogo e anno o mese aggiornano conteggi e opzioni, con stato nell’URL e navigazione Avanti/Indietro. Le schede rimandano all’archivio filtrato. |
 | Risorse | Foto WebP e fallback locale; mappe SVG/JPG, logo PNG originale, sprite SVG e favicon SVG. Oswald per menu, titoli Chi sono/Contatti, informative, Coming Soon e numero 404; Inter nel footer, Source Sans 3 per contenuti e sottotitolo, Special Elite per nome del sito e messaggio 404. Nessuna libreria o font remoto. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
@@ -110,9 +110,9 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili. Dimensione font pagina esplora e template articoli in pari a home e altre pagine, distribuzione degli elementi nella pagina da sistemare. Da finalizzare. Mobile completamente da rifare, togliere la sezione filtri e implementare unica scritta "Filtri" che si apre e avvia la ricerca. Rimuovere tag automatici.  |
+| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili. Dimensione font pagina esplora e template articoli in pari a home e altre pagine, distribuzione degli elementi nella pagina da sistemare. Da finalizzare. Mobile completamente da rifare, togliere la sezione filtri e implementare unica scritta "Filtri" che si apre e avvia la ricerca.  |
 | CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
-| Articoli di prova | **Implementati** | Contenuti dimostrativi con immagini locali, comuni e tag per valutare impaginazione e filtri. Sostituirli con contenuti editoriali verificati. |
+| Articoli di prova | **Implementati** | Contenuti dimostrativi con immagini locali e comuni per valutare impaginazione e filtri; tag conservati per utilizzi futuri. Sostituirli con contenuti editoriali verificati. |
 | Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria.  |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |

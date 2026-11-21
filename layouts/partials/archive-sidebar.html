@@ -22,13 +22,6 @@
     </details>
     {{ end }}
   </section>
-  <section><h2>Tag</h2>
-    {{ $counts := newScratch }}
-    {{ range $pages }}{{ range .Params.tags | default slice | uniq }}{{ $counts.Add . 1 }}{{ end }}{{ end }}
-    {{ range $tag, $count := $counts.Values }}
-      {{ partial "archive-option.html" (dict "key" "tag" "value" $tag "label" $tag "count" $count) }}
-    {{ end }}
-  </section>
   <a href="{{ (site.GetPage "/esplora").RelPermalink }}#archivio" data-reset>Tutte le esplorazioni</a>
   {{ if .collapsible }}
     <button type="button" class="archive-show-results">Mostra {{ len $pages }} {{ if eq (len $pages) 1 }}articolo{{ else }}articoli{{ end }}</button>

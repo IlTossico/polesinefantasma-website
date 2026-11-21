@@ -1,12 +1,12 @@
 {{ $title := "" }}{{ $excerpt := "" }}{{ $date := "" }}{{ $label := "" }}{{ $url := "" }}
 {{ $page := .page }}
 {{ $imagePath := "images/hero/background.webp" }}
-{{ $place := "" }}{{ $period := "" }}{{ $tags := slice }}
+{{ $place := "" }}{{ $period := "" }}
 {{ with .page }}
   {{ $title = .Title }}{{ $excerpt = .Description | default (.Summary | plainify) }}
   {{ $date = .Date.Format "2006-01-02" }}{{ $label = .Date | time.Format ":date_long" }}{{ $url = .RelPermalink }}
   {{ $imagePath = or .Params.thumbnail .Params.hero_image $imagePath }}
-  {{ $place = .Params.comune | default "" }}{{ $period = .Date.Format "2006-01" }}{{ $tags = .Params.tags | default slice }}
+  {{ $place = .Params.comune | default "" }}{{ $period = .Date.Format "2006-01" }}
 {{ end }}
 {{ $thumbnail := "images/hero-fallback.webp" | relURL }}
 {{ $srcset := "" }}
@@ -19,7 +19,7 @@
     {{ $srcset = printf "%s 480w, %s 960w" $thumbnail $large.RelPermalink }}
   {{ end }}
 {{ end }}
-<article class="post-preview"{{ if $url }} data-luogo="{{ $place }}" data-periodo="{{ $period }}" data-tags="{{ $tags | jsonify }}"{{ end }}>
+<article class="post-preview"{{ if $url }} data-luogo="{{ $place }}" data-periodo="{{ $period }}"{{ end }}>
   {{ if $url }}<a href="{{ $url }}" tabindex="-1" aria-label="{{ $title }}">{{ end }}<img class="post-thumbnail" src="{{ $thumbnail }}"{{ with $srcset }} srcset="{{ . }}" sizes="(max-width: 767px) calc(100vw - 40px), 280px"{{ end }} width="480" height="320" alt="" loading="lazy" decoding="async">{{ if $url }}</a>{{ end }}
   <div class="post-content">
     <p class="post-meta"><time datetime="{{ $date }}">{{ $label }}</time></p>
