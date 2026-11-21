@@ -25,11 +25,13 @@
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#chi-sono">Chi sono</a></li>
           <li><a href="{{ if not .IsHome }}{{ .Site.Home.RelPermalink }}{{ end }}#contatti">Contatti</a></li>
         </ul>
+        <div class="menu-socials">
+          {{ partial "header-socials.html" . }}
+        </div>
       </nav>
     </details>
     <div class="header-actions">
-      <a class="icon-button" href="https://www.facebook.com/polesinefantasma/" aria-label="Polesine Fantasma su Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
-      <a class="icon-button" href="https://www.instagram.com/polesine_fantasma/" aria-label="Polesine Fantasma su Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+      {{ partial "header-socials.html" . }}
     </div>
   </div>
   {{ if ne .Kind "404" }}

@@ -110,7 +110,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili, ordinati per data decrescente. Da finalizzare.  |
+| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili. Dimensione font pagina esplora e template articoli in pari a home e altre pagine, distribuzione degli elementi nella pagina da sistemare. Da finalizzare. Mobile completamente da rifare, togliere la sezione filtri e implementare unica scritta "Filtri" che si apre e avvia la ricerca. Rimuovere tag automatici.  |
 | CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
 | Articoli di prova | **Implementati** | Contenuti dimostrativi con immagini locali, comuni e tag per valutare impaginazione e filtri. Sostituirli con contenuti editoriali verificati. |
 | Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria.  |
