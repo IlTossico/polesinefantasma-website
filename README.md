@@ -7,20 +7,20 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 | Voce | Stato attuale |
 | --- | --- |
 | Versione | **v0.2.0** <br> Homepage, archivio Esplora e pagine articolo disponibili in locale. |
-| Ultimo aggiornamento di questa panoramica | **21 novembre 2026**. |
-| Sito | **Ci sto lavorando su, cazzo.** <br>Articoli dimostrativi Markdown in Esplora, con filtri per luogo e periodo. La Home mostra i tre più recenti dalla stessa sorgente. Galleria in Coming Soon, Privacy Policy e Disclaimer provvisori e 404 personalizzata. Contenuti reali, galleria e ricerca ancora da sviluppare. |
-| Ultimi interventi completati | Feed della Home collegato a Esplora e anteprime condivise. Archivio a tutta larghezza con sidebar beige continua, tipografia più leggibile e articoli con testo e fotografie centrati nella colonna bianca. Palette chiara fissa e controlli di ricerca rimossi. |
+| Ultimo aggiornamento di questa panoramica | **26 novembre 2026**. |
+| Sito | **In sviluppo.** <br>Sei articoli demo in Esplora, filtrabili per luogo e periodo; i tre più recenti compaiono in Home. Galleria in Coming Soon, informative da rivedere e 404 personalizzata. Da finalizzare i contenuti e sviluppare galleria, CMS e ricerca. |
+| Ultimi interventi completati | Anteprime condivise tra Home ed Esplora, impaginazione centrata e filtri mobile richiudibili. Articoli con crediti dal front matter, titoli bilanciati e barre ocra, escluse nelle fonti. H1 ridotti e titoli hero adattivi su mobile. |
 | Lingue | IT, **EN da valutare** |
-| Pubblicazione definitiva | **Incompletata.** <br>Versione Hugo su test.polesinefantasma.it; dominio definitivo attivo con pagina coming-soon.
+| Pubblicazione definitiva | **Incompleta.** <br>Versione Hugo su test.polesinefantasma.it e dominio definitivo con coming-soon. |
 
 ## Tecnologie e struttura
 
 | Ambito | Implementazione attuale |
 | --- | --- |
-| Pagina | HTML statico generato da Hugo.|
-| Presentazione | CSS responsive. Hero completa per Home, Coming Soon e informative. Esplora e articoli usano una hero compatta da 40vh (310–510 px su desktop). Sidebar al 25%, fino a 400 px, affiancata al contenuto da 768 px. |
-| Interazioni | JavaScript vanilla per foto casuali, titolo animato, menu mobile, filtri combinabili e copia email. Luogo e anno o mese aggiornano conteggi e opzioni, con stato nell’URL e navigazione Avanti/Indietro. Le schede rimandano all’archivio filtrato. |
-| Risorse | Foto WebP e fallback locale; mappe SVG/JPG, logo PNG originale, sprite SVG e favicon SVG. Oswald per menu, titoli Chi sono/Contatti, informative, Coming Soon e numero 404; Inter nel footer, Source Sans 3 per contenuti e sottotitolo, Special Elite per nome del sito e messaggio 404. Nessuna libreria o font remoto. |
+| Pagina | HTML statico generato da Hugo, con articoli Markdown e front matter TOML. |
+| Presentazione | CSS responsive e palette chiara. Hero completa per Home, Coming Soon e informative; compatta per Esplora e articoli. Sidebar affiancata da 768 px, filtri richiudibili su mobile e contenuti centrati. |
+| Interazioni | JavaScript vanilla per foto casuali, titolo animato, menu mobile, filtri con conteggi e stato nell’URL, copia email e ritorno in alto. Adattamento dei titoli hero mobile e delle barre H1 negli articoli. |
+| Risorse | Foto WebP responsive con fallback locale; mappa e icone SVG, logo PNG. Font locali: Oswald, Inter, Source Sans 3 e Special Elite. Nessuna libreria frontend esterna. |
 | Architettura | Hugo 0.169.0 Extended come generatore statico; nessun backend, database, framework frontend o pacchetto npm. Build in `public/`, predisposta per Cloudflare Pages. |
 
 ```text
@@ -43,7 +43,7 @@ polesinefantasma-website/
 ├── content/galleria.md     # Pagina /galleria/ con layout coming-soon
 ├── content/privacy.md      # Testo provvisorio di /privacy/
 ├── content/disclaimer.md   # Testo provvisorio di /disclaimer/
-├── archetypes/esplora.md   # Modello in bozza per i nuovi articoli
+├── archetypes/esplora.md   # Modello in bozza con titolo, sottotitolo, fonti e campi dei crediti
 ├── assets/
 │   ├── css/main.css        # Stili responsive
 │   ├── js/archive.js       # Filtri, conteggi e URL di Esplora
@@ -58,6 +58,7 @@ polesinefantasma-website/
 │   ├── favicon.svg        # Favicon originale, pubblicata in /favicon.svg
 │   ├── icons.svg          # Sprite SVG locale
 │   ├── images/hero-fallback.webp # Foto di sicurezza se la cartella hero è vuota
+│   ├── images/articoli/    # Fotografie degli articoli, inclusa la scheda Fabbris
 │   └── fonts/             # Font WOFF2 locali con licenze
 ├── public/                # Sito generato, ignorato da Git
 ├── resources/             # Cache delle risorse Hugo, ignorata da Git
@@ -70,23 +71,23 @@ polesinefantasma-website/
 
 **Hugo 0.169.0 Extended**
 
-La cartella locale contiene la prima versione grafica del nuovo sito, generata con Hugo 0.169.0 Extended, template originali, HTML, CSS e JavaScript vanilla. Nessuna dipendenza frontend, database, libreria di icone o font esterno. La pubblicazione definitiva resta incompleta.
+La versione locale usa template originali, HTML, CSS e JavaScript vanilla. 
 
-VS Code avvia hugo server -D all’apertura della cartella tramite .vscode/tasks.json. Lo stesso comando può essere eseguito manualmente; anteprima su http://localhost:1313/. La build si esegue con hugo build, con output in public/.
+Con cartella attendibile, task automatiche abilitate e Hugo nel PATH, VS Code avvia `hugo server -D` all’apertura tramite `.vscode/tasks.json`. Lo stesso comando può essere eseguito manualmente; anteprima su http://localhost:1313/. La build si esegue con `hugo build`, con output in `public/`; nessun comando locale esegue un deploy.
 
 ### Noindex provvisorio — da rivedere prima della pubblicazione definitiva
 
 Prima della pubblicazione definitiva controllare questi tre punti:
 
-- **`static/_headers`:** aggiunge `X-Robots-Tag: noindex, nofollow` soltanto a `https://test.polesinefantasma.it/*`, escludendo dominio principale, www e `pages.dev`. È una regola provvisoria da rivedere: mantenerla se `test` resta un ambiente di sviluppo, modificarla o rimuoverla se cambia o viene dismesso.
-- **`layouts/baseof.html`:** il metatag `noindex, nofollow` blocca ancora tutte le pagine HTML, su qualsiasi dominio. Rimuoverlo o renderlo condizionale sulle pagine definitive indicizzabili, conservando il noindex della 404 e la protezione del test.
+- **`static/_headers`:** applica `X-Robots-Tag: noindex, nofollow` solo a `https://test.polesinefantasma.it/*`. Mantenere o aggiornare la regola secondo il futuro utilizzo dell’ambiente di test.
+- **`layouts/baseof.html`:** il metatag noindex riguarda tutte le pagine HTML. Rimuoverlo o limitarlo per la produzione, preservando la 404 e la protezione del test.
 - **`hugo.toml`:** rivalutare la sitemap ora disabilitata e impostare/passare l’URL assoluto corretto al posto di `baseURL = '/'`.
 
 ## Feature flags
 
 Interruttori booleani nativi di Hugo; l’unico disponibile è il triangolo Wikipedia con scritta «La Storia». 
 
-Con `false`, triangolo, scritta e tooltip non vengono generati nell’HTML; il codice resta disponibile. Il server rileva il salvataggio senza riavvio manuale, ma online servono una nuova build e un deploy. Dettagli in [Risorse](docs/risorse.md#feature-flags).
+Con `false` il componente non viene generato; i sorgenti restano disponibili. Le modifiche online richiedono build e deploy. Dettagli in [Risorse](docs/risorse.md#feature-flags).
 
 ## Idee struttura
 
@@ -94,10 +95,10 @@ Proposte per le funzionalità definitive
 
 | Ambito | Proposta |
 | --- | --- |
-| Homepage | Statica con foto/sfondo che prende metà della hero, con logo+nome e breve descrizione di PF. Sotto piccolo feed degli articoli più recenti o di nostra scelta |
+| Homepage | Hero fotografica e feed degli ultimi tre articoli già presenti; valutare in futuro eventuali selezioni editoriali. |
 | Galleria Fotografica | Pagina semplice e statica, a sinistra un menu che mostra e divide le foto su ogni progetto/categoria?/luogo e la pagina che le mostra ha tante miniature, abbastanza grandi, premendo la miniatura la foto diventa fullscreen(lightbox); PhotoSwipe, libreria JavaScript per la gestione di questa funzione. Il caricamento delle foto è gestito tramite CMS che auto adatta la pagina con le nuove miniature e si aggiorna automaticamente. |
-| Articoli | Come nella galleria, a sinistra elenco con gli articoli publicati e quando premi ti mostra l'articoli; ordinabili per alfabetico o data di publicazione. Magari una pagina base prima di selezionare il singolo articolo, con spiegazione e feed articoli. Per le foto duplicate tra articoli e galleria, metetre un sistema che richiama nell'articolo la foto della galleria, cosi evitiamo doppi caricamenti.  |
-| Framework | Hugo, più semplice da installare e usare, più rapido di Astro, adatto per siti stile blog. |
+| Articoli | Come nella galleria, a sinistra elenco con gli articoli publicati e quando premi ti mostra l'articoli; ordinabili per alfabetico o data di publicazione. Magari una pagina base prima di selezionare il singolo articolo, con spiegazione e feed articoli. Per le foto duplicate tra articoli e galleria, metetre un sistema che richiama nell'articolo la foto della galleria, cosi evitiamo doppi caricamenti. |
+| Framework | Hugo già adottato; mantenere generazione statica, template originali e dipendenze limitate. |
 | CMS | Pages CMS, meno complicato di Decap CMS da usare e installare, sistema di autenticazione con GitHub integrato. Perfetto per la gestione di articoli e galleria fotografica. |
 | Contatti | Aggiungere modulo email a pagina dedicata? |
 | Ricerca | Implementare futuro motore di ricerca, con icona (che apre barra bianca) (vedi screenshot) su header e sezione ricerca sulla sidebar di esplora? |
@@ -110,10 +111,10 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Feed e pagina Esplora | **Implementati** | Home ed Esplora usano gli stessi articoli pubblicabili. Dimensione font pagina esplora e template articoli in pari a home e altre pagine, distribuzione degli elementi nella pagina da sistemare. Da finalizzare. Mobile completamente da rifare, togliere la sezione filtri e implementare unica scritta "Filtri" che si apre e avvia la ricerca.  |
+| Feed e pagina Esplora | **Implementati** | Completare la revisione editoriale e la verifica nei principali browser di archivio, filtri e articoli. |
 | CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
-| Articoli di prova | **Implementati** | Contenuti dimostrativi con immagini locali e comuni per valutare impaginazione e filtri; tag conservati per utilizzi futuri. Sostituirli con contenuti editoriali verificati. |
-| Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria.  |
+| Articoli di prova | **Implementati** | Sei demo, inclusa Fabbris con fonti e crediti. Verificare o sostituire i dati di prova prima della pubblicazione; tag conservati per usi futuri. |
+| Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria. |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |
 | ~~Email~~ | Completo | ~~Collegare Gmail a Alias Cloudflare per miglior sicurezza, abilita "Email Address Obfuscation" di Cloudflare.~~ |
 | RSS | **Da finalizzare** | Feed generale in `/index.xml`, comprendente anche le informative, e feed degli articoli in `/esplora/index.xml`. Definire il collegamento definitivo e verificare gli URL sul dominio di produzione. |
@@ -122,10 +123,10 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Metadati SEO | **Parziale** | Title e description presenti; rivedere titoli, canonical e URL definitivi, **togliendo o limitando il noindex globale prima della pubblicazione.** |
+| Metadati SEO | **Parziale** | Title presente e description globale condivisa; predisporre descrizioni per pagina, canonical e URL definitivi, **togliendo o limitando il noindex globale prima della pubblicazione.** |
 | Sitemap e robots.txt | **Da verificare** | Sitemap ora disabilitata; rivalutarla per la produzione. Controllare anche il robots.txt gestito da Cloudflare, senza bloccare la lettura del noindex sul test. |
-| Dati strutturati JSON-LD | **Da verificare** | Dati strutturati pertinenti a Polesine Fantasma, sintatticamente validi e coerenti con i contenuti. |
-| Anteprime social | **Da verificare** | Open Graph e Twitter Card configurati con titolo, descrizione e immagine corretti. |
+| Dati strutturati JSON-LD | **Da implementare** | Nessun JSON-LD nel template attuale; definire dati pertinenti e coerenti con i contenuti. |
+| Anteprime social | **Da implementare** | Aggiungere Open Graph e Twitter Card con titolo, descrizione e immagine corretti. |
 | Favicon e identità browser | **Implementato** | SVG originale in `static/favicon.svg`, incluso nel head condiviso. Da valutare. |
 | Google Search Console | **Da verificare** | Dominio verificato, sitemap inviata e indicizzazione controllata. |
 
@@ -144,22 +145,22 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
 | Privacy e cookie | **Check finale** | `/privacy/` e collegamento nel footer presenti; verificare il testo prima della pubblicazione. |
-| Consenso e servizi esterni | **Da pianificare** | Da implementare su pagina `privacy`. |
+| Consenso e servizi esterni | **Da verificare** | Allineare la Privacy ai servizi effettivamente attivi e rivalutare il consenso per nuove integrazioni. |
 | Pagina Disclaimer | **Check finale** | `/disclaimer/` e collegamento nel footer presenti; verificare il testo prima della pubblicazione. |
 
 ### 5. Qualità tecnica e prestazioni
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
-| Responsive e compatibilità | **Da verificare** | Sito funzionante su smartphone, tablet e desktop, con test nei principali browser. |
+| Responsive e compatibilità | **Verifiche locali parziali** | Completare i controlli locali Edge con test nei principali browser e su dispositivi fisici. |
 | Accessibilità | **Da verificare** | HTML semantico, navigazione da tastiera, contrasto, etichette accessibili e gestione delle eventuali animazioni. |
 | Immagini, font e risorse | **Da verificare** | Dimensioni, formati e caricamento ottimizzati; nessuna risorsa mancante o layout shift evitabile. |
-| Preload dei font | **Da valutare** | Verificare se il preload dei font principali migliora il caricamento e riduce il FOUT, senza introdurre richieste inutili. |
+| Preload dei font | **Implementato** | Special Elite e Source Sans 3 precaricati nel head condiviso; valutare prestazioni e stabilità visiva su caricamento reale. |
 | JavaScript, link e percorsi | **Da verificare** | Nessun errore rilevante in console, collegamento rotto o comportamento imprevisto. |
 | Lighthouse e Core Web Vitals | **Da pianificare** | Test mobile e desktop eseguiti; LCP, CLS e INP valutati e criticità documentate. |
 | Pagina 404 | **Implementato** | Template nativo `layouts/404.html`, senza hero fotografica; da verificare a deploy effettivo. |
 | Audit tecnico e sicurezza | **Da pianificare** | Revisione di codice, configurazioni, dipendenze e dati sensibili, con problemi prioritari risolti o documentati. |
-| Logo BIMI | **Non cocmpleto** | Aggiunto ma fallisce controllo DMARC, servirebbe nuovo server SMTP in uscita, ma comunque mancherebbe verifica per essere visto da Gmail. |
+| Logo BIMI | **Incompleto** | Verificare il problema DMARC segnalato e i requisiti del servizio prima di intervenire. |
 
 ### 6. Verifica finale
 
@@ -171,7 +172,7 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 ## Idee per il sito e funzionalità da valutare
 
 Spunti iniziali da discutere, non requisiti approvati né attività già pianificate. Le idee confermate potranno diventare attività di sviluppo.
-Vedi [Inspiration](docs/inspiration.md) per siti web si riferimento. 
+Vedi [Inspiration](docs/inspiration.md) per siti web di riferimento.
 
 | Idea | Possibile sviluppo |
 | --- | --- |

@@ -9,11 +9,15 @@ hero_title = 'Ex Concessionario "M. Fabbris'
 hero_subtitle = 'Uno dei più grandi complessi inutilizzati di Rovigo'
 thumbnail = 'images/hero/dji_0973-copia.webp'
 demo = true
+photographers = ['Nicolò Raimondi', 'Filippo Guidi', 'Matteo Franzosi']
+photo_date = 'gennaio 2024'
+authors = ['Nicolò Raimondi', 'Filippo Guidi']
+lastmod = '2026-11-21'
 +++
 
 # L'ex concessionaria Mario Fabbris: dalla storia dell'automobile a un futuro ancora incerto
 
-*Dalla vendita delle automobili Fiat, Lancia e Alfa Romeo a uno dei più grandi complessi inutilizzati di Rovigo. La storia di un'attività che ha segnato il panorama commerciale del capoluogo polesano.*
+***Dalla vendita delle automobili Fiat, Lancia e Alfa Romeo a uno dei più grandi complessi inutilizzati di Rovigo. La storia di un'attività che ha segnato il panorama commerciale del capoluogo polesano.***
 
 Lungo viale Porta Po, una delle principali arterie commerciali di Rovigo, sorge un edificio difficile da ignorare. Un imponente complesso dalla caratteristica forma semicircolare, con una rampa esterna che permette di raggiungere il piano superiore.
 
@@ -129,27 +133,11 @@ Rimane invece da verificare l'effettivo stato di utilizzo delle restanti superfi
 
 L'ex Fabbris non è dunque più descrivibile semplicemente come un edificio interamente abbandonato, ma come un complesso che conserva ancora elementi della propria storia di dismissione, pur avendo ritrovato una funzione commerciale in alcuni suoi spazi.
 
-## Quale futuro per l'ex concessionaria?
-
-Il futuro dell'ex concessionaria Mario Fabbris rimane legato alla possibilità di trovare nuove destinazioni compatibili con le dimensioni e le caratteristiche della struttura.
-
-La conformazione degli spazi, originariamente progettati per l'esposizione e la manutenzione delle automobili, rappresenta contemporaneamente una risorsa e una difficoltà per la loro riconversione.
-
-Un eventuale recupero richiederebbe infatti di adattare ambienti molto estesi alle esigenze di attività differenti, affrontando questioni tecniche, economiche e urbanistiche.
-
-Il riutilizzo di singole porzioni potrebbe costituire una soluzione graduale, capace di restituire progressivamente una funzione commerciale a un edificio rimasto per anni largamente inutilizzato.
-
-La vicenda dell'ex Fabbris racconta una trasformazione che interessa numerose città italiane: grandi attività commerciali che hanno accompagnato lo sviluppo economico locale e che, una volta cessata la propria funzione, lasciano strutture complesse da riconvertire.
-
-L'edificio di viale Porta Po conserva ancora oggi una parte riconoscibile della memoria economica di Rovigo.
-
-Una storia iniziata con l'espansione del mercato automobilistico, proseguita attraverso oltre vent'anni di attività e interrotta con la chiusura del 2014, il cui capitolo conclusivo deve ancora essere scritto.
-
 ![Vetrine](/images/articoli/fabbris/f3.webp)
 
 ---
 
-## Fonti e riferimenti
+## Fonti e riferimenti {.article-sources}
 
 ### Documentazione storica e societaria
 
@@ -184,8 +172,3 @@ Una storia iniziata con l'espansione del mercato automobilistico, proseguita att
    [Consulta la fonte](https://www.facebook.com/media/set/?vanity=polesinefantasma&set=a.545057404937856)
 
 ---
-
-**Fotografie:** © Nicolò Raimondi, Filippo Guidi, Matteo Franzosi - gennaio 2024.  
-**Testo e ricerca storica:** Nicolò Raimondi, Filippo Guidi.  
-**Ultimo aggiornamento:** 21 novembre 2026.
-

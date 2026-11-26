@@ -37,7 +37,7 @@
   {{ if ne .Kind "404" }}
   <div class="hero-title">
     {{ $heroParagraph := or $article (eq .Layout "informational") }}
-    {{ if $heroParagraph }}<p class="hero-heading">{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">{{ $heading }}</span><span class="title-ink" aria-hidden="true">{{ $heading }}</span>{{ if $heroParagraph }}</p>{{ else }}</h1>{{ end }}
+    {{ if $heroParagraph }}<p class="hero-heading"{{ if $article }} data-fit-title{{ end }}>{{ else }}<h1 class="hero-heading">{{ end }}<span class="sr-only">{{ $heading }}</span><span class="title-ink" aria-hidden="true">{{ $heading }}</span>{{ if $heroParagraph }}</p>{{ else }}</h1>{{ end }}
     <p class="hero-subtitle">{{ $subtitle }}</p>
   </div>
   {{ end }}

@@ -1,191 +1,244 @@
 # Risorse e manutenzione tecnica
 
-Il [README](../README.md) contiene panoramica, stato e attività aperte. Questo documento descrive i sorgenti e le operazioni di manutenzione. `public/`, `resources/` e `.local-preview/` sono output o strumenti locali ignorati da Git: non usarli come sorgenti del sito.
+Il [README](../README.md) contiene panoramica e attività aperte. Qui sono raccolte le istruzioni di manutenzione. `public/`, `resources/` e `.local-preview/` sono output o strumenti locali ignorati da Git: non modificarli come sorgenti.
 
-## Mappa dei file
+## Mappa dei sorgenti
 
 | File o directory | Responsabilità |
 | --- | --- |
-| `hugo.toml` | Titolo, lingua, descrizione, funzionalità opzionali e tipi di output disabilitati. |
-| `layouts/baseof.html` | Head condiviso, metadati, favicon, CSS/JS minificati con fingerprint, header/footer e inclusione condizionale del triangolo storico. |
-| `layouts/home.html` | Homepage, mappa, testi di Chi sono/Contatti e collegamenti social. |
-| `layouts/coming-soon.html` | Pagina provvisoria di Galleria. |
-| `layouts/informational.html` | Template delle informative: H1 dal front matter e contenuto Markdown. |
-| `layouts/404.html` | Errore nativo Hugo, generato come `public/404.html`; nessun contenuto Markdown dedicato. |
-| `content/esplora/` | Indice `_index.md` e articoli Markdown dell’archivio. |
-| `content/galleria.md` | Pagina con `layout = 'coming-soon'`. |
-| `content/privacy.md`, `content/disclaimer.md` | Testi provvisori con `layout = 'informational'`. |
-| `layouts/partials/header.html`, `footer.html` | Componenti condivisi: navigazione, social, copyright e link alle informative. |
-| `layouts/partials/use-home-hero.html` | Abilita l’animazione della hero per Home, Esplora, articoli, Coming Soon e informative. |
-| `layouts/partials/hero-image.html`, `hero-image-data.html` | Foto casuali, fallback, dimensioni e varianti responsive. |
-| `layouts/esplora/`, `layouts/partials/exploration.html` | Archivio e articoli con griglia condivisa. |
-| `layouts/partials/exploration-pages.html` | Sorgente comune delle pagine pubblicabili. |
-| `layouts/partials/archive-sidebar.html`, `archive-option.html` | Filtri e link verso l’archivio generati dai metadati. |
-| `layouts/partials/post-preview.html` | Anteprima condivisa delle pagine Markdown di Esplora. |
-| `assets/js/archive.js` | Filtri combinati, conteggi e cronologia nell’archivio. |
-| `archetypes/esplora.md` | Modello iniziale per nuove schede in bozza. |
-| `layouts/_markup/render-image.html` | Immagini Markdown responsive con dimensioni locali. |
-| `layouts/partials/recent-posts.html` | La Home mostra fino a tre pagine della stessa sorgente di Esplora, ordinate dalla più recente. |
-| `layouts/partials/history-corner.html`, `assets/images/il-polesine.jpg` | Triangolo storico opzionale con immagine JPG e collegamento Wikipedia. |
-| `assets/css/main.css`, `assets/js/main.js` | Stili e interazioni vanilla condivisi. Nessuna dipendenza frontend. |
-| `assets/images/hero/`, `assets/images/mappa-polesine.svg`, `assets/images/logo.png` | Foto WebP, mappa illustrativa e logo PNG originale. |
-| `static/images/hero-fallback.webp` | Fallback fotografico indipendente dalla cartella delle foto casuali. |
-| `layouts/partials/icon.html`, `static/icons.svg` | Sprite SVG locale; URL versionato con hash del contenuto. |
-| `static/favicon.svg` | SVG originale pubblicato in `/favicon.svg`, richiamato una volta nel head condiviso; nessun PNG/ICO aggiuntivo. |
-| `static/fonts/` | Font WOFF2 e relative licenze, senza richieste a servizi esterni. |
-| `static/_headers` | Header Cloudflare Pages, copiati in `public/_headers`; noindex HTTP limitato all’host di test. |
-| `.vscode/tasks.json`, `.gitignore` | Avvio automatico di Hugo ed esclusione di output/cache/verifiche locali. |
+| `hugo.toml` | Configurazione, lingua, funzionalità opzionali e output. |
+| `layouts/baseof.html` | Head, metadati, CSS/JS minificati con fingerprint e struttura condivisa. |
+| `layouts/home.html` | Home, mappa, Chi sono e Contatti. |
+| `layouts/esplora/`, `layouts/partials/exploration.html` | Archivio, articoli, crediti e pulsante per tornare in alto. |
+| `layouts/partials/exploration-pages.html`, `recent-posts.html`, `post-preview.html` | Selezione degli articoli, feed Home e anteprime condivise. |
+| `layouts/partials/archive-sidebar.html`, `archive-option.html` | Filtri generati dai metadati. |
+| `layouts/partials/header.html`, `footer.html`, `header-socials.html` | Navigazione, social e footer condivisi. |
+| `layouts/partials/hero-image.html`, `hero-image-data.html`, `use-home-hero.html` | Foto, varianti responsive e selezione delle pagine con hero animata. |
+| `layouts/_markup/render-image.html` | Immagini Markdown e didascalie. |
+| `layouts/informational.html`, `coming-soon.html`, `404.html` | Informative, Galleria provvisoria ed errore 404. |
+| `content/esplora/`, `archetypes/esplora.md` | Articoli Markdown e modello per nuove bozze. |
+| `content/privacy.md`, `disclaimer.md`, `galleria.md` | Contenuti delle altre pagine. |
+| `assets/css/main.css` | Stili responsive e animazioni. |
+| `assets/js/main.js`, `archive.js` | Interazioni condivise e filtri dell’archivio. |
+| `assets/images/`, `static/images/articoli/` | Risorse grafiche e fotografie degli articoli. |
+| `static/images/hero-fallback.webp` | Foto di sicurezza della hero. |
+| `layouts/partials/icon.html`, `static/icons.svg`, `static/favicon.svg` | Icone locali e favicon. |
+| `static/fonts/` | Font WOFF2 e licenze. |
+| `layouts/partials/history-corner.html` | Triangolo storico opzionale. |
+| `static/_headers` | Header HTTP di Cloudflare Pages. |
+| `.vscode/tasks.json`, `.gitignore` | Anteprima automatica ed esclusione degli output. |
 
-## Font utilizzati
+I nomi di file abbreviati nella mappa condividono la directory del primo percorso della riga.
 
-| Font | Impiego |
+## Anteprima e build
+
+Usare **Hugo 0.169.0 Extended**, senza npm:
+
+```powershell
+hugo server -D
+hugo build
+```
+
+L’anteprima è normalmente su `http://localhost:1313/`; la build scrive in `public/` e non pubblica il sito. La task VS Code **Hugo: server di sviluppo** parte all’apertura della cartella se Hugo è nel PATH, la cartella è attendibile e le task automatiche sono abilitate. Evitare server duplicati; per fermarla o riavviarla usare **Tasks: Terminate Task** e **Tasks: Run Task**.
+
+Se l’avvio automatico è disabilitato, usare **Tasks: Manage Automatic Tasks in Folder → Allow Automatic Tasks in Folder**. Un server avviato manualmente è indipendente dalla task; se la porta 1313 è occupata, controllare nel terminale quale porta usa Hugo. La prima elaborazione delle fotografie può richiedere più tempo; le build successive sfruttano la cache.
+
+## Pagine e articoli
+
+### Pagine condivise
+
+- **Home:** testi, mappa e Contatti in `layouts/home.html`; anteprime condivise con Esplora.
+- **Informative:** modificare i rispettivi Markdown mantenendo `layout = 'informational'`. Il campo `title` genera l’H1: non duplicarlo nel corpo.
+- **Galleria:** `content/galleria.md` usa `layout = 'coming-soon'`.
+- **Header e footer:** intervenire nei partial condivisi, senza duplicarne il markup nelle pagine.
+
+### Creare un articolo
+
+```powershell
+hugo new content esplora/nome/index.md
+```
+
+Compilare l’archetipo, scrivere il contenuto e rimuovere `draft = true` per pubblicare. Mantenere il front matter **TOML delimitato da `+++`**, anche nel futuro CMS.
+
+| Campo | Uso |
 | --- | --- |
-| Special Elite | Nome del sito nell’header, titolo della hero e messaggio principale della 404. Licenza Apache 2.0. |
-| Source Sans 3 | Contenuti, titoli delle anteprime, sottotitoli delle informative e sottotitolo corsivo della hero. Variabile normale/corsivo, licenza SIL OFL. |
-| Oswald | Menu, link all’archivio, titoli Chi sono/Contatti e informative, Coming Soon, numero 404, ritorno alla home nella 404 e scritta «La Storia». Variabile 200–700, licenza SIL OFL. |
-| Inter | Footer. Variabile 100–900, licenza SIL OFL. |
+| `title`, `date`, `description`, `comune` | Titolo, anteprima, data e filtri per luogo/periodo. |
+| `hero_image`, `hero_title`, `hero_subtitle` | Foto e testi della hero dell’articolo. |
+| `thumbnail` | Anteprima facoltativa; ripiega su `hero_image`. |
+| `hero_position`, `hero_position_mobile` | Inquadratura, ad esempio `'center 35%'`. |
+| `tags` | Conservati per usi futuri; non partecipano ai filtri. |
+| `photographers`, `authors` | Elenchi di nomi per fotografie e testo/ricerca. |
+| `photo_date` | Periodo fotografico in italiano, ad esempio `'gennaio 2024'`. |
+| `lastmod` | Aggiornamento in formato ISO, ad esempio `'2026-11-21'`. |
 
-I file Roboto presenti in `static/fonts/` non sono richiamati dal CSS attuale. Non aggiungere font remoti per sostituire quelli locali.
+Il titolo del front matter resta accessibile tramite un H1 nascosto; il titolo visibile si scrive nel Markdown con `#`. Il sottotitolo usa `***grassetto e corsivo***`.
+
+I crediti vengono generati dopo contenuto e fonti: © automatico, data di aggiornamento in italiano e voci vuote omesse. Non duplicarli nel Markdown. Per distinguere `lastmod` esplicito dal valore automatico di Hugo, il template legge il front matter TOML. Sotto 768 px le intestazioni dei crediti vanno a capo, con 10 px tra i blocchi.
+
+Esempio di compilazione dei crediti nel front matter:
+
+```toml
+photographers = ['Nome fotografo', 'Altro fotografo']
+photo_date = 'gennaio 2024'
+authors = ['Nome autore']
+lastmod = '2026-11-21'
+```
+
+Per ometterli usare elenchi vuoti (`[]`) e stringhe vuote (`''`). `photo_date` viene mostrato insieme ai fotografi, non come voce autonoma. Su desktop intestazione e contenuto restano sulla stessa riga quando lo spazio lo consente.
+
+### Titoli, fonti e separatori
+
+H1/H2/H3 mantengono parole intere e usano `text-wrap: balance`. L’H1 misura 30,685 px sotto 768 px; su desktop usa `clamp(34px, 3.5vw, 48px)`.
+
+La barra H1 è fissa, spessa 5 px e larga quanto la riga più lunga. `main.js` misura il testo con `Range` e aggiorna `--heading-line-width` tramite `ResizeObserver`, resize e caricamento dei font. Senza JavaScript usa la larghezza del contenitore del titolo. H2/H3 condividono le barre del feed: 112 px a riposo, 224 px in hover/focus e spessore 3 px.
+
+Le barre usano `#b58b20`, con il bordo inferiore posizionato a `bottom: -8px` rispetto al titolo. H2/H3 si estendono con `scaleX(.5)` → `scaleX(1)` in 220 ms, senza spostare il testo; H1 non ha animazioni. Le regole interessano il corpo `.exploration-story`, escludendo il titolo nascosto e la hero.
+
+Aprire la sezione **finale** delle fonti con:
+
+```markdown
+## Fonti e riferimenti {.article-sources}
+```
+
+La classe esclude dalle barre quel titolo e tutti gli H2/H3 successivi. I separatori `---` diventano `<hr>` ocra, larghi quanto il testo, spessi 3 px e con margini verticali di 24 px.
+
+### Immagini e didascalie
+
+Le immagini elaborabili da Hugo possono stare in `assets/` o nel bundle accanto a `index.md`; le immagini pubblicate direttamente possono stare in `static/images/articoli/`.
+
+```markdown
+![Testo alternativo](/images/articoli/fabbris/f1.webp "Didascalia della foto")
+```
+
+Il render hook aggiunge dimensioni e varianti responsive quando disponibili. La didascalia usa il titolo tra virgolette, oppure il testo alternativo; se entrambi mancano, è omessa.
+
+Le didascalie riprendono la tipografia della data iniziale: 16 px, interlinea 1,7 e colore attenuato. Conservare dimensioni o proporzioni delle immagini per evitare spostamenti del layout; i file in `static/` vengono pubblicati direttamente, senza la pipeline delle risorse Hugo.
+
+### Archivio e filtri
+
+`exploration-pages.html` esclude bozze, articoli futuri e scaduti, ordinando per data decrescente. La Home mostra i primi tre; il feed RSS degli articoli è `/esplora/index.xml`. Per eliminare le demo rimuovere i relativi Markdown e rigenerare il sito.
+
+`archive.js` combina luogo e periodo, aggiorna conteggi e URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11`. Negli articoli i filtri rimandano all’archivio; senza JavaScript resta l’elenco completo. Sotto 768 px il pannello è inizialmente chiuso; senza JavaScript i filtri restano espansi.
+
+Nell’archivio mobile la selezione aggiorna i risultati senza chiudere il pannello, che si richiude dalla barra dei filtri. I vecchi parametri URL `tag` vengono rimossi. Archivio e articoli condividono la griglia di `exploration.html`: da 1200 px lo spazio a destra compensa la sidebar per centrare la colonna del testo.
+
+## Hero e interazioni
+
+### Foto e titoli hero
+
+Aggiungere le foto WebP in `assets/images/hero/` e ricompilare. Hugo genera varianti responsive senza ingrandire gli originali. La selezione casuale evita, quando possibile, l’ultima foto salvata in `sessionStorage` (`polesine-hero-last`). Conservare `hero/background.webp` e `static/images/hero-fallback.webp` come fallback.
+
+Le varianti della hero sono larghe 768, 1440 e 2560 px, con qualità WebP 84; `width`, `height` e `srcset` sono ricavati dalle immagini. Un `<template>` evita il download della foto non scelta. Senza JavaScript si usa il fallback; senza storage la scelta resta casuale ma può ripetersi.
+
+Home, Coming Soon e informative usano la hero completa; Esplora e articoli quella compatta. Negli articoli `data-fit-title` abilita sotto 768 px parole intere, righe bilanciate e riduzione del font solo se necessaria. Il calcolo richiede JavaScript, si aggiorna dopo i font e al resize e non modifica il sottotitolo o il desktop.
+
+Da 960 px `.hero--home` usa `calc(clamp(480px, calc(100vh - 440px), 1000px) * .94)`; sotto 960 px l’altezza è 390 px, sotto 640 px è 340 px. La hero compatta desktop usa `clamp(310px, 40vh, 510px)`; su mobile l’altezza si adatta al contenuto. Titolo e sottotitolo desktop condividono `--hero-text-scale`, con fallback per browser che non supportano il relativo calcolo CSS.
+
+L’animazione del titolo usa `data-typewriter="pending"` e `.title-ink`: non estenderla ai titoli del corpo articolo, delle informative o della 404.
+
+### Ritorno in alto e navigazione
+
+Il pulsante `.back-to-top` esiste solo in Esplora e articoli. `IntersectionObserver` lo mostra dopo la hero; il clic riporta in alto e sposta il focus al logo. Quando nascosto è `inert`. La posizione desktop dipende dalle misure di colonna e sidebar: aggiornarla se cambia il layout.
+
+| Finestra | Dimensione SVG | Posizione orizzontale | Spessore SVG |
+| --- | --- | --- | --- |
+| Da 1200 px | 60 × 60 px | 24 px dopo il limite del testo | `1.28` |
+| 768–1199 px | 30 × 30 px | 24 px dal bordo destro | `1.6` |
+| Sotto 768 px | 35 × 35 px | 10 px dal bordo destro | `2` |
+
+Il controllo è fisso al 65% dell’altezza della finestra, senza sfondo né bordo, con area cliccabile minima di 44 × 44 px. La dissolvenza dura 200 ms; alla comparsa lo chevron sale di 5 px due volte e poi resta fermo. Con movimento ridotto compaiono subito icona e posizione finale e il ritorno in alto è immediato.
+
+Il menu usa `details/summary`; JavaScript gestisce Escape, clic esterno, selezione dei link e cambio di breakpoint. La busta nei Contatti copia l’email con Clipboard API su HTTPS/localhost; senza supporto resta il link `mailto:`.
+
+Il menu diventa espandibile sotto 1200 px. La copia email mostra «Copiato!» o «Copia non riuscita» per due secondi. Le ancore di sezione usano `scroll-margin-top: 24px`.
+
+Animazioni e scorrimento fluido rispettano `prefers-reduced-motion`. Preservare focus visibile, etichette accessibili e aree cliccabili di almeno 44 × 44 px.
+
+## Risorse grafiche
+
+### Font utilizzati
+
+| Font | Impiego | Licenza |
+| --- | --- | --- |
+| Special Elite | Nome del sito, titolo della hero e messaggio principale della 404. | Apache 2.0 |
+| Source Sans 3 | Contenuti, titoli delle anteprime, H2/H3 degli articoli e sottotitolo corsivo della hero. | SIL OFL |
+| Oswald | Menu, H1 degli articoli, titoli dell’archivio e della sidebar, Chi sono/Contatti, informative, Coming Soon, numero e link Home della 404, scritta «La Storia». | SIL OFL |
+| Inter | Footer. | SIL OFL |
+
+Usare i file locali in `static/fonts/` e conservarne le licenze. Roboto è presente nella cartella ma non utilizzato dal CSS.
+
+### Immagini e icone
+
+- **Logo:** mantenere il PNG trasparente. `.brand-logo` usa una maschera CSS per colorarlo insieme al nome; dimensionarlo dal CSS.
+- **Icone e favicon:** mantenere SVG locali; la favicon è richiamata come `/favicon.svg`, anche su URL annidati.
+- **Mappa:** conservare proporzioni e scorrimento nel solo `.map-scroll`, utilizzabile da tastiera.
+- **Palette:** `main.css` imposta lo schema chiaro; ocra delle barre `#b58b20`, hover condiviso `--menu-hover`. Verificare il contrasto quando si cambiano colori o sfondi.
+
+### Riferimenti di layout
+
+| Componente | Indicazioni di manutenzione |
+| --- | --- |
+| Feed Home e Chi sono/Contatti | Da 960 px condividono `.content-layout--home`, massimo 1180 px e margini di almeno 32 px. |
+| Anteprime | Da 960 px foto 260 × 173 px e titoli 30 px; sotto 960 px foto larghe 190 px; sotto 640 px foto da 100 px e titoli 25 px. Mantenere le regole responsive separate. |
+| Mappa | SVG 2400 × 921, massimo 1600 px. Su mobile conserva una larghezza minima di 1128 px e scorre solo dentro `.map-scroll`. |
+| Logo e icone | PNG originale usato come maschera; senza supporto resta visibile il logo bianco. Icone header 25 × 25 px dentro controlli 44 × 44 px. |
+| Footer | Tre colonne desktop; sotto 640 px ritorno alla Home sopra copyright e informative. Link condivisi a Privacy, Disclaimer e credito autore. |
+
+`--menu-hover: #f2ca68` governa hover/focus condivisi; il menu aperto su bianco usa `#8a6516`.
 
 ## Feature flags
 
-Interruttori booleani della configurazione nativa Hugo, valutati durante la build. L’unica funzionalità opzionale è il triangolo Wikipedia con scritta «La Storia».
-
-File: [hugo.toml](../hugo.toml), cioè `C:\Users\Phil\Desktop\polesinefantasma-website\hugo.toml`. La chiave completa è `params.features.wikipediaTriangle`, attualmente alla **riga 11**: il numero è un riferimento attuale, quindi cercare il nome della chiave.
+In `hugo.toml`:
 
 ```toml
 [params.features]
   wikipediaTriangle = false
 ```
 
-`wikipediaTriangle = false` disabilita la funzionalità, `wikipediaTriangle = true` la abilita; usare booleani senza virgolette. Con `false`, triangolo, scritta e tooltip non sono generati nell’HTML. Partial, JPG e CSS restano disponibili. La 404 lo esclude sempre.
+`true` abilita il triangolo Wikipedia; `false` ne omette l’HTML. La 404 lo esclude sempre. Il componente usa `history-corner.html`, `assets/images/il-polesine.jpg` e lo sticky CSS dentro `.page-surface`, fermandosi sopra il footer. Il flag non modifica la mappa.
 
-Il server rileva il salvataggio di `hugo.toml` e ricompila senza riavvio manuale. Per rendere la modifica visibile online sono necessari una nuova build e un deploy.
+Usare booleani senza virgolette. Il server Hugo rileva il salvataggio della configurazione; per vedere il cambiamento online servono build e deploy. Il ritaglio della foto, tooltip e focus del componente sono gestiti in CSS.
 
-## Anteprima automatica in VS Code
+## Cloudflare Pages e pubblicazione
 
-La task **Hugo: server di sviluppo** esegue `hugo server -D` dalla radice del workspace, con `runOn: folderOpen` e una sola istanza della task consentita.
+Configurazione di riferimento, da confermare nel pannello Pages:
 
-Servono Hugo nel PATH, cartella attendibile e autorizzazione alle task automatiche. Se necessario usare **Tasks: Manage Automatic Tasks in Folder → Allow Automatic Tasks in Folder**. Per fermare/riavviare la task usare **Tasks: Terminate Task** e **Tasks: Run Task**; un server manuale è indipendente dalla task. Non avviarne due sulla porta 1313: Hugo può scegliere un’altra porta, indicata nel terminale.
-
-La build si esegue con `hugo build`; le prime elaborazioni fotografiche sono più lente, le successive usano la cache. Nessun comando Hugo locale pubblica automaticamente il sito.
-
-## Modifiche comuni
-
-### Pagine e testi
-
-- **Homepage:** cambiare i testi di Chi sono/Contatti e i social in `layouts/home.html`. Le voci del menu puntano alle ancore della home anche dalle altre pagine.
-- **Anteprime:** `post-preview.html` è condiviso tra Home ed Esplora. Entrambi usano `exploration-pages.html`, comprese le schede dimostrative pubblicate. La Home applica `first 3`: con meno articoli mostra soltanto quelli disponibili, con nessuno il feed è vuoto.
-- **Galleria:** la pagina usa il layout Coming Soon.
-- **Privacy Policy e Disclaimer:** sostituire i segnaposto dopo il front matter `+++`, mantenendo `layout = 'informational'`; `title` genera l’H1 e `##` genera gli H2. La colonna massima è 760 px, il fondo è bianco e il footer resta nel flusso con testi lunghi. Non inserire un secondo H1 nel Markdown.
-
-Le pagine informative usano un paragrafo per il titolo del sito nella hero e un H1 nel contenuto. La classe `.hero-heading` e il selettore `.hero .title-ink` mantengono stile e animazione condivisi senza dipendere dal tag del titolo.
-
-### Archivio Esplora e articoli
-
-Creare un articolo con `hugo new content esplora/nome/index.md`. Il modello `archetypes/esplora.md` contiene il front matter da compilare. Il titolo automatico `title` rimane accessibile agli screen reader tramite `sr-only`, senza essere ripetuto visivamente sotto la hero. I titoli scritti nel corpo Markdown restano visibili. Scrivere le sezioni in Markdown e rimuovere `draft = true` per pubblicare.
-
-- `title`, `date`, `description` e `comune` alimentano anteprime, metadati e filtri. I `tags` restano nel front matter per utilizzi futuri e non partecipano ai filtri.
-- `hero_image`, `hero_title` e `hero_subtitle` definiscono fotografia fissa e testi personalizzati della scheda. Esplora usa foto casuali e testi della Home.
-- `thumbnail` è facoltativo e ripiega su `hero_image`. Le immagini possono stare in `assets/` o accanto all’`index.md`. `hero_position` e `hero_position_mobile` regolano l’inquadratura, ad esempio `center 35%`.
-
-Le immagini Markdown degli articoli mostrano una didascalia sotto la foto, con la stessa tipografia della data iniziale (16 px, interlinea 1,7 e colore attenuato). Usare `![Testo alternativo](/images/articoli/fabbris/f1.webp "Didascalia della foto")`: il testo tra virgolette è la didascalia; se manca, viene usato il testo alternativo tra parentesi quadre. Senza entrambi, non viene aggiunta una didascalia vuota. Il render hook è `layouts/_markup/render-image.html`.
-
-Home ed Esplora usano `exploration-pages.html`, che esclude bozze, contenuti futuri e scaduti e ordina per data decrescente. La Home mostra fino a tre articoli. Per eliminare le schede temporanee, rimuovere `content/esplora/demo-01.md`–`demo-06.md` e rigenerare il sito.
-
-I filtri combinano luogo e periodo tramite `archive.js` e parametri URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11`. Gli eventuali parametri `tag` dei vecchi collegamenti vengono eliminati dall’URL. Nelle schede rimandano all’archivio filtrato. Senza JavaScript resta disponibile l’elenco completo.
-
-Sotto 768 px, nell’archivio e negli articoli, `archive.js` raccoglie i filtri in un pannello inizialmente chiuso. Nell’archivio mostra il numero di filtri attivi e la selezione aggiorna subito risultati, conteggi e URL senza chiudere il pannello. Negli articoli i link portano all’archivio filtrato. Il pannello si richiude dalla barra «Filtra le esplorazioni»; il link «Tutte le esplorazioni» e il pulsante «Mostra X articoli» sono nascosti su mobile. Da 768 px la sidebar resta visibile; senza JavaScript i filtri rimangono espansi.
-
-Il layout condiviso è in `partials/exploration.html`, gli stili in `assets/css/main.css`. Archivio e articoli condividono il contenitore centrato e il posizionamento della sidebar. Il feed RSS degli articoli è `/esplora/index.xml`.
-
-### Hero e fotografie
-
-La hero completa è condivisa da home, Coming Soon e informative. Da 960 px `.hero--home` usa `calc(clamp(480px, calc(100vh - 440px), 1000px) * .94)`: circa 451–940 px; a 1080 e 1440 px di altezza del viewport misura rispettivamente circa 602 e 940 px. Non impone la visibilità di due articoli completi. Sotto 960 px conserva le regole da 390 px di altezza; sotto 640 px usa 340 px.
-
-Titolo e sottotitolo condividono `--hero-text-scale`: 1 a 1080 px, 1,10 a 1440 px e 1,25 da 2160 px. La scala richiede il supporto CSS alle divisioni tra lunghezze; il fallback mantiene le misure di base. Le immagini usano `object-fit: cover`, senza deformazioni.
-
-Il velo `.hero::before` è un gradiente a 180° di `rgb(15 24 24)`, con opacità 68% in alto, 40% alla posizione 40% e 35% in basso.
-
-Aggiungere o rimuovere foto `.webp` in `assets/images/hero/` e ricompilare. Hugo genera varianti a 768, 1440 e 2560 px in qualità 84, senza ingrandire, includendo il sorgente quando ha una larghezza diversa. Dimensioni e `srcset` sono ricavati dalle immagini. La selezione avviene subito nell’header: un `<template>` inerte evita di scaricare anche una foto non scelta.
-
-`sessionStorage` conserva l’ultima foto in `polesine-hero-last`, esclusa dalla scelta se ce ne sono almeno due. Senza storage la casualità resta, ma le ripetizioni sono possibili. Con una sola foto la scelta è fissa; senza foto o senza JavaScript si usa il fallback. `hero/background.webp` è il fallback preferito e la sorgente delle miniature; conservare `static/images/hero-fallback.webp` come sicurezza se manca anche quel file.
-
-### Feed, mappa e Contatti
-
-| Elemento | Regole attuali |
+| Impostazione | Valore |
 | --- | --- |
-| Feed e Chi sono/Contatti | Da 960 px condividono `.content-layout--home`: massimo 1180 px e margini laterali di almeno 32 px. Il contenitore della mappa rimane separato. |
-| Anteprime desktop | Foto 260×173 px, titoli 30 px, descrizioni 16 px con interlinea 28 px, metadati 16 px. Spazio dopo titolo 18 px, dopo descrizione 16 px, padding verticale 32 px; sopra il primo articolo 0. |
-| Anteprime responsive | Sotto 960 px foto larghe 190 px; sotto 640 px foto da 100 px e titoli da 25 px. Conservare le regole mobile separate. |
-| Barre ocra | `h2::after`, colore `#b58b20`, altezza 3 px: larghezza visibile 56 px a riposo e 112 px in hover/focus interno, con `transform: scaleX(.5)` → `scaleX(1)`. Transizione 220 ms senza spostamenti del layout. |
-| Mappa | SVG 2400×921, massimo 1600 px; margini di almeno 32 px desktop e 20 px sotto 960 px. Su mobile il disegno mantiene una larghezza minima di 1128 px, con scorrimento nel solo `.map-scroll`, accessibile da tastiera. |
-| Contatti | Titoli Chi sono/Contatti in Oswald; cinque icone, su mobile fino a tre nella prima riga e due nella seconda, centrate, entro 240 px. Cerchi 80 px desktop/64 px mobile; simboli 38/32 px. |
-
-La mappa è illustrativa: conservare dimensioni e proporzioni nel template. La mappa usa `--section-bg` (`#f6f4ef`) come fondo e `#bfbcb3` per la sagoma SVG. La fascia Chi sono/Contatti usa fondo `#e8e5de` e testo `#383838`.
-
-### Logo, icone, hover e footer
-
-Mantenere il logo in PNG e preservarne la trasparenza. L’header usa il sorgente originale 2300×2103 senza conversione Hugo; `.brand-logo` ne usa l’alfa come maschera CSS per colorare logo e nome insieme. Senza supporto alle maschere rimane visibile il PNG bianco. Le dimensioni sono definite dal CSS; non modificare il sorgente per adattare il logo al layout.
-
-Le icone SVG dell’header sono 25×25 px dentro controlli da 44×44 px. Il menu è in Oswald a 15,9 px, oppure 17 px da 1920 px di larghezza CSS. Sotto 1200 px passa al menu espandibile.
-
-`--menu-hover: #f2ca68` governa hover/focus di menu desktop, nome/logo, icone dell’header, link «Tutte le esplorazioni», credito autore e link Privacy/Disclaimer del footer. Il menu espanso su fondo bianco usa `#8a6516`. La transizione del colore dura 250 ms con `ease-in-out`; non cambia font, dimensioni o posizioni. Il colore chiaro può avere contrasto ridotto su bianco o fotografie chiare: rivederlo nell’audit di accessibilità.
-
-Il footer condiviso contiene Privacy → `/privacy/`, Disclaimer → `/disclaimer/` e il credito a `https://lostman.cc`, aperto in nuova scheda. Usa Inter, testo principale da 13 px e crediti da 11 px. Desktop: tre colonne, con «TORNA ALLA HOME» centrato. Sotto 640 px: ritorno alla home sulla prima riga, copyright a sinistra e informazioni legali a destra; «Polesine Fantasma» resta unito sotto gli anni. Non duplicare il markup del footer nelle singole pagine.
-
-La favicon originale rimane SVG e viene copiata senza trasformazioni. Il riferimento `/favicon.svg` nel head condiviso funziona anche sulla 404 servita da URL annidati.
-
-### Angolo storico
-
-Il triangolo Wikipedia resta in `history-corner.html`, con JPG ritagliato solo via CSS. `.page-surface` racchiude i contenuti e `.history-rail` consente allo sticky di fermarsi sopra il footer senza JavaScript. La piega misura 112 px, oppure 76 px sotto 640 px; tooltip e focus sono in CSS. L’apertura di Wikipedia avviene in nuova scheda. Il flag non influenza la mappa SVG e la 404 esclude sempre il triangolo.
-
-## Interazioni e accessibilità
-
-La palette è definita in `assets/css/main.css`. La proprietà `color-scheme: only light` sul selettore `:root` indica al browser di usare lo schema chiaro anche per gli elementi nativi.
-
-Il titolo della hero viene animato da `main.js` solo se `data-typewriter` è `pending`; rispetta il movimento ridotto. Anche transizioni ocra, barre, scorrimento fluido e piega storica rispettano `prefers-reduced-motion`. Non applicare l’animazione della hero ai titoli delle informative o al contenuto 404.
-
-Il menu mobile usa `details/summary` e funziona anche senza JavaScript. JavaScript gestisce la chiusura tramite Escape, clic esterno o selezione di un link e sincronizza lo stato al cambio di breakpoint.
-
-La busta dei Contatti copia `info@polesinefantasma.it` con Clipboard API, disponibile su HTTPS o localhost. Mostra «Copiato!» per due secondi dopo il successo o «Copia non riuscita» in caso di errore. Senza JavaScript/API rimane il link `mailto:`. Le ancore di sezione hanno `scroll-margin-top: 24px`; focus, nomi accessibili e dimensioni delle immagini sono gestiti nei template/CSS.
-
-## Build e Cloudflare Pages
-
-Usare Hugo **0.169.0 Extended**, senza installazioni npm. Le impostazioni seguenti sono il riferimento del repository; verificare nell’account Pages versione disponibile, branch collegato e deploy automatici.
-
-| Impostazione Pages | Valore |
-| --- | --- |
-| Directory del progetto | Radice del repository |
-| Comando di build | `hugo build --baseURL "$CF_PAGES_URL/"` per l’ambiente di test |
+| Directory progetto | Radice del repository |
+| Build di test | `hugo build --baseURL "$CF_PAGES_URL/"` |
 | Output | `public` |
-| Variabile di ambiente | `HUGO_VERSION=0.169.0` |
+| Ambiente | `HUGO_VERSION=0.169.0` |
 
-In produzione passare il dominio assoluto corretto con `--baseURL` o aggiornare `hugo.toml`. I link del feed RSS dipendono dall’URL di build. Il feed generale include le pagine Markdown, comprese le informative. Per gli articoli usare il feed di sezione descritto sopra.
-
-Il push sul branch collegato a Pages avvia il deploy se l’integrazione automatica è attiva; modifiche locali e build non pubblicano nulla. 
+Per la produzione usare il dominio assoluto corretto con `--baseURL` o in `hugo.toml`: anche i link RSS dipendono da questo valore. Il feed generale `/index.xml` include le informative; per i soli articoli usare quello di Esplora. Il push sul branch collegato pubblica solo se i deploy automatici sono attivi.
 
 ### Pagina 404
 
-Il [template nativo Hugo](https://gohugo.io/templates/404/) genera `public/404.html`. L’header compatto riusa logo, menu e icone, ma non foto, titolo/sottotitolo della hero o triangolo storico. Il contenuto è centrato su `#f6f4ef`, con numero Oswald, messaggio Special Elite e footer a fondo viewport quando il contenuto è breve. Titolo HTML e `noindex` sono specifici per `.Kind == "404"`.
+`layouts/404.html` genera `public/404.html`, senza hero fotografica. In locale aprire `/404.html` per l’anteprima. Dopo il deploy controllare anche un URL inesistente annidato:
 
-In locale avviare `hugo server -D` dalla radice e aprire `http://localhost:1313/404.html` per l’anteprima, oppure un URL inesistente come `/percorso/inesistente/` per controllare la risposta di errore. Cloudflare Pages utilizza il `404.html` nella radice dell’output per le richieste non trovate, senza fallback SPA: vedere [Serving Pages](https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior). Non sono previste regole `_redirects` o configurazioni aggiuntive. Dopo il deploy verificare un percorso inesistente annidato con `curl.exe -I https://DOMINIO-DEL-SITO/percorso/inesistente/`: deve rispondere HTTP 404, senza redirect; aprirlo anche nel browser per controllare pagina e risorse. L’accesso diretto a `/404.html` non dimostra lo stato HTTP di un URL inesistente. 
+```powershell
+curl.exe -I https://DOMINIO-DEL-SITO/percorso/inesistente/
+```
+
+Deve rispondere HTTP 404 senza redirect; verificare nel browser che le risorse si carichino. Aprire direttamente `/404.html` non verifica lo stato HTTP degli URL inesistenti.
+
+La pagina riusa header e footer, ma esclude foto, testi della hero e triangolo storico. Il metatag noindex dipende da `.Kind == "404"`. Non sono previste regole `_redirects` o fallback SPA: verificare il comportamento effettivo sul deploy.
 
 ### Indicizzazione provvisoria
 
-**Da rivedere prima della pubblicazione definitiva.** Il blocco globale HTML e quello HTTP del solo test sono indipendenti:
+**Da rivedere prima della pubblicazione definitiva:**
 
-| Sorgente | Ambito | Intervento prima della pubblicazione |
-| --- | --- | --- |
-| `layouts/baseof.html` | `noindex, nofollow` su tutte le pagine, `noindex` sulla 404, anche se la build viene servita dal dominio definitivo. | Togliere o rendere condizionale il blocco sulle pagine da indicizzare; conservare `noindex` sulla 404 e una protezione per lo sviluppo. |
-| `static/_headers` | Pattern `https://test.polesinefantasma.it/*`, con `X-Robots-Tag: noindex, nofollow`; nessuna regola per dominio principale, www o `pages.dev`. | Mantenere se il test resta attivo; modificare/rimuovere se il suo host cambia o viene dismesso. Non allargare la regola alla produzione. |
-| `hugo.toml` | Sitemap disabilitata in `disableKinds`, `baseURL = '/'`. | Rivalutare la sitemap e usare l’URL assoluto della destinazione. |
+| Sorgente | Stato e intervento |
+| --- | --- |
+| `layouts/baseof.html` | Noindex HTML globale: rimuoverlo o limitarlo sulle pagine definitive, preservando 404 e sviluppo. |
+| `static/_headers` | `X-Robots-Tag: noindex, nofollow` solo su `https://test.polesinefantasma.it/*`; mantenerlo o aggiornarlo secondo l’uso del test, senza estenderlo alla produzione. |
+| `hugo.toml` | Sitemap disabilitata e `baseURL = '/'`: rivalutare la sitemap e impostare l’URL assoluto. |
 
-Il file `static/_headers` viene copiato in `public/_headers` senza trasformazioni; è interpretato da [Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/headers/), non da `hugo server`. Non contiene regole globali `/*`: il vincolo è sul solo host test. Le restrizioni nei metatag restano invece globali finché non vengono modificate esplicitamente.
+`_headers` viene copiato nella build ma applicato da Pages, non da `hugo server`. Dopo il deploy verificare gli header di Home e informative sul test e la loro assenza sui domini principali. Controllare separatamente gli URL effettivi `pages.dev`, senza presumerne la protezione.
 
-Non aggiungere `Disallow: /` al gruppo generale dei crawler sul test: impedirebbe la lettura del noindex. Non c’è un robots.txt nei sorgenti; verificare anche quello eventualmente gestito da Cloudflare e le regole impostate nel pannello.
+Non aggiungere un blocco generale `Disallow: /` sul test: impedirebbe ai crawler di leggere il noindex. Non esiste un `robots.txt` nei sorgenti; controllare anche eventuali regole gestite da Cloudflare. I controlli locali non dimostrano che le impostazioni siano già attive online.
 
-Dopo il deploy eseguire:
+Comandi di controllo dopo il deploy:
 
 ```powershell
 curl.exe -I https://test.polesinefantasma.it/
@@ -194,6 +247,4 @@ curl.exe -I https://polesinefantasma.it/
 curl.exe -I https://www.polesinefantasma.it/
 ```
 
-Le prime due risposte devono contenere `X-Robots-Tag: noindex, nofollow`; i domini principali non devono riceverlo da questa regola. Verificare anche il robots.txt e un errore 404 sul test. La presenza di `public/_headers` nella build non prova che l’intestazione sia già applicata online.
-
-Identificare nel pannello Pages gli URL effettivi `pages.dev` e controllarli separatamente con `curl.exe -I`. Le [preview includono normalmente `X-Robots-Tag: noindex`](https://developers.cloudflare.com/pages/configuration/preview-deployments/#preview-indexing-by-search-engines); non presumere la stessa protezione per `<progetto>.pages.dev`, che può essere l’URL di produzione del progetto. Nessuna loro regola viene modificata automaticamente.
+Le prime due risposte devono includere `X-Robots-Tag: noindex, nofollow`; i domini principali non devono riceverlo dalla regola del test. Il metatag HTML globale resta comunque indipendente dagli header HTTP: verificarli entrambi. Per gli URL `pages.dev` controllare separatamente preview e dominio di produzione del progetto.

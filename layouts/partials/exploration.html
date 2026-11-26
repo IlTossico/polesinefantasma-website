@@ -16,9 +16,29 @@
     <h1 id="article-title" class="sr-only">{{ .Title }}</h1>
     <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ with .Params.comune }} · {{ . }}{{ end }}</p>
     {{ .Content }}
+    {{/* Hugo può valorizzare lastmod dalla data di pubblicazione: leggere il campo esplicito. */}}
+    {{ $frontMatter := index (split (readFile .File.Filename) "+++") 1 | transform.Unmarshal (dict "format" "toml") }}
+    {{ if or .Params.photographers .Params.authors $frontMatter.lastmod }}
+    <div class="article-credits">
+      {{ with .Params.photographers }}
+      <p><strong>Fotografie:</strong> <span>© {{ delimit . ", " }}{{ with $.Params.photo_date }} - {{ . }}{{ end }}.</span></p>
+      {{ end }}
+      {{ with .Params.authors }}
+      <p><strong>Testo e ricerca storica:</strong> <span>{{ delimit . ", " }}.</span></p>
+      {{ end }}
+      {{ with $frontMatter.lastmod }}
+      <p><strong>Ultimo aggiornamento:</strong> <span><time datetime="{{ . | time.Format "2006-01-02" }}">{{ . | time.Format "2 January 2006" }}</time>.</span></p>
+      {{ end }}
+    </div>
+    {{ end }}
   </article>
   {{ end }}
   </div>
   {{ $js := resources.Get "js/archive.js" | minify | fingerprint }}
   <script defer src="{{ $js.RelPermalink }}"></script>
 </main>
+<button class="back-to-top" type="button" aria-label="Torna all’inizio della pagina" inert>
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="m5 15 7-7 7 7" />
+  </svg>
+</button>
