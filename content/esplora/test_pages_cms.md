@@ -1,7 +1,7 @@
 +++
 title = 'Come Nicolo vorrebbe la sua auto'
 date = '2026-11-26'
-draft = true
+draft = false
 description = 'Riuscirá Nicoleone a moddare la sua automobile?'
 comune = 'Adria'
 hero_image = '/images/articoli/volkswagen-golf-gti.webp'
