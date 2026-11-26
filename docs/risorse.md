@@ -7,6 +7,7 @@ Il [README](../README.md) contiene panoramica e attività aperte. Qui sono racco
 | File o directory | Responsabilità |
 | --- | --- |
 | `hugo.toml` | Configurazione, lingua, funzionalità opzionali e output. |
+| `.pages.yml` | Configurazione di Pages CMS: articoli, campi, immagini e conservazione dei metadati. |
 | `layouts/baseof.html` | Head, metadati, CSS/JS minificati con fingerprint e struttura condivisa. |
 | `layouts/home.html` | Home, mappa, Chi sono e Contatti. |
 | `layouts/esplora/`, `layouts/partials/exploration.html` | Archivio, articoli, crediti e pulsante per tornare in alto. |
@@ -121,6 +122,36 @@ Le didascalie riprendono la tipografia della data iniziale: 16 px, interlinea 1,
 `archive.js` combina luogo e periodo, aggiorna conteggi e URL, ad esempio `/esplora/?luogo=Adria&periodo=2025-11`. Negli articoli i filtri rimandano all’archivio; senza JavaScript resta l’elenco completo. Sotto 768 px il pannello è inizialmente chiuso; senza JavaScript i filtri restano espansi.
 
 Nell’archivio mobile la selezione aggiorna i risultati senza chiudere il pannello, che si richiude dalla barra dei filtri. I vecchi parametri URL `tag` vengono rimossi. Archivio e articoli condividono la griglia di `exploration.html`: da 1200 px lo spazio a destra compensa la sidebar per centrare la colonna del testo.
+
+## Pages CMS
+
+La configurazione `.pages.yml`, nella radice, espone solo gli articoli di `content/esplora/`, comprese le demo e gli eventuali bundle. `_index.md` è escluso; informative e altre pagine non sono gestite dal CMS. Sono configurati tutti i campi attuali, inclusi crediti, etichette e inquadrature. `demo` è in sola lettura e non controlla la pubblicazione. `settings.content.merge: true` conserva anche i campi non inclusi nello schema; il salvataggio può comunque riformattare il TOML.
+
+### Collegamento e accessi
+
+1. Dopo aver approvato e pubblicato manualmente la configurazione su GitHub, accedere a [Pages CMS](https://app.pagescms.org/) con GitHub.
+2. Installare/autorizzare la GitHub App sul repository `IlTossico/polesinefantasma-website`, selezionando il branch da modificare. La configurazione è letta per branch.
+3. Invitare il collaboratore via email dalle impostazioni dei collaboratori del CMS, oppure usare un account GitHub autorizzato al repository. L’invito va effettuato nell’app, non in `.pages.yml`.
+
+Non servono modifiche all’integrazione Cloudflare Pages. I salvataggi CMS scrivono commit su GitHub: sul branch collegato a Cloudflare possono quindi attivare il deploy automatico già esistente. Eventuali protezioni del branch vanno verificate prima dell’uso.
+
+### Creazione, bozze e Markdown
+
+I nuovi articoli usano `{primary}.md`; il nome del file si sceglie alla creazione. La rinomina dal CMS è disabilitata per preservare gli URL esistenti. Il CMS propone un testo iniziale coerente con l’archetipo, ma non esegue `hugo new`: se si aggiorna il modello, mantenere allineato anche il valore iniziale di `body` in `.pages.yml`.
+
+Attivare **Bozza** prima di salvare un articolo incompleto. Il controllo corrisponde a `draft` di Hugo; è inizialmente `false` per non trasformare in bozze gli articoli esistenti privi del campo. Per pubblicare, disattivarlo e impostare una data non futura. Non è una programmazione automatica: una data futura richiede una nuova build dopo la scadenza. Anche salvare una bozza o caricare una foto può produrre un commit e una build, ma l’articolo in bozza resta escluso dal sito.
+
+L’editor offre modalità visuale e **Source**. Per sintassi specifica di Hugo, come `{.article-sources}`, usare Source e controllare il risultato prima del salvataggio: la normalizzazione dell’editor visuale non garantisce la conservazione delle estensioni Markdown. Per aggiungere immagini si può usare il selettore visuale oppure caricarle nella libreria CMS e inserire il percorso in Source. Il front matter resta TOML con delimitatori `+++`, necessario anche ai crediti.
+
+### Fotografie
+
+La libreria punta a `assets/images/`, con caricamenti predefiniti in `assets/images/articoli/` e percorsi salvati come `/images/articoli/nome.webp`. Sono ammessi WebP, JPEG e PNG; i nomi caricati sono normalizzati. La cartella contiene `.gitkeep` solo per renderla disponibile nel repository prima del primo upload.
+
+Caricare un solo originale e riutilizzarlo per copertina, miniatura e corpo: i template esistenti risolvono già queste risorse e Hugo genera automaticamente anteprime e varianti responsive. Il CMS non ridimensiona preventivamente le foto: preferire originali già ragionevoli per il web. Non eliminare immagini ancora referenziate da altri articoli.
+
+Le vecchie foto in `static/images/articoli/` restano al loro posto e continuano a funzionare sul sito, senza nuove elaborazioni. Non fanno parte della nuova libreria `assets/`: la loro anteprima nell’editor va verificata nell’app collegata. Nessuna migrazione automatica o archiviazione esterna è configurata.
+
+Riferimenti ufficiali: [configurazione delle raccolte](https://pagescms.org/docs/configuration/content/), [media](https://pagescms.org/docs/configuration/media/), [conservazione dei campi](https://pagescms.org/docs/configuration/settings/), [editor Markdown](https://pagescms.org/docs/configuration/fields/rich-text/) e [collaboratori](https://pagescms.org/docs/configuration/collaborators/).
 
 ## Hero e interazioni
 

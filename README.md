@@ -6,7 +6,7 @@ Progetto dedicato alle storie, alle immagini e ai luoghi del Polesine che resist
 
 | Voce | Stato attuale |
 | --- | --- |
-| Versione | **v0.2.0** <br> Homepage, archivio Esplora e pagine articolo disponibili in locale. |
+| Versione | **v0.4.1** <br> Homepage, archivio Esplora e pagine articolo disponibili in locale. |
 | Ultimo aggiornamento di questa panoramica | **26 novembre 2026**. |
 | Sito | **In sviluppo.** <br>Sei articoli demo in Esplora, filtrabili per luogo e periodo; i tre più recenti compaiono in Home. Galleria in Coming Soon, informative da rivedere e 404 personalizzata. Da finalizzare i contenuti e sviluppare galleria, CMS e ricerca. |
 | Ultimi interventi completati | Anteprime condivise tra Home ed Esplora, impaginazione centrata e filtri mobile richiudibili. Articoli con crediti dal front matter, titoli bilanciati e barre ocra, escluse nelle fonti. H1 ridotti e titoli hero adattivi su mobile. |

@@ -1,0 +1,140 @@
+# Pages CMS: contenuti TOML e immagini elaborabili da Hugo.
+media:
+  - name: photographs
+    label: Fotografie (hero e articoli)
+    input: assets/images
+    output: /images
+    extensions: [webp, jpg, jpeg, png]
+    rename: safe
+
+content:
+  - name: esplora
+    label: Articoli di Esplora
+    type: collection
+    path: content/esplora
+    format: toml-frontmatter
+    delimiters: +++
+    subfolders: true
+    exclude: [_index.md, '**/_index.md']
+    filename:
+      template: '{primary}.md'
+      field: create
+    operations:
+      rename: false
+    view:
+      primary: title
+      fields: [title, date, comune, draft, demo]
+      sort: [date, title, comune]
+      search: [title, description, comune]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titolo dell'articolo
+        type: string
+        required: true
+        description: Titolo usato nelle anteprime e nella scheda del browser.
+      - name: date
+        label: Data di pubblicazione
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: draft
+        label: Bozza (non visibile sul sito)
+        type: boolean
+        default: false
+        description: Attiva prima di salvare un articolo incompleto. Disattiva per pubblicarlo; una data futura lo mantiene escluso dalla build corrente.
+      - name: description
+        label: Descrizione per le anteprime
+        type: text
+      - name: comune
+        label: Comune
+        type: string
+        description: Usa sempre lo stesso nome per raggruppare correttamente i filtri.
+      - name: hero_image
+        label: Fotografia di copertina
+        type: image
+        options:
+          media: photographs
+          path: assets/images/articoli
+      - name: hero_title
+        label: Titolo sulla fotografia di copertina
+        type: string
+      - name: hero_subtitle
+        label: Sottotitolo sulla fotografia di copertina
+        type: string
+      - name: thumbnail
+        label: Miniatura (facoltativa)
+        type: image
+        description: Se vuota, Hugo usa la copertina e genera automaticamente l'anteprima.
+        options:
+          media: photographs
+          path: assets/images/articoli
+      - name: body
+        label: Testo, fotografie e fonti
+        type: rich-text
+        description: Inserisci qui il titolo visibile. Per le fonti conserva in modalità Source la riga '## Fonti e riferimenti {.article-sources}'.
+        default: |
+          # Titolo dell'articolo
+
+          ***Sottotitolo dell'articolo.***
+
+          Scrivi qui il racconto.
+
+          ## Titolo del capitolo
+
+          Scrivi qui il testo e inserisci le fotografie.
+
+          ---
+
+          ## Fonti e riferimenti {.article-sources}
+
+          Inserisci qui le fonti consultate.
+
+          ---
+        options:
+          format: markdown
+          switcher: true
+          media: photographs
+          path: assets/images/articoli
+      - name: photographers
+        label: Fotografi
+        type: string
+        list: true
+        description: Un nome per voce. Il simbolo © viene aggiunto dal sito.
+      - name: photo_date
+        label: Periodo delle fotografie
+        type: string
+        description: Per esempio gennaio 2024; scrivi il periodo in italiano.
+      - name: authors
+        label: Autori del testo e della ricerca storica
+        type: string
+        list: true
+      - name: lastmod
+        label: Ultimo aggiornamento
+        type: date
+        default: ''
+        options:
+          format: yyyy-MM-dd
+      - name: tags
+        label: Etichette (per usi futuri)
+        type: string
+        list: true
+      - name: hero_position
+        label: Inquadratura copertina desktop (facoltativa)
+        type: string
+        description: Per esempio center 35%. Lascia vuoto per l'inquadratura predefinita.
+      - name: hero_position_mobile
+        label: Inquadratura copertina mobile (facoltativa)
+        type: string
+      - name: demo
+        label: Articolo dimostrativo
+        type: boolean
+        readonly: true
+        description: Indicatore esistente conservato; non è il controllo di pubblicazione.
+
+settings:
+  content:
+    merge: true
