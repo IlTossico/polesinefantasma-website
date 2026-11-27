@@ -111,8 +111,9 @@ Attività tecniche e operative per realizzare il sito. Le proposte di contenuto 
 
 | Attività | Stato | Criterio di completamento |
 | --- | --- | --- |
+| Home | **Implementati** | Migliorare la mappa e rendila dinamica. Aggiungi didascalia sulla hero, vedi [Ispirazioni](docs/inspiration.md). |
 | Feed e pagina Esplora | **Implementati** | Completare la revisione editoriale e la verifica nei principali browser di archivio, filtri e articoli. |
-| CMS | **Da pianificare**  | Configurare il sistema per creare articoli, inserire fotografie nel testo, gestire titoli, descrizioni e pubblicazione. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
+| CMS | **Work in Progress**  | Implementato Pages CMS, risultato non soddisfacence, alla ricerca di alternativa. Inizialmente le immagini saranno tutte locali al sito. Caricare solo immagini necessarie all'articolo in WebP, Hugo gestisce le anteprime e resto. |
 | Articoli di prova | **Implementati** | Sei demo, inclusa Fabbris con fonti e crediti. Verificare o sostituire i dati di prova prima della pubblicazione; tag conservati per usi futuri. |
 | Galleria e NAS | **Da pianificare** | Quando la struttura funzionerà, configureremo la gestione condivisa delle fotografie su Unraid e l'accesso pubblico alle versioni grandi. Poi collegheremo la lightbox sia agli articoli sia alla galleria. |
 | Preparare contenuti e risorse | **Work in Progress** | Selezionare testi, fotografie e materiali, verificandone provenienza e diritti d'uso. |

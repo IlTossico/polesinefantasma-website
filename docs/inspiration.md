@@ -5,8 +5,8 @@ Raccolta di riferimenti per la grafica, i contenuti e la navigazione del futuro 
 ### Idee Confermate o da sistemare
 
 - **Una didascalia fotografica sul bordo della hero.** In basso a destra, sul bordo della foto della hero, una piccola riga con il nome della foto o del luogo e, se c’è un racconto collegato, una freccia per aprirlo o link interattivo al passaggio del mouse. Quando cambia lo sfondo, cambia anche la didascalia. Bianca, con un piccolo trattino giallo ocra, come una didascalia da mostra fotografica.
-- **Un pezzo di rullino fisso con le foto che cambiano al refresh della pagina, in fondo alla home.** Una fila di tre o quattro scatti della Galleria con le perforazioni ai bordi. Al click, il rullino avanza di un fotogramma? (ma scompare la foto cosi??) e sotto compare il nome del luogo dello scatto selezionato. Un link “Apri la galleria” chiude la sezione.  
-- **Un bordo fotografico sulla hero.** Una linea sottile leggermente rientrata dal perimetro della foto, con quattro angoli gialli appena accennati. Riprenderebbe il reticolo delle miniature su scala più grande. O solo angoli, da mirino fotografico. Quattro piccole L sottili, color bianco caldo
+- **Un pezzo di rullino fisso con le foto che cambiano al refresh della pagina, in fondo alla home.** ~~Una fila di tre o quattro scatti della Galleria con le perforazioni ai bordi. Al click, il rullino avanza di un fotogramma? (ma scompare la foto cosi??) e sotto compare il nome del luogo dello scatto selezionato. Un link “Apri la galleria” chiude la sezione.  ~~
+- **Un bordo fotografico sulla hero.** ~~Una linea sottile leggermente rientrata dal perimetro della foto, con quattro angoli gialli appena accennati. Riprenderebbe il reticolo delle miniature su scala più grande. O solo angoli, da mirino fotografico. Quattro piccole L sottili, color bianco caldo~~
 
 ### Idee da effettuare nell'immediato
 
